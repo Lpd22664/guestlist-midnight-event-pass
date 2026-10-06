@@ -1,27 +1,41 @@
-# Three-minute demo
+# Three-minute Guestlist demo
 
-Use synthetic labels and the local preview. A separate real-network demonstration is pending owner wallet, DUST, prover and deployment prerequisites.
+Run the [local app](../README.md#reproduce-the-browser-app), keep **Local demo** selected, and use an invented guest label. No wallet or Preview setup is needed. These timings are a presentation guide, not measured completion times. The final evidence step is separate from the synthetic interaction.
 
-## 0:00–0:40 · Issue
+## Before the timer
 
-The app opens on Issue pass. Enter an invented label, leave Guest selected, and select Create pass. The form creates one credential, including under rapid repeated clicks. Its pass number and a real QR appear together. Present this pass opens the holder view for that exact credential.
+If the browser has previous demo data, select **Reset demo → Reset demo** in its confirmation. This restores the original 18 synthetic guests. Select **Issue pass** to start. The reset affects only synthetic browser data. The demo clock stays fixed at 5 October 2026, 17:00 UTC.
 
-## 0:40–1:15 · Present
+## 0:00–0:35 Issue
 
-The holder view prioritises the event, date, guest label, status and QR. Pass details contains the commitment and less frequent actions. Copy credential is available for the demo. The QR is a bearer ticket: anyone with a copy could use it first. Names do not need to be public, but commitments and state transitions remain linkable.
+Enter **Morgan Harper**, leave Guest selected, and select **Create pass**. The created pass number and a real encoded QR appear together. Select **Present this pass** to open that exact credential.
 
-## 1:15–2:00 · Check in
+Suggested explanation: “This is a synthetic pass in browser storage. Names and emails are not inputs to the Compact contract.”
 
-Open Preview tools and select Try check-in. The gate view receives this selected demo credential. Select Check in. A valid unused pass produces Admitted and becomes used. The result clearly belongs to the local preview, not a chain transaction.
+## 0:35–1:00 Present
 
-Select Check another pass, then Use a demo pass. Select the same guest, load the pass, and check it again. The gate rejects it as Already used without recording another admission. Revoked, expired and malformed demo credentials likewise reject.
+Show the event, label, status and QR in the holder view. **Pass details** holds the commitment; **Copy credential** exposes the same synthetic bearer credential used by the QR.
 
-## 2:00–2:30 · Revoke
+Explain that anyone with a copied bearer credential could use it first. Public commitments and status changes remain linkable. In the live design, the bearer keeps their own secret and gives the issuer only a public Compact commitment; this same-browser demo simulates the roles.
 
-More options → Issued passes opens management. Open an unused pass, select Revoke, and review the confirmation. Keep pass leaves it unchanged. Confirming revocation makes that credential terminal. Guest search/filtering and pass activity remain available as secondary tools.
+## 1:00–1:40 Admit and reject a replay
 
-## 2:30–3:00 · Show the real technical evidence
+Open **Preview tools → Try check-in**, then select **Check in**. The app shows **Admitted**, records one local admission, and marks the pass used.
 
-Connection & verification separates the local UI from the actual Compact and SDK work. Show the original contract, real compiler artifacts, 19 generated-runtime tests, six compiler checks, SDK offline tests and local issue-proof evidence.
+Select **Check another pass → Use a demo pass**, choose **Morgan Harper · Checked in**, select **Use pass**, then **Check in** again. **Already used** and **No entry recorded** show the refused replay.
 
-The official prover generated genuine issue proofs and performed mandatory cryptographic self-verification; a wrong-verifier control rejected. The installed ledger WASM's contract-proof check is structural only. No wallet fee balancing, network deployment or finality is claimed. A genuine Preview run must add accepted receipts, contract address and independent state reads before describing the project as deployed.
+Suggested explanation: “This result is local. A live gate must independently verify a finalized redemption and claim entry once through the shared backend.”
+
+## 1:40–2:15 Revoke a different unused pass
+
+Open **More options → Issued passes**, find **Sam Rivers**, open its pass, and select **Revoke**. **Keep pass** cancels. Open Revoke again and select **Revoke pass** to confirm. Reopen the pass to show its terminal **Revoked** state. Morgan's used pass cannot be revoked.
+
+## 2:15–3:00 Show the technical evidence
+
+Open **More options → Connection & verification** to explain the local/network boundary. Then use the [reviewer status](reviewer-status.md) links to show:
+
+1. The original Compact contract and its issuer/bearer assertions, full compiler artifacts, 19 generated-runtime tests and six compiler checks
+2. Genuine local **issue, redeem and revoke** proofs, each passing the official prover's cryptographic self-verification; the wrong-verifier control rejected. The separate ledger WASM check is structural only
+3. The owner's **actual Preview deployment**, independently verified at finalized block **1169309**, and the exact successful [public CI run](https://github.com/Lpd22664/guestlist-midnight-event-pass/actions/runs/37451385375)
+
+Close with the remaining boundary: network issue/redeem/revoke, concurrency/recovery acceptance and live gate admission are pending. The displayed synthetic admission is not their evidence. No anonymity guarantee, independent security audit or production suitability is claimed.

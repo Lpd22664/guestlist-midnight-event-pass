@@ -1,8 +1,18 @@
 # Guestlist · Private event passes on Midnight
 
+[![Current main branch CI](https://github.com/Lpd22664/guestlist-midnight-event-pass/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/Lpd22664/guestlist-midnight-event-pass/actions/workflows/verify.yml)
+
 An AI-assisted portfolio prototype for a simple question: **can a guest prove they have a valid, unused invitation without putting their name on a public ledger?**
 
 Guestlist pairs an Apple-informed, responsive event interface with an original Compact contract. It is a prototype, not a production admission system, an Apple Wallet integration, or a security-audited product.
+
+## Start here for reviewers
+
+The default app is a **wallet-free synthetic demo**. Run it locally, follow the [three-minute walkthrough](docs/demo-walkthrough.md), then inspect the [original Compact contract](contracts/event-pass.compact) and [interview guide](docs/interview-guide.md).
+
+At the 6 October 2026 checkpoint, [CI passed on source commit `3a18aa7`](https://github.com/Lpd22664/guestlist-midnight-event-pass/actions/runs/37451385375): clean installation, offline verification, actual SDK browser runtime, and desktop/phone end-to-end flows. [Reviewer status and evidence](docs/reviewer-status.md) separates that synthetic demo, all three genuine local circuit proofs, the independently verified Preview deployment, and the still-pending network lifecycle/gate acceptance. Earlier failed-job emails refer to older runs; the linked successful run identifies the exact source it checked.
+
+Public screenshots appear below. The owner's private hosted preview is not a reviewer demo; the public source, captures and local setup are the review path.
 
 ## What actually works
 
@@ -39,9 +49,13 @@ The `proof-check/` scripts generated real local proofs for all three circuits us
 
 ## Reproduce the browser app
 
-Tested Node **24.19.0** and npm **11.9.0**. Direct package versions and all transitive integrity hashes are pinned in the lockfile.
+Use Node **24.19.0** with its npm; the app requires **>=24.19.0 <25**. The recorded setup used npm **11.9.0**. Check `node --version` and `npm --version` before installing. Git and access to the public npm registry are needed for a fresh clone. Direct package versions and transitive integrity hashes are pinned in the lockfiles.
+
+No wallet, credentials, funds, prover service or environment variables are needed for the local synthetic demo. The install/start scripts build and stage the genuine SDK and committed public compiler assets; they do not connect a wallet or submit transactions. You do not need to install the Compact compiler to run the app.
 
 ```sh
+git clone https://github.com/Lpd22664/guestlist-midnight-event-pass.git
+cd guestlist-midnight-event-pass
 npm ci
 npm run install:packages
 npm run dev
@@ -58,7 +72,17 @@ npm run verify:compiler # installed official 0.31.1 compiler + negative/runtime 
 npm run test:e2e     # separate desktop/phone browser flows
 ```
 
-The end-to-end suite needs a Chromium installation. By default it uses `/usr/bin/chromium`; set `CHROMIUM_PATH` to another executable if needed. A supplied `GUESTLIST_TEST_URL` tests that origin without starting Vite. Keep that origin accessible using an explicitly authorized account; do not make a private site public to run tests. See `docs/qa-checklist.md` for the actual passed, blocked and unrun checks.
+The optional browser checks use the pinned Playwright package. After the installs above, select its Chromium executable for both suites:
+
+```sh
+npx playwright install chromium
+export CHROMIUM_PATH="$(node --input-type=module -e 'import { chromium } from "@playwright/test"; console.log(chromium.executablePath())')"
+export CHROMIUM_EXECUTABLE="$CHROMIUM_PATH"
+npm --prefix browser-integration run test:browser
+npm run test:e2e
+```
+
+On Linux, missing browser system dependencies may require `npx playwright install --with-deps chromium`, which installs OS packages and may ask for administrator access. CI uses that Linux setup. With neither executable variable set, each suite defaults to `/usr/bin/chromium`. Root E2E starts Vite automatically unless `GUESTLIST_TEST_URL` supplies an existing origin. Keep any private origin private and accessible only through its authorized account. See the [current QA checkpoint](docs/qa-checklist.md#current-public-checkpoint-6-october-2026) for recorded outcomes and the remaining limits.
 
 ## Reproduce the actual contract
 
@@ -90,13 +114,14 @@ The browser-only adapter uses an explicitly different SHA-256 demo encoding, not
 - Bearers can consume a pass remotely; a real gate must wait for a finalized accepted transaction and independently read confirmed state
 - Two stale local ACTIVE snapshots can both prepare successfully; local computation is not network concurrency protection
 - Demo expiry, 72-person capacity, Guest/Host labels and request idempotency are UI rules. The current Compact contract does not enforce them
-- No issuer recovery/rotation exists; losing the sole issuer credential prevents further issuance/revocation
+- Compact provides no issuer-secret rotation; losing the sole issuer credential and all private backups prevents further issuance/revocation
 - All three local WASM circuit proofs passed built-in cryptographic prover self-verification. The separate ledger WASM only performs structural checks; its synthetic transaction fixture disables fee balancing. The owner reported local prover8.1.0 and test funding; original deployment/finality is independently verified. Network circuit lifecycle and operational gate acceptance remain unverified
 - Gate-service enforces one durable grant across local processes, but the unchanged bearer contract cannot cryptographically distinguish self-consumption after an authenticated gate opens; physical entry is an operational trust boundary
 - A lost grant response is never automatically re-admitted. Gate reachability/TLS, authentication authority and consistent durable backup are owner-controlled deployment steps
 
 ## Product and interview material
 
+- [Reviewer status and evidence](docs/reviewer-status.md)
 - [Product brief](docs/product-brief.md)
 - [Architecture and private/public flow](docs/architecture.md)
 - [Threat model](docs/threat-model.md)

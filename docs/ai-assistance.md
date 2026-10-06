@@ -4,17 +4,17 @@ Guestlist is an AI-assisted portfolio prototype. Attribution should let a review
 
 ## Documented human contribution
 
-Archie chose the event-pass concept and asked for a highly polished UI. He reviewed the work and later required an Apple-informed interface grounded in actual Apple products, with formal checks. Those are the supported human directions recorded for this project; this document does not invent further research, technical decisions, tests, or ownership history.
+Archie chose the event-pass concept and asked for a highly polished UI. He reviewed the work and later required an Apple-informed interface grounded in actual Apple products, with formal checks. The owner also personally performed Preview setup and deployed the original contract; independent public reads verified that deployment. These are the supported contributions recorded for this project. This document does not invent further research, technical decisions, tests or ownership history.
 
 ## AI contribution
 
-AI assistance was used for research, implementation, testing work, and preparation of product and security documentation. That describes the work assigned to AI, not proof that every planned check succeeded. Consult [the QA checklist](qa-checklist.md) and linked evidence for exact commands, versions, outcomes, and remaining gaps. Existing contract logs record full compilation and key generation, 19 generated-runtime tests, and six compiler checks. They do not establish real proof generation or network deployment.
+AI assistance was used for research, implementation, testing work, and preparation of product and security documentation. That describes the work assigned to AI, not proof that every planned check succeeded. Consult [the QA checklist](qa-checklist.md) and linked evidence for exact commands, versions, outcomes, and remaining gaps. Existing contract logs record full compilation and key generation, 19 generated-runtime tests, and six compiler checks. Separate evidence records genuine local issue, redeem and revoke proofs with official prover self-verification and the owner’s independently verified Preview deployment. [Reviewer status](reviewer-status.md) links those results and the successful 3a18aa7 CI run. Accepted network circuit lifecycle, live gate admission and independent security assessment remain pending.
 
 Official Midnight references were consulted on 5 October 2026 for witness trust, public visibility, explicit disclosure, and proving infrastructure. Source links appear beside the relevant claims in the architecture and threat model. This is an original small event-pass product, not a claim of novel cryptography.
 
 ## How to present it honestly
 
-Suggested description: "An AI-assisted React and TypeScript event-pass prototype with a Compact contract. I selected the product direction and reviewed the work. The local demo uses synthetic data; the repository explains private credentials, public admission state, and the remaining deployment and security checks."
+Suggested description: "An AI-assisted React and TypeScript event-pass prototype with an original Compact contract. I selected the product direction, reviewed the work and personally deployed the contract on Midnight Preview. The repository records independent deployment verification, genuine local proofs for all three circuits and passing synthetic demo CI. Full network lifecycle and live gate acceptance are still pending."
 
 Adjust that wording only when new evidence supports a stronger statement. A compiled contract, generated proof, Preview transaction, and independent audit are different milestones. Do not imply any of them from a working local interface.
 

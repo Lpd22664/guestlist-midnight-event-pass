@@ -2,11 +2,28 @@
 
 This checklist separates required checks from recorded outcomes. Current manual browser outcomes are dated below; partial coverage and unrun stages remain explicit. Contract outcomes below are backed by existing compiler/runtime logs and a source-matched build manifest inspected on 5 October 2026. Passing one layer does not imply the others passed.
 
+## Current public checkpoint 6 October 2026
+
+Evidence source: [public commit `3a18aa7bbe22985997a2e884f5c46128390e1011`](https://github.com/Lpd22664/guestlist-midnight-event-pass/commit/3a18aa7bbe22985997a2e884f5c46128390e1011). [CI run 37451385375](https://github.com/Lpd22664/guestlist-midnight-event-pass/actions/runs/37451385375) completed successfully for that exact source. This checkpoint supersedes earlier statements below that GitHub CI had not run, standalone Playwright was blocked, local proofs were absent, or the project had no verified deployment. Historical records remain dated and scoped to their original checks.
+
+| Layer | Current recorded result | Scope and limits |
+| --- | --- | --- |
+| Fresh install and offline aggregate | PASS in public CI | `npm ci`, `npm run install:packages` and `npm run verify:offline` succeeded on Node 24.19.0. Aggregate covers strict typing, root/generated-runtime/SDK/gate/retirement checks, artifact integrity, public-source patterns, palette checks and production build. No wallet or chain operation |
+| Actual browser SDK runtime | PASS in public CI | The `browser-integration` browser-runtime step executed successfully using installed Chromium. This establishes browser SDK/asset execution, not owner wallet/prover readiness |
+| Desktop and phone synthetic E2E | PASS in public CI | Root Playwright executed both configured viewport projects, including issue → present → one local admission → refused replay, reload, filtering, revocation, terminal/malformed inputs, dialog/history and keyboard/layout checks. These are browser fixtures, not physical-device, assistive-technology or network acceptance |
+| Full Compact compilation and compiler checks | PASS in separate recorded evidence | Compiler 0.31.1/runtime 0.16.0, complete keys/ZKIR, 19 generated-runtime tests and six compiler checks. CI's aggregate executes generated runtime tests; it does not install/run the compiler |
+| Three genuine local circuit proofs | PASS in separate recorded evidence | Issue/redeem/revoke passed official prover cryptographic self-verification with public test witnesses. Wrong-verifier control rejected. Published ledger WASM check is structural only; no wallet fee balancing or network submission in these fixtures |
+| Actual Preview deployment | Independently verified | Owner deployment, successful transaction, all three verifier keys and canonical finalized block 1169309 verified through official node/indexer reads. Initial issued/redeemed/revoked counts 0/0/0 |
+| Accepted network circuit lifecycle and live gate | NOT RUN acceptance | Network issue/redeem/revoke and repeat refusal, concurrency/race and uncertain-submission recovery, and live durable-gate admission still require acceptance evidence |
+| Independent security assessment | NOT RUN | No anonymity guarantee, audit or production readiness claimed |
+
+[Reviewer status](reviewer-status.md) links the exact proof/deployment evidence and older failed workflow runs. Failure emails for those older commits retain their historical outcomes; they do not change the successful result for `3a18aa7`. Any later code revision needs its own applicable checks.
+
 ## Recording a result
 
 Use PASS, FAIL, BLOCKED, NOT RUN, or NOT APPLICABLE. Record the exact source revision or hash, command/browser version, viewport, observed outcome, and screenshot or log path. A screenshot establishes appearance at that moment, not lifecycle correctness. Rerun affected checks after later source changes. Never mark an untested feature as passing.
 
-## Visual and responsive checks
+## Historical visual and responsive checks 5 October 2026
 
 | Required check | Acceptance criterion | Current status |
 | --- | --- | --- |
@@ -17,7 +34,7 @@ Use PASS, FAIL, BLOCKED, NOT RUN, or NOT APPLICABLE. Record the exact source rev
 | Zoom and longer content | At 200% text enlargement, retain primary actions and meaningful content; long labels wrap safely | PASS for 9 issue/pass/check-in × 320/390/1280 combinations. Native browser zoom NOT RUN. [Metrics](../evidence/current-browser/text-and-skip.json) |
 | QR rendering | QR is generated from the exact selected synthetic credential with quiet space and clear contrast; decode its rendered image and compare payload | PASS, actual rendered 252×252 QR decoded to the selected public synthetic fixture |
 
-## Interaction and accessibility checks
+## Historical interaction and accessibility checks 5 October 2026
 
 | Required check | Acceptance criterion | Current status |
 | --- | --- | --- |
@@ -35,7 +52,7 @@ Use PASS, FAIL, BLOCKED, NOT RUN, or NOT APPLICABLE. Record the exact source rev
 
 The thresholds and behaviours are project acceptance criteria informed by [Apple's accessibility guidance](https://developer.apple.com/design/human-interface-guidelines/accessibility) and [motion guidance](https://developer.apple.com/design/human-interface-guidelines/motion). They are not a claim of a complete WCAG or assistive-technology audit.
 
-## Local synthetic lifecycle checks
+## Historical local synthetic lifecycle checklist 5 October 2026
 
 | Required check | Acceptance criterion | Current status |
 | --- | --- | --- |
@@ -50,7 +67,7 @@ The thresholds and behaviours are project acceptance criteria informed by [Apple
 | Capacity and presentation labels | Demo capacity is enforced locally; Guest/Host remains presentation only and is not represented as contract authorisation | NOT RUN in this record |
 | Reset | Reset affects only synthetic local data after confirmation and restores fixtures; no network or remote-state reset is implied | NOT RUN in this record |
 
-## Build and contract evidence
+## Historical build and contract evidence 5 October 2026
 
 | Layer | Recorded result | Evidence or remaining work |
 | --- | --- | --- |
@@ -62,7 +79,7 @@ The thresholds and behaviours are project acceptance criteria informed by [Apple
 | Source/artifact identity | Manifest SHA-256 matches inspected source | [Build manifest](../contracts/evidence/build-manifest.json); source hash 18e896fd19ad963e9b9b612f640b0da3350bff73937f789d57f7d60096e013b0 |
 | Toolchain | Recorded actual pair, not a compatibility certification | Compact 0.31.1, language 0.23.0, compact-runtime 0.16.0; project override for onchain-runtime-v3 3.0.0. Review pins and the official support matrix before live integration |
 
-## Real Midnight integration remains unverified
+## Historical network acceptance checklist before owner deployment
 
 - PASS for all 3 local circuits: real issue, redeem and revoke WASM proofs each returned 4,501 bytes after witness checks and mandatory cryptographic prover self-verification. These are not accepted network transactions. See [all-circuit evidence](../proof-check/evidence/all-circuit-proof-result.json)
 - LIMITATION VERIFIED: the published ledger WASM has proof-verifying disabled. Its structural `wellFormed` check accepts a proof mutation, so it is not independent cryptographic verification. The official prover self-check passed and a genuine wrong-verifier negative control rejected. Fee balancing was disabled. See [proof evidence](../proof-check/README.md)
@@ -74,7 +91,7 @@ The thresholds and behaviours are project acceptance criteria informed by [Apple
 
 Generated keys and successful local runtime calls do not establish proof generation, Preview deployment, consensus finality, physical attendance, or production safety. The existing bearer-only contract permits remote consumption and does not enforce the demo's expiry or capacity rules.
 
-## Current browser access limitation, 5 October 2026
+## Historical browser access limitation 5 October 2026
 
 Local browser access was blocked in this execution environment; a Chromium process could not start because the command sandbox disallowed its required socket. The approved synthetic-only private preview deployed successfully. The owner approved the specific ChatGPT profile-sharing sign-in consent. A single normal same-account retry resolved the initial callback loop and browser access was verified. UI outcomes below require actual screenshot/interaction evidence; source inspection and unit tests are not substitutes.
 
@@ -96,7 +113,7 @@ Source checkpoint `89c57bb7f467985e197e1deadf2dd176ec0154bd` is saved privately,
 
 Current supported full Compact 0.31.1 compilation and six negative compiler checks passed. All JS/types, keys and ZKIR match the original 0.31.0 proof inputs byte for byte; metadata/source-map paths are the only differences. The original proof run remains attributed to 0.31.0.
 
-## Aggregate reproduction and CI
+## Aggregate reproduction and historical pre-publication CI status
 
 `npm run verify:offline` checks root TypeScript and all demo/live offline tests, the generated Compact runtime, active browser provider/type/bundle tests, gate SQLite/API tests, retired Node fail-closed guards, artifact hashes, secret-pattern scan, palette checks and production build. It does not silently claim compiler, proof generation, Chromium, wallet or network execution. `npm run verify:compiler` needs the installed official compiler. `npm run test:e2e` is separate. The committed GitHub workflow is prepared but **NOT RUN** before publication; its mere existence is not CI evidence. It has read-only repository permissions and no deployment, wallet or secret setup.
 
@@ -124,11 +141,11 @@ At block 1168785, owner-reported hash 0xabf2768a4aaf03cf732655718f307c99b9984945
 
 An adversarial fixture that reuses and mutates its configuration object could move the lower-level provider baseline. Validation now snapshots and freezes that approved configuration, including before asynchronous proving consent. Two new regressions pass: consumer mutation cannot alter the approved snapshot, and in-place wallet endpoint drift rejects before any private transaction proving. The active SDK suite now has 59 passing offline tests; no owner operation was involved. This is additional source hardening, not evidence about a malicious wallet or a live service change.
 
-## Current browser SDK checkpoint: 1edf2dfc
+## Historical browser SDK checkpoint: 1edf2dfc
 
 On 5 October 2026 at 20:55 UTC, actual supported cloud Chrome passed the revised ESM/WASM import, genuine Compact commitment and authenticated 2,119-byte public issue verifier. The two immutable-configuration regressions passed an independent A/B source reproduction and the 59-test SDK suite. No owner wallet/custody/proof/signature/transaction action was taken by browser QA. The original lifecycle/UI and 200% text checkpoints remain applicable because the revised code changes only the provider baseline. [Native capture](../evidence/current-browser/sdk-public-assets.png).
 
-The owner reported localhost refusing the prover health/version request. No working local prover or installation is inferred; owner-local installation/startup remains required. For the confirmed CachyOS machine, [verified distro-specific preparation](owner-cachyos-prover.md) is available. It has not been executed by this build environment.
+At this checkpoint, the owner reported localhost refusing the prover health/version request. The subsequent deployment checkpoint below records the owner's later healthy prover report. For the confirmed CachyOS machine, [verified distro-specific preparation](owner-cachyos-prover.md) is available. It was not executed by this build environment.
 
 ## Genuine Preview deployment checkpoint
 
@@ -136,6 +153,6 @@ On 5 October 2026 the owner personally deployed the original contract through th
 
 The owner separately reported health OK/version8.1.0 for the local prover. This process did not access their loopback service, private recovery file or wallet and submitted no transaction. Deployment verification does not establish an accepted issue/redeem/revoke circuit, physical admission or the full live lifecycle. Those stages remain pending. The unidentified attachment accompanying a node report was not opened.
 
-## Deadline portfolio checkpoint
+## Historical deadline portfolio checkpoint
 
-The recovery picker and atomic public-history fixes passed strict typing and 197 root tests (72 live), including the original stale issuer/bearer loss, scoped missing-row recovery and cancel/reconnect availability repros. Independent review rechecked those exact failures. Gate setup/launcher has75 offline tests. The genuine deployment is preserved; no new issuer authority or deployment is required to resume. Full network circuit lifecycle/gate acceptance and GitHub CI remain pending. The true as-of gate baseline reader is being repaired separately after an actual public API skipped-action-block test returned null; no latest-state fallback or live gate success is claimed.
+The recovery picker and atomic public-history fixes passed strict typing and 197 root tests (72 live), including the original stale issuer/bearer loss, scoped missing-row recovery and cancel/reconnect availability repros. Independent review rechecked those exact failures. Gate setup/launcher has 75 offline tests. The genuine deployment is preserved; no new issuer authority or deployment is required to resume. At this checkpoint, full network circuit lifecycle/gate acceptance and GitHub CI remained pending; the current public checkpoint above records the later successful CI run. The true as-of gate baseline reader is being repaired separately after an actual public API skipped-action-block test returned null; no latest-state fallback or live gate success is claimed.

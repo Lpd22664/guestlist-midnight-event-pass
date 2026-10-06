@@ -1,6 +1,6 @@
 # Guestlist architecture
 
-This document separates the React and TypeScript application, local synthetic demonstration, and Compact contract. The source details below were inspected on 5 October 2026. **The future Midnight integration and operational controls are provisional.** Contract source and generated artifacts remain authoritative; source inspection does not establish successful compilation, proof generation, or network deployment.
+This document separates the React and TypeScript app, local synthetic demo, original Compact contract and owner-controlled Preview integration. Source details were inspected on 5 October 2026; [reviewer status](reviewer-status.md) records the 6 October checkpoint and links successful CI, all three genuine local proofs and the independently verified owner deployment. Accepted network circuit lifecycle and live gate operation remain pending. Contract source and generated artifacts are authoritative; source inspection alone is not execution evidence.
 
 ## Two execution modes
 
@@ -14,9 +14,9 @@ Invented seed passes use deliberately predictable public fixture secrets; newly 
 
 The UI adds expiry, a 72-pass limit, Guest/Host presentation labels, and local request idempotency. The current Compact contract does not enforce these features. A Host label grants no additional contract authority; expiry in the simulator is a client-clock check, not an on-chain time gate.
 
-### Midnight integration target
+### Owner-controlled Midnight Preview integration
 
-A real adapter would connect generated Compact code to compatible Midnight.js providers, a wallet, proving artifacts, a local or explicitly trusted proof server, and a public-data provider. It must distinguish preparation, proving, submission, finalisation, rejection, and uncertain outcome. The UI must only describe a pass as admitted after the authoritative state transition is confirmed.
+The browser adapter connects generated Compact code to pinned Midnight.js providers, an API-4 wallet, authenticated proving artifacts, an owner-approved proof server and public-data providers. The controller separates preparation, proving, submission, finalisation, rejection and uncertain outcomes. The owner’s deployment was independently verified. The live gate client requires a successful durable backend claim after independent finalized transaction attribution and USED-state checks before showing Admitted; that complete live flow has not passed acceptance.
 
 Midnight's official flow executes the circuit locally, proves it, balances and submits the transaction, then observes finalisation. Full compilation must include proving artifacts, not only generated JavaScript. [Deploying and operating a contract](https://docs.midnight.network/guides/deploy-and-operate), checked 5 October 2026.
 
@@ -28,11 +28,11 @@ Midnight's official flow executes the circuit locally, proves it, balances and s
 | Pass commitment and active/redeemed/revoked state | Public ledger in a deployed version | Chain observers; actions are linkable |
 | Issuance, redemption, and revocation counters | Public ledger in a deployed version | Chain observers |
 | Issuer secret | Issuer's local private state | Issuer device and trusted proving infrastructure |
-| Bearer pass secret | Attendee credential; gate memory during presentation | Credential holder, scanner, and trusted proving infrastructure |
+| Bearer pass secret | Bearer’s own device and encrypted role vault | Bearer and approved proving infrastructure; anyone receiving a copied credential |
 | Name, email, and contact-to-pass mapping | Off-chain organiser record | Organiser and whoever has authorised access to that record |
 | Demo records and credentials | Local demo memory/storage | Anyone with access to that browser profile |
 
-"Off-chain" describes location, not access control. The organiser can correlate contacts and commitments. A scanner that receives the bearer secret can copy it. Public timing, circuit names, contract address, and ledger map operations create further observable context.
+"Off-chain" describes location, not access control. The organiser can correlate contacts and commitments. The synthetic scanner receives the demo bearer secret. The live design sends only public request, commitment and transaction identifiers to the gate service, while proving happens on the bearer’s own device and approved prover. Anyone receiving a copied bearer credential can still consume it. Public timing, circuit names, contract address, and ledger map operations create further observable context.
 
 ## Compact source and commitment flow
 
@@ -53,7 +53,7 @@ The source exposes the pure helpers `deriveIssuerCommitment` and `derivePassComm
 2. `redeem(commitment)` checks the nonzero `bearerSecret` witness against the event-bound pass commitment, asserts membership and ACTIVE, sets USED, and increments redeemedCount
 3. `revoke(commitment)` checks issuer authority, asserts membership and ACTIVE, sets REVOKED, and increments revokedCount
 
-Redemption is bearer-only. An issuer witness is not required, so a holder can consume their pass remotely. This proves possession and eligibility, not physical admission or gate authority. Issuance accepts an organiser-supplied commitment; the issuer's off-chain process is responsible for generating and delivering a usable, high-entropy bearer credential.
+Redemption is bearer-only. An issuer witness is not required, so a holder can consume their pass remotely. This proves possession and eligibility, not physical admission or gate authority. Issuance accepts a public commitment. In the live custody design, the bearer generates and retains its high-entropy secret, derives the event-bound Compact commitment and supplies only that commitment to the issuer. The issuer never needs the bearer secret. The local demo uses a same-browser role simulation.
 
 The term "commitment" here refers to a digest of a high-entropy secret. It is not a claim that hashing a name or email hides it, or that this uses the standard library's randomised `persistentCommit` primitive.
 
@@ -72,7 +72,7 @@ Because redemption is bearer-only, anyone holding the credential can consume it 
 
 The existing [full compilation log](../contracts/evidence/full-compile-output.txt) records Compact 0.31.1 with key generation completed. Prover/verifier keys and ZKIR exist for issue, redeem, and revoke. The [runtime log](../contracts/evidence/runtime-test-output.txt) records 19 passing generated-contract tests; the [compiler log](../contracts/evidence/compiler-test-output.txt) records six passing compiler checks, including negative disclosure and sealed-field cases. The [build manifest](../contracts/evidence/build-manifest.json) matches the inspected source hash.
 
-This is local compilation and runtime evidence. Proof generation, proof verification, wallet/provider integration, Preview deployment, network finality, and concurrent-scanner consensus remain unverified. The [QA checklist](qa-checklist.md) separates these stages and records the actual toolchain pins.
+Separate [all-circuit proof evidence](../proof-check/evidence/all-circuit-proof-result.json) records genuine local issue, redeem and revoke proofs with official prover cryptographic self-verification. The published ledger WASM performs structural checks only. [Independent public reads](../evidence/testnet/deployment-independent-read.json) verified the owner’s actual Preview deployment and canonical finalized block 1169309. [Public CI](https://github.com/Lpd22664/guestlist-midnight-event-pass/actions/runs/37451385375) passed clean installation, offline verification, actual SDK browser runtime and synthetic E2E on source 3a18aa7. Network issue/redeem/revoke, race/recovery acceptance and live durable-gate operation remain unverified. The [QA checklist](qa-checklist.md) keeps those stages separate.
 
 ## Trust and operational gaps
 

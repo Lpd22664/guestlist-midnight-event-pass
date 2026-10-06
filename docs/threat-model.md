@@ -12,7 +12,7 @@ The official Midnight security guide distinguishes chain observers, malicious pr
 
 - UI to contract: a caller can bypass every screen and supply their own inputs
 - Private device to proof service: private witness inputs enter proving infrastructure
-- Attendee to scanner: the bearer credential is intentionally shared with the scanner
+- Bearer credential to any QR recipient: scanning or copying the private QR reveals bearer authority. Synthetic check-in receives a demo credential; the live gate admission protocol receives public identifiers rather than the bearer secret
 - Contact record to public ledger: names and emails must never cross this boundary
 - Local simulator to network adapter: simulated success must never imply network confirmation
 - Deployment to maintenance authority: control of verifier updates is separate from admission authority
@@ -44,7 +44,7 @@ Midnight's deployment guide warns that a proof server sees witness data in the c
 
 The public commitment is a stable handle for a pass. Its issuance, redemption, and revocation can be linked to each other, the event, and observable timing. A small event or a visible gate queue can make correlation easier. This prototype does not establish an anonymity set or hide which issued pass is used.
 
-The organiser's off-chain mapping may reveal who owns each public commitment. The scanner receives the bearer secret, and proving infrastructure may receive it too. Keeping names and emails out of circuit inputs reduces on-chain exposure; it does not make endpoint devices, contact stores, screenshots, logs, backups, or delivery channels confidential.
+The organiser's off-chain mapping may reveal who owns each public commitment. Anyone who scans or copies a bearer QR receives its secret, and approved proving infrastructure may receive it too. The implemented live gate flow uses public identifiers and bearer-side proving; it does not require transferring that QR to the gate. Keeping names and emails out of circuit inputs reduces on-chain exposure; it does not make endpoint devices, contact stores, screenshots, logs, backups, or delivery channels confidential.
 
 Do not hash contact details and describe the result as private. Low-entropy values can be guessed. A fresh random secret is the admission capability; contact details are separate operational data.
 

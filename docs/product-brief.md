@@ -15,11 +15,15 @@ The initial scope has one event and one issuer. The interface presents organiser
 
 ## Smallest useful flow
 
-1. The organiser issues a pass with a fresh random bearer secret
-2. The attendee receives a credential containing that secret and event context
-3. The gate checks that the credential belongs to this event and is active
-4. A successful redemption changes the pass from active to used, presented as checked in by the demo
-5. A second redemption fails; a revoked pass also fails
+The local synthetic demo issues a credential, presents its QR, records one local admission and rejects a replay. The live design separates custody and public coordination:
+
+1. The bearer creates and keeps a fresh random secret on their own device, derives its event-bound Compact commitment and gives only that public commitment to the issuer
+2. The authorised issuer issues the commitment; the bearer independently verifies ACTIVE before presenting their private credential
+3. The durable gate backend opens a public request after independently observing finalized ACTIVE state
+4. The bearer approves redemption on their own device and approved prover; only public identifiers go to the gate
+5. The gate independently verifies finalized redemption/USED state and grants once through durable claim logic. Repeat or revoked credentials must refuse admission
+
+The live sequence is implemented, but accepted network circuit lifecycle and gate operation remain pending.
 
 The current demo stores invented display labels and no email field. A future organiser contact record, including names and emails, stays off-chain and is not required to establish admission eligibility. A pass is intentionally a bearer credential: possession does not establish a legal identity or prove that the presenter is the original recipient.
 
@@ -45,10 +49,10 @@ No payments, NFT marketplace, transfer protocol, identity verification, multi-ev
 
 ## Current claim boundary
 
-The runnable local demonstration uses synthetic records. The Compact contract has recorded full compilation/key-generation output, 19 passing generated-runtime tests, and six passing compiler checks, linked in [the QA checklist](qa-checklist.md). A real Midnight Preview deployment must be evidenced separately with a contract address, transaction references, and a confirmed state query. Proof generation and network integration remain unverified; no security audit or production suitability is claimed.
+The runnable local demonstration uses synthetic records. The original Compact contract has full compilation/key-generation evidence, 19 passing generated-runtime tests and six compiler checks. Genuine local issue, redeem and revoke proofs passed official prover self-verification. The owner’s actual Preview deployment was independently verified at canonical finalized block 1169309. Public source 3a18aa7 passed clean installation, offline checks, actual SDK browser runtime and desktop/phone synthetic E2E. [Reviewer status](reviewer-status.md) links each source and its limits. Accepted network circuit lifecycle and live gate admission remain pending; no anonymity guarantee, independent security audit or production suitability is claimed.
 
 Midnight's model supports proving properties of private inputs, but application disclosure choices remain the developer's responsibility. [Official explicit-disclosure guide](https://docs.midnight.network/compact/reference/explicit-disclosure), checked 5 October 2026.
 
 ## Current interface
 
-The first task is issuance, not analytics. A successful issue shows its generated QR and an explicit handoff to the holder view. The holder sees the credential front and essential controls. The gate operator checks a pasted credential and receives a clear admitted/rejected result. Management, revocation, activity and technical connection details are secondary. This is a same-browser role simulation until genuine network/owner integrations are connected.
+The first task is issuance, not analytics. A successful issue shows its generated QR and an explicit handoff to the holder view. The holder sees the credential front and essential controls. The gate operator checks a pasted credential and receives a clear admitted/rejected result. Management, revocation, activity and technical connection details are secondary. Local demo is a same-browser role simulation. The separate owner-controlled Preview mode uses the genuine SDK; its recorded deployment does not establish a completed network admission lifecycle.

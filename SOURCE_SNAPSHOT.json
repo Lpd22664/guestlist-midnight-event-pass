@@ -6,7 +6,7 @@
     ".gitignore": "3bedb151f008a53062d420c5325df4e96069df2a",
     ".node-version": "60ade1ae01e833a5c291c47883bf26fb031f7727",
     ".npmrc": "cffe8cdef132f31903a4971117f33f60cd9a56e6",
-    "README.md": "7490378159b7f42bd86c6b5fcd4a42e92b95d21a",
+    "README.md": "d7193e3e74177b951f07c909c805fefe6e4ebabf",
     "THIRD_PARTY.md": "8d3d115af031d3bbb4530038fe3b276a41bee206",
     "browser-integration/.gitignore": "4b072c238b8166acd21d31d26f46b71c9a521f4e",
     "browser-integration/README.md": "ebe81add32db25718bb24f0a3abaeb2a0069cd6b",
@@ -82,18 +82,19 @@
     "contracts/local-harness.mjs": "cac66272e367edcb24657b9886d89c18582b988e",
     "contracts/package-lock.json": "3a603010ef3f9c463fc417fb10839dd8e7c6f72e",
     "contracts/package.json": "bc4b80cb8875896365f6b3e94408f8be1c0eef85",
-    "docs/ai-assistance.md": "60b6cf2e6fac84be36d9dd9814dc670a9b90fb37",
-    "docs/architecture.md": "63df91982b0098a71260f64b0527252cce130859",
+    "docs/ai-assistance.md": "1dbf6e34312c0c6e84985f31fb599fb3d4dc6cc5",
+    "docs/architecture.md": "8fbf91c8efea771a605222acb02d1e93216bd29e",
     "docs/decisions.md": "08634c7693546a18dfb9c3e43f81c60442674d14",
-    "docs/demo-walkthrough.md": "d2f16b54e557b99e18108bfd195f28f3243b6bd2",
+    "docs/demo-walkthrough.md": "8324e827f32108c074fef51e78ee49f64f02a84d",
     "docs/design-references.md": "9b4194f720e82a6fa48eaae97c7a7cedd48459e6",
-    "docs/interview-guide.md": "2f918fa50a823b39a81f186c14af75802945e685",
-    "docs/live-preview.md": "b96885df9941e6a672b9c4eeac3531cd6f67197b",
+    "docs/interview-guide.md": "752ce3182639f8bdf98e58d77c448ed4bba37b68",
+    "docs/live-preview.md": "94993915125ba5a753473e7392f6f37a14cdddb0",
     "docs/owner-cachyos-prover.md": "0a055eb2e58d576d89839296b123c46d4d4adc31",
-    "docs/owner-testnet-setup.md": "a51338623ac74f111532b776d5f1ca0e5ca311aa",
-    "docs/product-brief.md": "72cfc443e1a8c2cce48bb1dbe013bf2c249a65f9",
-    "docs/qa-checklist.md": "7a6603374192ad166c8b3c6216d2185102faf16c",
-    "docs/threat-model.md": "2d8446068a69b4668f7b101fe16a7b071d8c80cc",
+    "docs/owner-testnet-setup.md": "54a897c05ae24cf056f40f9050bf022ed85798a5",
+    "docs/product-brief.md": "765139052875d1066d4c3e1a2ffa1690cd5391cb",
+    "docs/qa-checklist.md": "d69ed8b458db0dea3db8bd4ccddce4535eab2a6b",
+    "docs/reviewer-status.md": "c0020db496b2e29fb6d0abf53b10021025a03b14",
+    "docs/threat-model.md": "7e1056eb5d1d5ce353920af61d3e93e9524ba452",
     "e2e/guestlist.spec.ts": "755a3b1b77328d39eb1f1036e83370a93dfea19e",
     "evidence/artifact-integrity.json": "412500c7b29fa1ebc962b8092c2d65f59a2019f1",
     "evidence/build-output.txt": "d8009f2434dff2a3a034f8c6e1bd1dbe98846aa6",
@@ -217,7 +218,7 @@
     "scripts/scan-public-source.mjs": "e3adcad55cc9c621f64bcd1c402eefd634ded8b2",
     "scripts/stage-live-assets.mjs": "39328a75cd4245acd9c0b5151639ceb22fd1255e",
     "scripts/visual-preview.mjs": "09a9bece5c04086aaee89b4cba142f2a25194de1",
-    "src/App.tsx": "83cbd2438fb876592a34497bafb0879baa5be5c1",
+    "src/App.tsx": "948ac0279039cae696e714e63dab57bed32049dc",
     "src/demo-service.ts": "9effa1d2b4c52383ea97c58e46a9448de4d37d97",
     "src/domain.ts": "158a3050f9e70bee29a5500ff4525ab48f07184f",
     "src/live-app.tsx": "529134553d8926b70cd278248a089bd9fd055eb0",
@@ -425,6 +426,136 @@
         "actualUiRerun": {
           "result": "unverified at record time",
           "reason": "Local Chromium process singleton socket remains blocked. The next GitHub CI run must establish all 22 UI outcomes; the prior recorded published run passed 20 of 22 UI cases."
+        }
+      },
+      "publishedInCommit": "3a18aa7bbe22985997a2e884f5c46128390e1011",
+      "subsequentGitHubCi": {
+        "recordedAt": "2026-10-06T11:25:00Z",
+        "runId": "37451385375",
+        "commit": "3a18aa7bbe22985997a2e884f5c46128390e1011",
+        "source": "Observed public GitHub Actions result for this exact commit; all job steps succeeded",
+        "offlineAggregate": {
+          "result": "passed",
+          "totalTests": 354
+        },
+        "actualOfflineChromiumSdk": {
+          "result": "passed"
+        },
+        "uiE2e": {
+          "result": "passed",
+          "passed": 22,
+          "failed": 0,
+          "total": 22
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-06T11:46:13.851919+00:00",
+      "scope": "Reviewer quickstart, three-minute synthetic demo, interview explanation, evidence chronology and secondary verification/privacy copy. Contract, domain, adapter, gate, dependencies and authority operations are unchanged.",
+      "basedOnPublishedCommit": "3a18aa7bbe22985997a2e884f5c46128390e1011",
+      "commit": null,
+      "commitNote": "Assembled before publication; this manifest excludes its own hash and does not assert a self-referential current commit.",
+      "files": {
+        "README.md": {
+          "originalSnapshotBlob": "7490378159b7f42bd86c6b5fcd4a42e92b95d21a",
+          "currentBlob": "d7193e3e74177b951f07c909c805fefe6e4ebabf",
+          "sha256": "fe42c3aa31475f06af9d1bd4cb11cdd1266f4eb6dc6ec83685c1ded6e3fbcc0b"
+        },
+        "docs/ai-assistance.md": {
+          "originalSnapshotBlob": "60b6cf2e6fac84be36d9dd9814dc670a9b90fb37",
+          "currentBlob": "1dbf6e34312c0c6e84985f31fb599fb3d4dc6cc5",
+          "sha256": "43c721d6fa5c729920c423101186b9f100fd729a8fbb153c88cab298f68f3e66"
+        },
+        "docs/architecture.md": {
+          "originalSnapshotBlob": "63df91982b0098a71260f64b0527252cce130859",
+          "currentBlob": "8fbf91c8efea771a605222acb02d1e93216bd29e",
+          "sha256": "2b3d4d513c708440777a364d538056c8b1004f1869ced81ca6f4da10a4540118"
+        },
+        "docs/demo-walkthrough.md": {
+          "originalSnapshotBlob": "d2f16b54e557b99e18108bfd195f28f3243b6bd2",
+          "currentBlob": "8324e827f32108c074fef51e78ee49f64f02a84d",
+          "sha256": "17ce5852ac3de68bf71dfedc8d9ca3e0694cf49c2c3f1eba3800b7490352b332"
+        },
+        "docs/interview-guide.md": {
+          "originalSnapshotBlob": "2f918fa50a823b39a81f186c14af75802945e685",
+          "currentBlob": "752ce3182639f8bdf98e58d77c448ed4bba37b68",
+          "sha256": "ff5785a15e6a8265aeaae8cd6e88ad443fdaa6b8388470bd6e3bf34988f39e93"
+        },
+        "docs/live-preview.md": {
+          "originalSnapshotBlob": "b96885df9941e6a672b9c4eeac3531cd6f67197b",
+          "currentBlob": "94993915125ba5a753473e7392f6f37a14cdddb0",
+          "sha256": "34555672e8f641d4f7551a7b52d8c1fcdd9424069d7ed11f04754d996fbd102c"
+        },
+        "docs/owner-testnet-setup.md": {
+          "originalSnapshotBlob": "a51338623ac74f111532b776d5f1ca0e5ca311aa",
+          "currentBlob": "54a897c05ae24cf056f40f9050bf022ed85798a5",
+          "sha256": "d6a98ac9be59123640ec75b8d4d52385dfd0260930cec40ead402586e9b5122c"
+        },
+        "docs/product-brief.md": {
+          "originalSnapshotBlob": "72cfc443e1a8c2cce48bb1dbe013bf2c249a65f9",
+          "currentBlob": "765139052875d1066d4c3e1a2ffa1690cd5391cb",
+          "sha256": "50becfff08cc1d2fb5891c1a65cd876b49769375dfb8a12359f99e8c15a18c6f"
+        },
+        "docs/qa-checklist.md": {
+          "originalSnapshotBlob": "7a6603374192ad166c8b3c6216d2185102faf16c",
+          "currentBlob": "d69ed8b458db0dea3db8bd4ccddce4535eab2a6b",
+          "sha256": "02284c2f2c0c0f242095a700b534131e780902f82de17a749046152a557ae0ad"
+        },
+        "docs/reviewer-status.md": {
+          "originalSnapshotBlob": null,
+          "currentBlob": "c0020db496b2e29fb6d0abf53b10021025a03b14",
+          "sha256": "69b7a4cecba818bacc55b56cb0abb22d0b9bca46717a5d2338d348b1d55c761b"
+        },
+        "docs/threat-model.md": {
+          "originalSnapshotBlob": "2d8446068a69b4668f7b101fe16a7b071d8c80cc",
+          "currentBlob": "7e1056eb5d1d5ce353920af61d3e93e9524ba452",
+          "sha256": "1d66a065d421706416b0274bb8a46c11e447e6d8aadf55f8dfe1546d1eddebe8"
+        },
+        "src/App.tsx": {
+          "originalSnapshotBlob": "83cbd2438fb876592a34497bafb0879baa5be5c1",
+          "currentBlob": "948ac0279039cae696e714e63dab57bed32049dc",
+          "sha256": "aa8c69bf28f088cf756a87893f73cdb24d34275c4e1ad4a92f04e536c074822b"
+        }
+      },
+      "verification": {
+        "freshInstall": {
+          "result": "passed",
+          "commands": [
+            "npm ci",
+            "npm run install:packages"
+          ],
+          "node": "24.19.0",
+          "npm": "11.9.0",
+          "executionEnvironment": "Fresh scratch extraction; writable npm cache required by executor filesystem policy"
+        },
+        "offlineAggregate": {
+          "command": "npm run verify:offline",
+          "result": "passed",
+          "rootTests": 197,
+          "contractTests": 19,
+          "browserIntegrationTests": 59,
+          "gateServiceTests": 75,
+          "retiredIntegrationTests": 4,
+          "totalTests": 354
+        },
+        "documentationReview": {
+          "result": "passed",
+          "relativeLinks": "checked",
+          "markdownFences": "balanced",
+          "walkthroughLabels": "matched against current App source",
+          "privacyBoundary": "private bearer QR carries authority; live gate API exchanges public identifiers"
+        },
+        "finalTypecheck": {
+          "command": "npm run check",
+          "result": "passed"
+        },
+        "publicCi": {
+          "result": "pending for this revision",
+          "requirement": "Verify its exact published commit/run before describing the updated reviewer package as checked"
+        },
+        "networkLifecycle": {
+          "result": "not run",
+          "actualPreviewDeployment": "independently verified in unchanged public evidence; circuit and live gate acceptance pending"
         }
       }
     }
