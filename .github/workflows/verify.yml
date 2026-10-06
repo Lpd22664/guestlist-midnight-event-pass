@@ -35,4 +35,7 @@ jobs:
         run: |
           browser_path=$(node --input-type=module -e "import {chromium} from '@playwright/test'; console.log(chromium.executablePath())")
           echo "CHROMIUM_PATH=$browser_path" >> "$GITHUB_ENV"
+          echo "CHROMIUM_EXECUTABLE=$browser_path" >> "$GITHUB_ENV"
+      - name: Verify actual offline browser SDK runtime
+        run: npm --prefix browser-integration run test:browser
       - run: npm run test:e2e

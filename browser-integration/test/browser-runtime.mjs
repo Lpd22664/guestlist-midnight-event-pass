@@ -38,6 +38,7 @@ try {
     const derive = sdk.derivePassCommitment(new Uint8Array(32).fill(1), new Uint8Array(32).fill(3));
     check(Array.from(derive, b => b.toString(16).padStart(2, '0')).join('') === expectedCommitment, 'real Compact commitment matches Node output');
     check(typeof globalThis.Buffer === 'undefined', 'no global Buffer mutation');
+    check(typeof globalThis.process === 'undefined', 'no global process mutation');
     const discovered = sdk.discoverWallets(undefined); check(discovered.length === 0, 'wallet import never connects automatically');
     // Synthetic methods return fixture keys; no real wallet, signing, proving or network submission.
     let changed = false, externalCalls = 0;

@@ -2,7 +2,7 @@
   "sourceCommit": "b28dc008e1d0f38710551845c97f73eba96c4f28",
   "description": "AI-assisted portfolio prototype; genuine Preview deployment verified, full lifecycle/gate pending",
   "files": {
-    ".github/workflows/verify.yml": "7a4045d65063e4b40b911051f73431cd3cecffd5",
+    ".github/workflows/verify.yml": "0f82294c47833178458dcfd1d210a1b15761a214",
     ".gitignore": "3bedb151f008a53062d420c5325df4e96069df2a",
     ".node-version": "60ade1ae01e833a5c291c47883bf26fb031f7727",
     ".npmrc": "cffe8cdef132f31903a4971117f33f60cd9a56e6",
@@ -10,7 +10,7 @@
     "THIRD_PARTY.md": "8d3d115af031d3bbb4530038fe3b276a41bee206",
     "browser-integration/.gitignore": "4b072c238b8166acd21d31d26f46b71c9a521f4e",
     "browser-integration/README.md": "ebe81add32db25718bb24f0a3abaeb2a0069cd6b",
-    "browser-integration/evidence/bundle-smoke.json": "52221f55ce51a98c9d57c796a68bbb831af566fe",
+    "browser-integration/evidence/bundle-smoke.json": "3f2d50d16f7103b463189f98275819f4554eab1b",
     "browser-integration/evidence/bundle-test-output.txt": "0fb0f964c62180d2d67e689405ef99326a8d7d90",
     "browser-integration/evidence/dependency-audit.json": "694acc8c1d65748f0c7aec87617412b01ae5ca5d",
     "browser-integration/evidence/offline-tests.txt": "8ace16b4486110f2e3519a58a047eec7c23d46cd",
@@ -39,9 +39,9 @@
     "browser-integration/src/zk-assets.ts": "fb56df138273ba8a0e1dfa207a19ebc0cfc0f70b",
     "browser-integration/stage-qa.mjs": "950ebe66d8ef78e7e3daed16489a6baceea0ae50",
     "browser-integration/sync-contract.mjs": "a6477975cde2ef05cfb95ed801fb15521a4e1551",
-    "browser-integration/test/browser-runtime.mjs": "e88efa378f74c355a8facc72ea1d74ceb9a4c212",
+    "browser-integration/test/browser-runtime.mjs": "8184b1c897a9c75583d00e41e4045846a57db58f",
     "browser-integration/test/browser-storage.test.mjs": "5ab873cfb95dc22d8a1a3aabc4add18b9d063dcf",
-    "browser-integration/test/bundle-smoke.mjs": "e7e9a4b8975f1eb46ed772a81f12c78dc898270e",
+    "browser-integration/test/bundle-smoke.mjs": "fca862be84771d4b0883cdede7013b286bb6ca7b",
     "browser-integration/test/integration.test.mjs": "48652350f86e46bd3fea2afcd8e4eaa0080e2e84",
     "browser-integration/test/owner-session.test.mjs": "f337a20345cd51dab1cc61b5549c63c704382ed1",
     "browser-integration/test/transaction-attribution.test.mjs": "839130378fc47db96d6589a360cfae64e8975bcf",
@@ -239,5 +239,76 @@
     "tests/live-public-history.test.ts": "737cedd3ebe341ea7b2278db406875689ddc6126",
     "tests/live-recovery-metadata.test.ts": "b76de8365f79503b46f008798988c71dc05e442e",
     "tsconfig.json": "fcd7c1a8ae11ca4c1fd5529a38808f9b98684c67"
-  }
+  },
+  "sourceCommitRole": "Original source provenance. This assembled public snapshot includes the post-source CI/test-host changes recorded below; it is not claimed to be an exact checkout of sourceCommit.",
+  "fileHashFormat": "Git blob SHA-1 of the assembled snapshot files, excluding this self-referential manifest. Prior changed-file hashes are preserved in postSourceChanges.",
+  "postSourceChanges": [
+    {
+      "recordedAt": "2026-10-06T10:15:21.563Z",
+      "scope": "CI/test-host changes only; no contract, API, domain, UI, dependency, wallet, credential, or chain changes.",
+      "commit": null,
+      "commitNote": "This verification record was assembled before publication; no self-referential current commit identity is asserted. sourceCommit remains the original provenance.",
+      "files": {
+        ".github/workflows/verify.yml": {
+          "originalSnapshotBlob": "7a4045d65063e4b40b911051f73431cd3cecffd5",
+          "currentBlob": "0f82294c47833178458dcfd1d210a1b15761a214",
+          "sha256": "fe15d34c680d1d6f98bcb98e589cf84f145f8699d1b064551dc94b9fbb85db41",
+          "description": "Run the existing isolated offline Chromium SDK harness in CI and use the installed Chromium executable for both browser suites."
+        },
+        "browser-integration/test/bundle-smoke.mjs": {
+          "originalSnapshotBlob": "e7e9a4b8975f1eb46ed772a81f12c78dc898270e",
+          "currentBlob": "fca862be84771d4b0883cdede7013b286bb6ca7b",
+          "sha256": "807d52fd81c032fc1a09cb19e22eecbd6bfb871f65d074661755794d44efcc7e",
+          "description": "Initialize Node host browser-constructor getters before removing globals; use a bounded exact-artifact offline WASM fetch fixture and retain Buffer/process absence throughout SDK execution."
+        },
+        "browser-integration/test/browser-runtime.mjs": {
+          "originalSnapshotBlob": "e88efa378f74c355a8facc72ea1d74ceb9a4c212",
+          "currentBlob": "8184b1c897a9c75583d00e41e4045846a57db58f",
+          "sha256": "b7cc0ded2b1ba864ea28b72c295b4cd42aaa868da4df6957f0cec293a9403f7e",
+          "description": "Assert that the genuine Chromium SDK runtime also leaves global process absent."
+        },
+        "browser-integration/evidence/bundle-smoke.json": {
+          "originalSnapshotBlob": "52221f55ce51a98c9d57c796a68bbb831af566fe",
+          "currentBlob": "3f2d50d16f7103b463189f98275819f4554eab1b",
+          "sha256": "9acf040e28fe5e9c5f377fa495c867b2ba3ba6f7982251c091bb1d7c1c2aa285",
+          "description": "Record the successful repaired Node-host smoke, distinguish its host fixture from actual browser execution, and retain zero external actions."
+        }
+      },
+      "verification": {
+        "node": "24.19.0",
+        "npm": "11.9.0",
+        "offlineAggregate": {
+          "command": "npm run verify:offline",
+          "result": "passed",
+          "rootTests": 197,
+          "contractTests": 19,
+          "browserIntegrationTests": 59,
+          "gateServiceTests": 75,
+          "retiredIntegrationTests": 4,
+          "checks": [
+            "TypeScript",
+            "bundle smoke",
+            "compiler/proof input integrity",
+            "public-source credential-pattern scan",
+            "contrast",
+            "production build"
+          ]
+        },
+        "finalSmoke": {
+          "command": "node browser-integration/test/bundle-smoke.mjs",
+          "result": "passed",
+          "nodeGlobalsAbsentDuringSdkExecution": [
+            "Buffer",
+            "process"
+          ],
+          "nativeFetchUsed": false
+        },
+        "actualChromium": {
+          "command": "npm --prefix browser-integration run test:browser",
+          "result": "blocked before page execution",
+          "blocker": "Chromium process_singleton_posix socket() failed: Operation not permitted in this local executor. The GitHub CI workflow now runs this existing isolated harness after installing Chromium; no CI result for the overlay is claimed."
+        }
+      }
+    }
+  ]
 }

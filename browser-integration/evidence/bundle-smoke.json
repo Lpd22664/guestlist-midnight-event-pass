@@ -1,11 +1,25 @@
 {
-  "schema": "midnight-browser-built-artifact-node-smoke-v2",
-  "checkedAt": "2026-10-05T22:14:42.327Z",
+  "schema": "midnight-browser-built-artifact-node-smoke-v3",
+  "checkedAt": "2026-10-06T10:13:13.715Z",
   "checks": [
+    "bounded offline WASM fetch host fixture and rejected non-artifact URLs",
     "actual browser-conditioned WASM/ESM imports",
     "genuine Compact commitment",
     "API4 Bech32m bridge with no global Buffer or process"
   ],
+  "hostFixture": {
+    "initializedBrowserConstructors": [
+      "Headers",
+      "Request",
+      "Response",
+      "FormData",
+      "WebSocket"
+    ],
+    "allowedEmbeddedWasmAssets": 2,
+    "responseContentType": "application/octet-stream",
+    "sdkFetches": 0,
+    "nativeFetchUsed": false
+  },
   "browserRuntimeExercised": false,
   "walletConnections": 0,
   "credentialsCreated": 0,
