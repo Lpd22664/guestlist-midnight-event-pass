@@ -94,7 +94,7 @@
     "docs/product-brief.md": "72cfc443e1a8c2cce48bb1dbe013bf2c249a65f9",
     "docs/qa-checklist.md": "7a6603374192ad166c8b3c6216d2185102faf16c",
     "docs/threat-model.md": "2d8446068a69b4668f7b101fe16a7b071d8c80cc",
-    "e2e/guestlist.spec.ts": "7663859f2a0f5308e7d41255b50714403ea2477d",
+    "e2e/guestlist.spec.ts": "755a3b1b77328d39eb1f1036e83370a93dfea19e",
     "evidence/artifact-integrity.json": "412500c7b29fa1ebc962b8092c2d65f59a2019f1",
     "evidence/build-output.txt": "d8009f2434dff2a3a034f8c6e1bd1dbe98846aa6",
     "evidence/compiler-test-output.txt": "f692c5804e4460019769f47fd31117b26f427430",
@@ -366,6 +366,65 @@
         "actualUiRerun": {
           "result": "unverified at record time",
           "reason": "Local Chromium process singleton socket is blocked; the next GitHub CI run must establish all UI outcomes. The previous published run passed 16 of 22 UI cases and failed six at the corrected selector."
+        }
+      },
+      "publishedInCommit": "d8e6fffe9ba048f3dfb73033322743fafc056522",
+      "subsequentGitHubCi": {
+        "recordedAt": "2026-10-06T10:38:45.125Z",
+        "runId": "37450445007",
+        "commit": "d8e6fffe9ba048f3dfb73033322743fafc056522",
+        "source": "Observed GitHub Actions result for this exact published commit.",
+        "offlineAggregate": {
+          "result": "passed",
+          "totalTests": 354
+        },
+        "actualOfflineChromiumSdk": {
+          "result": "passed"
+        },
+        "uiE2e": {
+          "passed": 20,
+          "failed": 2,
+          "total": 22,
+          "failure": "Both remaining failures were desktop/phone reload-and-search expectations: the substring Morgan legitimately matches seeded Alex Morgan and newly issued Morgan Harper. The 19-row assertion immediately after reload passed, so this result does not indicate a persistence failure."
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-06T10:38:45.125Z",
+      "scope": "E2E search-fixture expectation only; application, contract, API, domain, UI, and dependency source unchanged.",
+      "basedOnPublishedCommit": "d8e6fffe9ba048f3dfb73033322743fafc056522",
+      "commit": null,
+      "commitNote": "This verification record was assembled before its publication; no self-referential current commit identity is asserted. sourceCommit remains the original provenance.",
+      "files": {
+        "e2e/guestlist.spec.ts": {
+          "originalSnapshotBlob": "7663859f2a0f5308e7d41255b50714403ea2477d",
+          "currentBlob": "755a3b1b77328d39eb1f1036e83370a93dfea19e",
+          "sha256": "08af15f25a8876d0a92d27a5ebde1ac033d27d0360646091c743d1158adb9a97",
+          "description": "Search the full unique issued fixture name Morgan Harper, preserve both the 19-row reload and one-row search assertions, and assert the exact issued-row View pass action is visible."
+        }
+      },
+      "verification": {
+        "typecheck": {
+          "command": "npm run check",
+          "result": "passed",
+          "includes": [
+            "src",
+            "tests",
+            "e2e",
+            "playwright.config.ts"
+          ]
+        },
+        "playwrightCollection": {
+          "command": "./node_modules/.bin/playwright test --list",
+          "result": "passed",
+          "collectedTests": 22
+        },
+        "sourceReview": {
+          "result": "Seeded Alex Morgan explains the two substring matches. Exactly one search input and one additional exact issued-row action assertion changed; search implementation and duplicate-label behavior are unchanged."
+        },
+        "actualUiRerun": {
+          "result": "unverified at record time",
+          "reason": "Local Chromium process singleton socket remains blocked. The next GitHub CI run must establish all 22 UI outcomes; the prior recorded published run passed 20 of 22 UI cases."
         }
       }
     }
