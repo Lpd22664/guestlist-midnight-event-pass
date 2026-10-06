@@ -94,7 +94,7 @@
     "docs/product-brief.md": "72cfc443e1a8c2cce48bb1dbe013bf2c249a65f9",
     "docs/qa-checklist.md": "7a6603374192ad166c8b3c6216d2185102faf16c",
     "docs/threat-model.md": "2d8446068a69b4668f7b101fe16a7b071d8c80cc",
-    "e2e/guestlist.spec.ts": "866e68836bdf58a3c619b32d15b287d1e6196327",
+    "e2e/guestlist.spec.ts": "7663859f2a0f5308e7d41255b50714403ea2477d",
     "evidence/artifact-integrity.json": "412500c7b29fa1ebc962b8092c2d65f59a2019f1",
     "evidence/build-output.txt": "d8009f2434dff2a3a034f8c6e1bd1dbe98846aa6",
     "evidence/compiler-test-output.txt": "f692c5804e4460019769f47fd31117b26f427430",
@@ -240,7 +240,7 @@
     "tests/live-recovery-metadata.test.ts": "b76de8365f79503b46f008798988c71dc05e442e",
     "tsconfig.json": "fcd7c1a8ae11ca4c1fd5529a38808f9b98684c67"
   },
-  "sourceCommitRole": "Original source provenance. This assembled public snapshot includes the post-source CI/test-host changes recorded below; it is not claimed to be an exact checkout of sourceCommit.",
+  "sourceCommitRole": "Original source provenance. This assembled public snapshot includes the post-source CI/test harness changes recorded below; it is not claimed to be an exact checkout of sourceCommit.",
   "fileHashFormat": "Git blob SHA-1 of the assembled snapshot files, excluding this self-referential manifest. Prior changed-file hashes are preserved in postSourceChanges.",
   "postSourceChanges": [
     {
@@ -306,7 +306,66 @@
         "actualChromium": {
           "command": "npm --prefix browser-integration run test:browser",
           "result": "blocked before page execution",
-          "blocker": "Chromium process_singleton_posix socket() failed: Operation not permitted in this local executor. The GitHub CI workflow now runs this existing isolated harness after installing Chromium; no CI result for the overlay is claimed."
+          "blocker": "Chromium process_singleton_posix socket() failed: Operation not permitted in this local executor. GitHub CI was unverified at this local record time; subsequentGitHubCi records the later observed published run."
+        }
+      },
+      "publishedInCommit": "d98a0224351537fdc4be94c8823bf0c78c9bd1a4",
+      "subsequentGitHubCi": {
+        "recordedAt": "2026-10-06T10:30:19.282Z",
+        "commit": "d98a0224351537fdc4be94c8823bf0c78c9bd1a4",
+        "source": "Observed GitHub Actions result for this exact published commit.",
+        "offlineAggregate": {
+          "result": "passed",
+          "totalTests": 354
+        },
+        "actualOfflineChromiumSdk": {
+          "result": "passed"
+        },
+        "uiE2e": {
+          "passed": 16,
+          "failed": 6,
+          "total": 22,
+          "failure": "All six failures were strict-mode ambiguity for GL-019 created, matching both the main inline notice and status toast, in the issuance/presentation/replay, reload, and long-label tests across desktop and phone."
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-06T10:30:19.283Z",
+      "scope": "E2E selector correction only; application, contract, API, domain, UI, and dependency source unchanged.",
+      "basedOnPublishedCommit": "d98a0224351537fdc4be94c8823bf0c78c9bd1a4",
+      "commit": null,
+      "commitNote": "This selector verification record was assembled before its publication; no self-referential current commit identity is asserted. sourceCommit remains the original provenance.",
+      "files": {
+        "e2e/guestlist.spec.ts": {
+          "originalSnapshotBlob": "866e68836bdf58a3c619b32d15b287d1e6196327",
+          "currentBlob": "7663859f2a0f5308e7d41255b50714403ea2477d",
+          "sha256": "1af5a81a990c31ef2d38b77322f643562b5ca7d27b54294f42c0378cfc530d0c",
+          "description": "Scope exactly the three GL-019 created visibility assertions to the semantic main landmark, preserving strict matching and all subsequent flow assertions."
+        }
+      },
+      "verification": {
+        "typecheck": {
+          "command": "npm run check",
+          "result": "passed",
+          "includes": [
+            "src",
+            "tests",
+            "e2e",
+            "playwright.config.ts"
+          ]
+        },
+        "playwrightCollection": {
+          "command": "./node_modules/.bin/playwright test --list",
+          "result": "passed",
+          "collectedTests": 22
+        },
+        "selectorReview": {
+          "correctedAssertions": 3,
+          "result": "Main contains the inline creation result; the same-text status toast is outside main. Subsequent active-view guest and admission/replay locators have no matching duplicate in application source and were left unchanged."
+        },
+        "actualUiRerun": {
+          "result": "unverified at record time",
+          "reason": "Local Chromium process singleton socket is blocked; the next GitHub CI run must establish all UI outcomes. The previous published run passed 16 of 22 UI cases and failed six at the corrected selector."
         }
       }
     }
