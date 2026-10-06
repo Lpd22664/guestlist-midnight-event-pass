@@ -1,0 +1,11 @@
+Local no-call constructor fixture validated; all proof/signature checks enabled, fee balancing disabled
+Local fixture state result success undefined
+Fixture exists true
+Local synthetic issue transaction prepared 1097
+Real transaction proof started; circuit issue
+Public parameter read 1 k 13
+Public parameter read 2 k 13
+Real proof returned after mandatory internal cryptographic self-verification 4501 bytes
+Proving milliseconds 33780 parameter reads 2
+Starting separate ledger cryptographic wellFormed check with verifyContractProofs=true
+SEPARATE_LEDGER_CRYPTOGRAPHIC_VERIFICATION_PASS VerifiedTransaction

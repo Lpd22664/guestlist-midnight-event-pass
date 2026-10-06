@@ -1,0 +1,41 @@
+{
+  "verifiedAt": "2026-10-05T17:44:30Z",
+  "nodeVersion": "v24.19.0",
+  "compiler": "0.31.0",
+  "runtime": "0.16.0",
+  "sourceSha256": "18e896fd19ad963e9b9b612f640b0da3350bff73937f789d57f7d60096e013b0",
+  "zkirVersion": "2.0",
+  "zkirWasmVersion": "2.1.0",
+  "ledgerWasmVersion": "8.1.0",
+  "midnightJsVersion": "4.1.1",
+  "circuit": "issue",
+  "syntheticOnly": true,
+  "hashes": {
+    "../contracts/event-pass.compact": "18e896fd19ad963e9b9b612f640b0da3350bff73937f789d57f7d60096e013b0",
+    "../contracts/generated/event-pass/keys/issue.prover": "ee91629b62ce20c7db533515317bd78aca0abdf82baaa1d7c337dd73254ae238",
+    "../contracts/generated/event-pass/keys/issue.verifier": "fffb13b258633fe6a66e59a42793d11e956a8c993c0c536a14a0d996b403ebaa",
+    "../contracts/generated/event-pass/zkir/issue.bzkir": "edebe8724bef5deff99f8d1b1470e09117626537ee46f211a2041790927b28c9",
+    "../contracts/generated/event-pass/keys/revoke.verifier": "8f691f1eeccebe069bf780b986317edfc23d837b07b11f955b56cd00b9e327ec",
+    "node_modules/@midnight-ntwrk/zkir-v2/midnight_zkir_wasm_bg.wasm": "5e7f60cc8be6c10a9d3a003f9109157bfd02419ec9c2188d4974ed9ae6bb7a1d",
+    "../integration/node_modules/@midnight-ntwrk/ledger-v8/midnight_ledger_wasm_bg.wasm": "88ff7c7c47c30138ee8f3a0c8bcbf12dbdcdeba591edebfb955c30d732ea7638",
+    "evidence/synthetic-issue-proof.bin": "63be0d410bf646025bfb5d015e232fd5d2936b7c77beca7d6b1418103be66e3c",
+    "evidence/synthetic-issue-transaction-proof.bin": "43ef374c36828b3cf15a3c4982ccd04e4aa0f2e5589f99adc66ba32897a7ad8b",
+    "evidence/synthetic-proven-transaction.bin": "18614e8163c4077214c0b22be7503e0483f8326616280b8d71cbe9a476764b7b",
+    "evidence/local-reference-ledger.bin": "ffc7745bdd52b302aff30b87efec28c3bc06f291e68a757b7fca4bdc7991a4c5"
+  },
+  "publicParameters": {
+    "filename": "bls_midnight_2p13",
+    "sha256": "d3324910969c4cc54143b8045b649e5c3a4bd5fb7b8f85fe1b770f640ce1c803",
+    "provenance": "Existing official Compact compiler parameter cache; no new download during this check"
+  },
+  "realProofGeneration": "passed",
+  "cryptographicProverSelfVerification": "passed",
+  "mismatchedVerifierNegativeControl": "rejected: Invalid proof",
+  "independentLedgerCryptographicVerification": "unavailable in npm WASM build; mutated proof accepted",
+  "ledgerStructuralValidation": "passed with fee balancing disabled",
+  "networkDeployment": "not-run",
+  "networkSubmission": "not-run",
+  "networkFinalization": "not-run",
+  "funding": "not-run",
+  "ownerCredentials": "not-accessed"
+}

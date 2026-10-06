@@ -1,0 +1,13 @@
+{
+  "scope": "Read-only official Preview node metadata; no wallet/contract transaction",
+  "endpoint": "https://rpc.preview.midnight.network",
+  "source": "https://docs.midnight.network/relnotes/network",
+  "result": {
+    "network": "preview",
+    "nodeVersion": "1.0.400-c338b9ac",
+    "finalizedBlockHash": "0x1946d14b15fe5eda3bd2a4a64a90e8d716c31d22092adaca7b6ddd268215031e",
+    "finalizedBlockHeight": 1167019,
+    "checkedAt": "2026-10-05T17:26:48.615Z"
+  },
+  "status": "passed"
+}

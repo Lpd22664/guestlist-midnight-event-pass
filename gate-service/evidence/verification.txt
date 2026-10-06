@@ -1,0 +1,103 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/gate-service@0.1.0 verify
+> npm run typecheck && npm test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/gate-service@0.1.0 typecheck
+> node ../node_modules/typescript/bin/tsc -p tsconfig.json --noEmit
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/gate-service@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/gate-service@0.1.0 build
+> node ../node_modules/typescript/bin/tsc -p tsconfig.json
+
+✔ real SDK public redeem transcript plus independent finalized-block state admits once (299.652961ms)
+✔ latest USED or unrelated successful transaction never substitutes for exact typed attribution (10.055973ms)
+✔ server ACTIVE baseline rejects real generated USED, REVOKED and never-issued states (18.112294ms)
+✔ canonical and submitted identifiers may differ: reader → service → SQLite commit keeps bound alias (18.563957ms)
+✔ indexer-only invented alias is rejected when typed public tx has no such identifier (0.920618ms)
+✔ prebaseline/same-block consumption and noncanonical/nonfinalized node evidence fail closed (2.349583ms)
+✔ independent Node RPC pins finalized head/header and exact canonical block hash (2.627979ms)
+✔ node rejects embedded credentials, non-TLS remote URI and malformed/error response (0.467735ms)
+✔ runtime node method allowlist prevents arbitrary RPC even from untyped callers (0.25304ms)
+✔ global SDK network drift fails closed before chain reads (0.369912ms)
+✔ browser validates exact healthy policy/storage/event registry and rejects extras/identity errors (13.137396ms)
+✔ open response must exactly deny admission and match all public request/gate fields (4.397091ms)
+✔ claim requires exact boolean/discriminator/request and rejects truthy false or contradictory grant (3.254277ms)
+✔ claim validates complete receipt/state public schema, identifiers and immutable opened identity (5.418338ms)
+✔ canonical/submitted aliases and genuine 66-character IDs remain compatible after wire validation (0.893108ms)
+✔ read is always admit false and enforces status/receipt discriminator and gate ownership (2.306369ms)
+✔ known errors preserve fixed code but unexpected server code/body/JSON fragments are redacted (1.466789ms)
+✔ response size is bounded with and without Content-Length and non-JSON MIME is refused (1.765477ms)
+✔ a loaded registry prevents changed event identity; close aborts and refuses late responses (1.169924ms)
+✔ HTTP authenticated lifecycle and read-only recovery never trust client receipt (10.719915ms)
+✔ HTTP auth precedes body parsing and provider errors are redacted (3.219446ms)
+✔ HTTP bounded JSON rejects extras/large body/content encoding/query secrets (2.772862ms)
+✔ CORS permits only exact owner-approved app origins and no credential cookies (1.449133ms)
+✔ Preview manifest is exact, public-only and nonzero (3.820567ms)
+✔ Only exact HTTPS or exact loopback app origins are accepted (0.654278ms)
+✔ No port, gate identity or private-directory defaults (0.993245ms)
+✔ Synthetic pair exactly matches existing app connection import and one database (0.643102ms)
+✔ Every public setup field binds the exact final owner phrase (1.772277ms)
+✔ TTY required and no unattended approval or argument bypass exists (0.410231ms)
+✔ Node and SQLite policies reject unsupported and prerelease runtimes (0.577506ms)
+✔ Synthetic authority validation matches GateAuth limits (0.4979ms)
+✔ Server validation refuses altered network endpoints, unknown fields and relocated DB (0.808464ms)
+✔ Validated launcher mapping replaces every legacy env configuration input (0.845569ms)
+✔ Private storage cannot be in source, public, dist or gate-service (0.925576ms)
+✔ Fixed fixture writes are exclusive, owner-only and read back without creating SQLite state (4.555854ms)
+✔ Existing directory is refused even when it is empty (0.815846ms)
+✔ Shared parent permissions are rejected without changing them (0.656061ms)
+✔ Symlink directory and symlink parent aliases are rejected (1.062947ms)
+✔ Launcher rejects a permissive private directory or server config without chmod changes (3.144066ms)
+✔ Launcher never recreates a missing database or accepts a shared-permission replacement (2.002083ms)
+✔ Launcher refuses private config or database symlinks and hardlinks (2.090212ms)
+✔ Bounded public manifest reading rejects private/unknown fields and symlinks (0.881011ms)
+✔ Bounded private config rejects unknown fields without echoing fixture authority (1.804393ms)
+✔ SQLite creates owner-only WAL sidecars from the reserved synthetic database (2.468447ms)
+✔ Importing setup, launch and main never provisions, prompts, listens or accesses owner config (744.984616ms)
+✔ Direct setup from pipes fails closed and cannot accept --yes (124.498109ms)
+✔ Separate launch requires one absolute owner config path and no --yes mode (242.896222ms)
+✔ A non-sticky writable ancestor is rejected even when its immediate parent is private (0.645515ms)
+✔ A replaced owner-private database is rejected using original instance metadata (1.876469ms)
+✔ A missing DB after configuration loading is refused before SQLite creation (0.882853ms)
+✔ Database instance metadata schema rejects absent, unknown, malformed and zero-inode identities (0.193484ms)
+✔ requires durable absolute database and explicit existing authority; no default key (3.458006ms)
+✔ unauthorized and unconfigured clients do not read chain or reserve (8.974447ms)
+✔ schema rejects secret, name, email, client receipt and uppercase/unbounded inputs (2.669901ms)
+✔ USED/revoked/absent baseline fails closed; receipt cannot create an attempt (2.922831ms)
+✔ independent baseline errors and late timeout never reserve (31.691959ms)
+✔ open retry preserves baseline and public gate context without another chain read (3.323629ms)
+✔ independent concurrent scanners cannot open two live attempts for same commitment (1.437156ms)
+✔ same request ID cannot change event/commitment or gate owner (1.772446ms)
+✔ expired unbound attempt denies binding and can reserve new ID; unknown bound attempt never resets (12.257787ms)
+✔ successful verified receipt commits once; concurrent/replay responses never re-admit (4.958103ms)
+✔ one candidate is permanently bound; mismatch and reopen never resubmit (11.784835ms)
+✔ timeouts share bounded outstanding read; late resolution never autonomously admits; retry reconciles (43.313974ms)
+✔ bounded verification capacity fails closed while unknown candidate remains recoverable (13.407823ms)
+✔ wrong status/state/event/issuer/commitment/prebaseline receipt cannot claim (9.191155ms)
+✔ public-only whitelist excludes raw provider/private extras from disk and recovery (1.637419ms)
+✔ restart persists bound unknown candidate and committed claim; lost response is never a second grant (1.965109ms)
+✔ storage failure after verification and service stop both fail closed (4.030855ms)
+✔ durable capacity exhausts safely; no destructive cleanup erases claims (1.560466ms)
+✔ process-isolated concurrent claim grants only once across shared SQLite file (107.24874ms)
+✔ browser client sends public allowlist only and close revokes new use (7.237753ms)
+✔ timed-out baseline reads share bounded pending work and never become late reservations (42.741991ms)
+✔ real SQLite write lock contention fails closed without issuing an admission (23.200604ms)
+✔ restart recovers the same durable unknown candidate without creating a new attempt (13.870461ms)
+✔ stop during an outstanding verifier revokes late commit and admission (3.373532ms)
+ℹ tests 75
+ℹ suites 0
+ℹ pass 75
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1281.215249

@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+import * as L from '../integration/node_modules/@midnight-ntwrk/ledger-v8/midnight_ledger_wasm_fs.js';
+const raw=Buffer.from(await readFile('evidence/synthetic-proven-transaction.bin'));
+const proof=Buffer.from(await readFile('evidence/synthetic-issue-transaction-proof.bin'));
+const tx=L.Transaction.deserialize('signature','proof','binding',raw);
+const strict=new L.WellFormedStrictness();strict.enforceBalancing=false;strict.verifyContractProofs=true;strict.verifyNativeProofs=true;strict.verifySignatures=true;strict.enforceLimits=true;
+const ref=L.LedgerState.deserialize(new Uint8Array(await readFile('evidence/local-reference-ledger.bin')));
+const now=new Date('2026-10-05T17:00:00Z');
+const verified=tx.wellFormed(ref,strict,now);console.log('SAVED_TRANSACTION_STRUCTURAL_CHECK_PASS',verified.constructor.name);
+const tail=proof.subarray(proof.length-128);const offset=raw.indexOf(tail);assert(offset>=0);assert.equal(raw.indexOf(tail,offset+1),-1);
+const corrupt=Buffer.from(raw);corrupt[offset+96]^=1;
+const mutated=L.Transaction.deserialize('signature','proof','binding',corrupt);
+mutated.wellFormed(ref,strict,now);
+const report={syntheticOnly:true,tamperedProofAcceptedByLedgerWasm:true,independentLedgerCryptographicVerification:false,mutationOffset:offset+96,verifyContractProofsRequested:strict.verifyContractProofs,explanation:'Official ledger-wasm disables ledger default features; contract proof_verify is a no-op without proof-verifying. This structural pass is not cryptographic proof verification.',transactionSubmitted:false};
+await writeFile('evidence/tamper-verification-result.json',JSON.stringify(report,null,2)+'\n');
+console.log('LEDGER_WASM_CONTRACT_PROOF_VERIFICATION_UNAVAILABLE',JSON.stringify(report));

@@ -1,0 +1,149 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 verify:offline
+> npm run typecheck && npm test && npm run test:bundle
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 typecheck
+> npm run sync && tsc -p tsconfig.json --noEmit
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 sync
+> node sync-contract.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 build
+> npm run sync && tsc -p tsconfig.json && node sync-contract.mjs --dist
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 sync
+> node sync-contract.mjs
+
+✔ private storage denial creates no database and never requests a wallet/seed (2.725834ms)
+✔ vault requires explicit nonextractable AES256 custody; no address-derived/default key (0.578879ms)
+✔ encrypted state survives close/reopen only with the existing owner key (15.745467ms)
+✔ vault isolates owner/network/event/role and contract/state identifiers (12.046668ms)
+✔ bearer vault never accepts issuer capability or maintenance authority (2.425574ms)
+✔ vault disables plaintext and unreviewed import/export recovery (0.698443ms)
+✔ ciphertext hides capabilities; unique IVs and scope AAD reject moved/tampered records (2.193914ms)
+✔ durable journal atomically rejects concurrent same-event submissions across tabs (3.264883ms)
+✔ journal scope/private-field/identity checks fail closed and unknown stays unresolved (1.723405ms)
+✔ browser ZK provider fetches actual compiler assets and refuses wrong/corrupted sets (20.038336ms)
+✔ browser wire codecs reject odd/nonhex/empty transaction bytes instead of truncating (0.738832ms)
+✔ adapter commitment helpers equal the actual generated Compact pure circuits (4.957011ms)
+✔ explicit witnesses reject absent capabilities and never add an issuer capability to a bearer (0.449188ms)
+✔ reads distinguish a never-issued commitment from active/used/revoked tombstones (112.997ms)
+✔ gate rejects FailEntirely, including partial success (0.389ms)
+✔ gate rejects FailFallible, including partial success (0.201815ms)
+✔ gate rejects pending, including partial success (0.084513ms)
+✔ gate rejects confirmed, including partial success (0.475927ms)
+✔ gate rejects unknown, including partial success (0.099525ms)
+✔ gate also rejects a failed execution segment despite an overall success string (0.279169ms)
+✔ issue receipt requires an independent state query pinned to the finalized block (42.682038ms)
+✔ redeem receipt requires an independent state query pinned to the finalized block (33.587736ms)
+✔ revoke receipt requires an independent state query pinned to the finalized block (39.61185ms)
+✔ a used public state alone is never a successful redemption receipt (36.983234ms)
+✔ successful-looking receipt with stale ACTIVE public state cannot admit (35.279654ms)
+✔ wrong event/issuer and missing contract state fail closed (43.390717ms)
+✔ deployment denial stops before SDK/private/prover/wallet/network work (1.520227ms)
+✔ no automatic maintenance key creation and no anonymous private store (0.401508ms)
+✔ a slow mock prover times out without subsequent balance/sign/submit, and blocks concurrent work (533.76092ms)
+✔ wallet injection enumeration never chooses/connects a wallet silently (3.757695ms)
+✔ read-only chain helper uses finalized head/header and system_version only (5.894696ms)
+✔ read-only query timeout never produces a success receipt (10.048992ms)
+✔ all Midnight.js dependencies are exactly pinned at 4.1.1 (0.681038ms)
+✔ gate receipt replay is claimed at most once, even with a different request id (50.502845ms)
+✔ API4 key bridge blocks account changes before balance and submission (1.936878ms)
+✔ denied wallet prover grant never obtains a proving provider (0.9764ms)
+✔ genuine browser provider factory uses API4 delegated proving and native WebSocket (2.937794ms)
+✔ wallet services reject wrong networks, credentials and insecure remote transport (0.230838ms)
+✔ bearer joins real locally-built SDK contract without generating maintenance authority (145.340161ms)
+✔ WebSocket read-only node status queries the exact finalized header and rejects response ID mismatch (2.62069ms)
+✔ live credential uses real commitment and rejects demo/cross-network/event/contract inputs (1.571633ms)
+✔ owner account changes stop the delegated proof before any preimage is sent (1.288147ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 42
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1907.425316
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 test:bundle
+> npm run bundle && node test/bundle-smoke.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 bundle
+> npm run build && vite build --config vite.config.ts
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 build
+> npm run sync && tsc -p tsconfig.json && node sync-contract.mjs --dist
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 sync
+> node sync-contract.mjs
+
+vite v7.1.7 building for production...
+transforming...
+node_modules/@scure/base/index.js (2:0): A comment
+
+"// Freeze the result of a thunk. `/* @__PURE__ */ freeze(() => expr)` keeps the whole"
+
+in "node_modules/@scure/base/index.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs (794:89): "WebSocket" is not exported by "node_modules/isomorphic-ws/browser.js", imported by "node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs".
+node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs (1040:81): "WebSocket" is not exported by "node_modules/isomorphic-ws/browser.js", imported by "node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs".
+✓ 1347 modules transformed.
+[plugin vite:reporter] 
+(!) /workspace/shared/midnight-event-pass/browser-integration/node_modules/@midnight-ntwrk/midnight-js-contracts/dist/index.mjs is dynamically imported by /workspace/shared/midnight-event-pass/browser-integration/src/adapter.ts but also statically imported by /workspace/shared/midnight-event-pass/browser-integration/src/adapter.ts, dynamic import will not move module into another chunk.
+
+[plugin vite:reporter] 
+(!) /workspace/shared/midnight-event-pass/browser-integration/src/bytes.ts is dynamically imported by /workspace/shared/midnight-event-pass/browser-integration/src/adapter.ts but also statically imported by /workspace/shared/midnight-event-pass/browser-integration/src/adapter.ts, /workspace/shared/midnight-event-pass/browser-integration/src/admission.ts, /workspace/shared/midnight-event-pass/browser-integration/src/contract.ts, /workspace/shared/midnight-event-pass/browser-integration/src/credentials.ts, /workspace/shared/midnight-event-pass/browser-integration/src/owner-storage.ts, /workspace/shared/midnight-event-pass/browser-integration/src/receipts.ts, /workspace/shared/midnight-event-pass/browser-integration/src/session.ts, /workspace/shared/midnight-event-pass/browser-integration/src/wallet.ts, /workspace/shared/midnight-event-pass/browser-integration/src/zk-assets.ts, dynamic import will not move module into another chunk.
+
+rendering chunks...
+computing gzip size...
+bundle/event-pass.js  17,869.29 kB │ gzip: 6,409.40 kB
+✓ built in 10.65s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+{
+  "schema": "midnight-browser-built-artifact-node-smoke-v1",
+  "checkedAt": "2026-10-05T18:38:09.364Z",
+  "checks": [
+    "actual browser-conditioned WASM/ESM imports",
+    "genuine Compact commitment",
+    "API4 Bech32m bridge with no global Buffer"
+  ],
+  "browserRuntimeExercised": false,
+  "walletConnections": 0,
+  "credentialsCreated": 0,
+  "proofsGenerated": 0,
+  "networkTransactions": 0
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

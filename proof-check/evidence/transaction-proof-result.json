@@ -1,0 +1,17 @@
+{
+  "syntheticOnly": true,
+  "proofBytes": 4501,
+  "proofSelfVerification": true,
+  "verifyContractProofs": true,
+  "verifyNativeProofs": true,
+  "verifySignatures": true,
+  "enforceLimits": true,
+  "enforceBalancing": false,
+  "parameterReads": 2,
+  "elapsedMs": 33805,
+  "transactionSubmitted": false,
+  "networkFinalization": false,
+  "independentLedgerCryptographicVerification": false,
+  "ledgerStructuralCheck": true,
+  "ledgerWasmCaveat": "Contract proof verification is a no-op when ledger proof-verifying feature is disabled; observed tampered proof acceptance"
+}

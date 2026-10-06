@@ -1,0 +1,10 @@
+import { cp, copyFile, mkdir } from 'node:fs/promises';
+const root = new URL('../', import.meta.url);
+await mkdir(new URL('public/midnight/sdk/', root), { recursive: true });
+await copyFile(new URL('browser-integration/bundle/event-pass.js', root), new URL('public/midnight/sdk/event-pass.js', root));
+await cp(new URL('browser-integration/public/midnight/event-pass/', root), new URL('public/midnight/event-pass/', root), { recursive: true });
+await mkdir(new URL('public/qa/sdk/', root), { recursive: true });
+await copyFile(new URL('browser-integration/bundle/event-pass.js', root), new URL('public/qa/sdk/event-pass.js', root));
+await copyFile(new URL('browser-integration/qa/smoke.html', root), new URL('public/qa/index.html', root));
+for (const name of ['smoke.js', 'smoke.css']) await copyFile(new URL('browser-integration/qa/' + name, root), new URL('public/qa/' + name, root));
+console.log('Staged the isolated genuine browser SDK and complete compiler assets; no wallet or private custody action');

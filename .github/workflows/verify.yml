@@ -1,0 +1,38 @@
+name: Verify Guestlist
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: guestlist-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  offline-and-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # official v6, resolved 2026-10-05
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # official v6, resolved 2026-10-05
+        with:
+          node-version: '24.19.0'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            contracts/package-lock.json
+            browser-integration/package-lock.json
+            integration/package-lock.json
+            proof-check/package-lock.json
+      - run: npm ci
+      - run: npm run install:packages
+      - run: npm run verify:offline
+      - name: Install isolated test Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Select the installed browser
+        run: |
+          browser_path=$(node --input-type=module -e "import {chromium} from '@playwright/test'; console.log(chromium.executablePath())")
+          echo "CHROMIUM_PATH=$browser_path" >> "$GITHUB_ENV"
+      - run: npm run test:e2e

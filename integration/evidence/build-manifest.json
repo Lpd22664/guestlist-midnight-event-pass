@@ -1,0 +1,53 @@
+{
+  "verifiedAt": "2026-10-05T17:23:42.437Z",
+  "node": "v24.19.0",
+  "checks": {
+    "dependencyReinstall": "npm ci passed",
+    "applicationTypecheck": "passed; strict, skipLibCheck true for published declaration defects",
+    "build": "passed",
+    "offlineTests": {
+      "passed": 23,
+      "failed": 0
+    },
+    "proofGeneration": "not-run",
+    "proofVerification": "not-run",
+    "walletConnection": "not-run",
+    "walletBalanceOrSigning": "not-run",
+    "networkSubmission": "not-run",
+    "networkDeployment": "not-run",
+    "frontendConnected": "no",
+    "dependencyLock": "all 77 dependency entries have exact versions, resolved registry URLs and integrity hashes"
+  },
+  "dependencies": {
+    "@midnight-ntwrk/compact-runtime": "0.16.0",
+    "@midnight-ntwrk/dapp-connector-api": "4.0.1",
+    "@midnight-ntwrk/midnight-js-contracts": "4.1.1",
+    "@midnight-ntwrk/midnight-js-http-client-proof-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-indexer-public-data-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-network-id": "4.1.1",
+    "@midnight-ntwrk/midnight-js-node-zk-config-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-protocol": "4.1.1",
+    "@midnight-ntwrk/midnight-js-types": "4.1.1",
+    "@midnight-ntwrk/wallet-sdk-address-format": "3.1.2"
+  },
+  "compactArtifacts": {
+    "compiler": "0.31.0",
+    "runtime": "0.16.0",
+    "sourceSha256": "18e896fd19ad963e9b9b612f640b0da3350bff73937f789d57f7d60096e013b0",
+    "generatedModuleSha256": "4125784d89a704bb4c3779bef3ee007063e747b8253bc5f21c9d5a2b29525357"
+  },
+  "officialSupportMatrix": {
+    "checkedAt": "2026-10-05",
+    "url": "https://docs.midnight.network/relnotes/support-matrix",
+    "testedCompiler": "0.31.1",
+    "warning": "Existing artifacts compiled with 0.31.0; recompile and rerun before claiming currently supported network compatibility"
+  },
+  "sources": [
+    "https://docs.midnight.network/guides/deploy-and-operate",
+    "https://docs.midnight.network/relnotes/network",
+    "https://docs.midnight.network/guides/run-proof-server",
+    "https://docs.midnight.network/guides/local-proving",
+    "https://docs.midnight.network/guides/react-wallet-connect"
+  ],
+  "syntheticDataOnly": true
+}

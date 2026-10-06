@@ -1,0 +1,6 @@
+
+> @event-pass/contract@0.1.0 compile:full
+> node ./compile.mjs --full
+
+Compact 0.31.0; full key generation
+Generated actual compiler outputs in generated/event-pass

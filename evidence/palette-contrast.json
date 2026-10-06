@@ -1,0 +1,230 @@
+{
+  "scope": "Static designated palette pairs, not a rendered whole-page audit",
+  "checkedAt": "2026-10-05T22:14:50.671Z",
+  "results": [
+    {
+      "label": "body",
+      "fg": "#1d1d1f",
+      "bg": "#f5f5f7",
+      "ratio": 15.457,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "secondary copy",
+      "fg": "#6e6e73",
+      "bg": "#f5f5f7",
+      "ratio": 4.658,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "surface copy",
+      "fg": "#6e6e73",
+      "bg": "#ffffff",
+      "ratio": 5.071,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "primary button",
+      "fg": "#ffffff",
+      "bg": "#0071e3",
+      "ratio": 4.697,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "secondary action",
+      "fg": "#515158",
+      "bg": "#ffffff",
+      "ratio": 7.872,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "link",
+      "fg": "#0066cc",
+      "bg": "#f5f5f7",
+      "ratio": 5.112,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "ready status",
+      "fg": "#4f7950",
+      "bg": "#edf5ee",
+      "ratio": 4.517,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "used status",
+      "fg": "#456d98",
+      "bg": "#edf2fa",
+      "ratio": 4.798,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "revoked status",
+      "fg": "#95584f",
+      "bg": "#faeeeb",
+      "ratio": 4.884,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "expired status",
+      "fg": "#666671",
+      "bg": "#f0f0f4",
+      "ratio": 4.988,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "event metadata",
+      "fg": "#cad4e3",
+      "bg": "#263245",
+      "ratio": 8.641,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "pass metadata",
+      "fg": "#bfd0ef",
+      "bg": "#273c68",
+      "ratio": 6.977,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "warning",
+      "fg": "#736952",
+      "bg": "#f3f1ec",
+      "ratio": 4.806,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "demo banner",
+      "fg": "#5f6570",
+      "bg": "#f0f1f5",
+      "ratio": 5.194,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "inactive navigation",
+      "fg": "#515158",
+      "bg": "#f8f8fa",
+      "ratio": 7.421,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "active navigation",
+      "fg": "#0066cc",
+      "bg": "#e5edf9",
+      "ratio": 4.722,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "informational chip",
+      "fg": "#526b8a",
+      "bg": "#edf3fc",
+      "ratio": 4.917,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "neutral chip",
+      "fg": "#666671",
+      "bg": "#f1f1f5",
+      "ratio": 5.033,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "pass class",
+      "fg": "#556681",
+      "bg": "#f0f3f9",
+      "ratio": 5.243,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "private detail",
+      "fg": "#586a83",
+      "bg": "#f3f6fa",
+      "ratio": 5.093,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "inline warning",
+      "fg": "#746442",
+      "bg": "#f6f2e9",
+      "ratio": 5.158,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "success metadata",
+      "fg": "#506e55",
+      "bg": "#ffffff",
+      "ratio": 5.672,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "input hint",
+      "fg": "#6e6e73",
+      "bg": "#fafafc",
+      "ratio": 4.865,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "empty/waiting copy",
+      "fg": "#666671",
+      "bg": "#eef0f5",
+      "ratio": 4.973,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "actual empty heading",
+      "fg": "#596476",
+      "bg": "#eef0f5",
+      "ratio": 5.248,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "waiting heading",
+      "fg": "#5e6c83",
+      "bg": "#eef0f5",
+      "ratio": 4.664,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "inactive filter/count",
+      "fg": "#666671",
+      "bg": "#f0f0f4",
+      "ratio": 4.988,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "created pass ID",
+      "fg": "#666671",
+      "bg": "#eaedf5",
+      "ratio": 4.841,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "execution mode",
+      "fg": "#515158",
+      "bg": "#edeef3",
+      "ratio": 6.794,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "live ordinary copy",
+      "fg": "#5e606b",
+      "bg": "#ffffff",
+      "ratio": 6.247,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "live status",
+      "fg": "#415c7c",
+      "bg": "#eef4fb",
+      "ratio": 6.226,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "live owner review",
+      "fg": "#665b44",
+      "bg": "#f4f0e7",
+      "ratio": 5.871,
+      "passesNormalTextAA": true
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{"stage":"artifacts-loaded","syntheticOnly":true,"circuit":"issue","zkirK":13,"keySha256":{"prover":"ee91629b62ce20c7db533515317bd78aca0abdf82baaa1d7c337dd73254ae238","verifier":"fffb13b258633fe6a66e59a42793d11e956a8c993c0c536a14a0d996b403ebaa","ir":"edebe8724bef5deff99f8d1b1470e09117626537ee46f211a2041790927b28c9"}}
+{"stage":"synthetic-preimage-created","preimageBytes":397}
+{"stage":"witness-constraint-check-complete","outputs":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]}
+{"stage":"real-proving-started","concurrency":1}
+{"stage":"real-proof-returned","proofBytes":4501,"proofSha256":"63be0d410bf646025bfb5d015e232fd5d2936b7c77beca7d6b1418103be66e3c","elapsedMs":32172,"syntheticOnly":true,"transactionSubmitted":false,"networkFinalization":false,"separateCryptographicVerification":false}

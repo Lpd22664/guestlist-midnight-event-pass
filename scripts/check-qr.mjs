@@ -1,0 +1,10 @@
+import {PNG} from 'pngjs';
+import jsQR from 'jsqr';
+import {readFileSync,writeFileSync} from 'node:fs';
+import assert from 'node:assert/strict';
+const path=process.argv[2];if(!path)throw new Error('Provide a synthetic browser QR inspection JSON');
+const fixture=JSON.parse(readFileSync(path,'utf8'));assert.ok(fixture.expected.startsWith('guestlist-demo:'),'Only synthetic credentials may be checked here');assert.ok(fixture.qrData.startsWith('data:image/png;base64,'));
+const png=PNG.sync.read(Buffer.from(fixture.qrData.slice('data:image/png;base64,'.length),'base64'));
+const decoded=jsQR(new Uint8ClampedArray(png.data),png.width,png.height);
+assert.ok(decoded,'Rendered QR must decode');assert.equal(decoded.data,fixture.expected,'QR payload must match visible credential text');
+const result={checkedAt:new Date().toISOString(),scope:'Actual private-browser rendered QR; synthetic credential only; payload not logged',width:png.width,height:png.height,decodedExactly:true,quietZoneModules:4};writeFileSync('evidence/qr-decode-result.json',JSON.stringify(result,null,2)+'\n');console.log(result);

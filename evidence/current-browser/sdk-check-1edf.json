@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-05T20:55:21Z",
+  "deployedSourceCommit": "1edf2dfca6d0f02aba3480158ad7bd0322276de7",
+  "environment": "Supported cloud Chrome, owner-authorized private synthetic QA",
+  "checks": {
+    "browserEsmWasm": "PASS",
+    "genuineCompactCommitment": "PASS",
+    "shaSizeAuthenticatedPublicVerifier": "PASS"
+  },
+  "verifierBytes": 2119,
+  "compiler": "0.31.1",
+  "runtime": "0.16.0",
+  "localBuiltBundleSha256": "4774a432ead32f25f67041b89d7ba7e86b5979e357c877dca77cc15cb0d51036",
+  "hashScope": "Local built archive asset; native deployment maps this exact source/archive to the private version. The browser hash/size guard independently authenticates the verifier, not the entire SDK bundle.",
+  "screenshot": "sdk-public-assets.png",
+  "ownerActions": 0,
+  "walletConnections": 0,
+  "proofsGenerated": 0,
+  "networkTransactions": 0
+}

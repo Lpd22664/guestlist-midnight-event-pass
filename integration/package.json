@@ -1,0 +1,35 @@
+{
+  "name": "@event-pass/midnight-integration",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Retired Node adapter: live methods fail closed; retained for historical read-only research",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node sync-contract.mjs && tsc -p tsconfig.json && node sync-contract.mjs --dist",
+    "typecheck": "node sync-contract.mjs && tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test test/deprecation.test.mjs",
+    "verify": "npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "@midnight-ntwrk/compact-runtime": "0.16.0",
+    "@midnight-ntwrk/dapp-connector-api": "4.0.1",
+    "@midnight-ntwrk/midnight-js-contracts": "4.1.1",
+    "@midnight-ntwrk/midnight-js-http-client-proof-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-indexer-public-data-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-network-id": "4.1.1",
+    "@midnight-ntwrk/midnight-js-node-zk-config-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-protocol": "4.1.1",
+    "@midnight-ntwrk/midnight-js-types": "4.1.1",
+    "@midnight-ntwrk/wallet-sdk-address-format": "3.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.0",
+    "typescript": "5.9.3"
+  },
+  "overrides": {
+    "@midnight-ntwrk/onchain-runtime-v3": "3.0.0"
+  }
+}

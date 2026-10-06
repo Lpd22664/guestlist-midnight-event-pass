@@ -1,0 +1,46 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 test:live
+> node --import tsx --test tests/live-*.test.ts
+
+✔ loading/default live controller never connects wallet, provisions private authority or submits (5.122194ms)
+✔ declined owner storage/connect setup stays disconnected with no provider effect (1.041696ms)
+✔ issuer join receives issuer capability only; real receipt fields are distinct from request ID (2.24553ms)
+✔ unknown submission preserves public request and prevents duplicate/new submission until read-only reconciliation (2.126305ms)
+✔ owner decline before submission records rejection without provider side effect (0.775066ms)
+✔ scope and role checks prevent issuer redemption and bearer issuance (1.149724ms)
+✔ wallet disconnect/account guard locks session and discards in-memory capability, keeps pending request (0.759242ms)
+✔ gate opening timeout persists original public request and blocks fresh open (1.070348ms)
+✔ gate never admits mismatched/forged success and status reads remain closed (1.731687ms)
+✔ matching durable first claim alone grants admission; replay response stays closed (1.032422ms)
+✔ lock during deferred successful gate claim discards late admission and preserves unknown request (0.684493ms)
+✔ lock during gate health prevents late credential attachment (0.55987ms)
+✔ lock during gate open preserves unknown context without late ready/admission message (0.433475ms)
+✔ lock cancels pending owner event review without restoring trusted event (0.210698ms)
+✔ malformed truthy admission wire values are rejected and never rendered as a grant (1.408704ms)
+✔ starting a different gate request removes a previous admission grant immediately (0.439955ms)
+✔ lock during delayed join never restores joined role or custody (0.427467ms)
+✔ lock during finalized node read cannot restore chain readiness (1.510843ms)
+✔ lock during private presentation read cannot reveal a late credential (0.665856ms)
+✔ lock during late successful chain result preserves request as unknown until explicit read-only reconcile (0.691863ms)
+✔ actual strict browser admission client integrates through controller using public-only synthetic transport (12.699475ms)
+✔ actual strict browser admission client rejects malformed grants before controller can render success (1.702184ms)
+✔ Preview event identity rejects demo/mainnet credentials and missing public trust anchors (1.988683ms)
+✔ public attempt persistence strips private extras and preserves request/real transaction identity (0.531238ms)
+✔ live success requires complete finalized attributed receipt and matching scope (0.214575ms)
+✔ corrupt public request history fails closed instead of resetting (0.174736ms)
+✔ gate public context strips authority/capabilities and keeps unknown request identity (0.222776ms)
+✔ all owner custody steps have explicit non-agent final action requirements (0.110302ms)
+✔ consent stays pending until exact owner response; decline and cancellation are false (0.521294ms)
+✔ owner-selected issuer fixture imports nonextractable AES and excludes bearer custody (4.066767ms)
+✔ owner bearer fixture cannot contain issuer or maintenance authority (0.38898ms)
+✔ provisioning synthetic fixture requires final owner action and never implicitly creates maintenance key (0.482147ms)
+✔ persisted deployment registry carries only public finalized evidence and stays separate from custody (1.298072ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 416.294186

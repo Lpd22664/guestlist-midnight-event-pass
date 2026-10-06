@@ -1,0 +1,7 @@
+# Owner runs this on the SAME computer as Lace. Never expose this port publicly.
+services:
+  proof-server:
+    image: midnightntwrk/proof-server:8.1.0
+    command: ['midnight-proof-server', '-v']
+    ports:
+      - '127.0.0.1:6300:6300'

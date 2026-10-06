@@ -1,0 +1,9 @@
+dist/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+.env*
+
+# Defense in depth: actual owner files must live outside this repository
+guestlist-gate-server.json
+guestlist-gate-client.json

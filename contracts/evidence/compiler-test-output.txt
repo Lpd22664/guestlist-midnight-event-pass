@@ -1,0 +1,24 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 test:compiler
+> npm --prefix contracts run test:compiler
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/contract@0.1.0 test:compiler
+> node --test ../contract-tests/compiler.test.mjs
+
+✔ official pinned compiler is actually available (1067.427667ms)
+✔ original source passes actual compiler type and disclosure checks (424.648752ms)
+✔ compiler rejects a new circuit mutating the sealed event (361.145853ms)
+✔ compiler rejects a new circuit mutating the sealed issuer authority (507.014366ms)
+✔ compiler rejects accidental raw bearer-secret disclosure (507.038241ms)
+✔ compiler rejects a dishonest pure annotation on a witness-reading circuit (438.783505ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3613.881812

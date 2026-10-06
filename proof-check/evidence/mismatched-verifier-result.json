@@ -1,0 +1,8 @@
+{
+  "stage": "cryptographic-self-verification-negative-control",
+  "mismatchedVerifierRejected": true,
+  "error": "Invalid proof",
+  "elapsedMs": 39152,
+  "syntheticOnly": true,
+  "transactionSubmitted": false
+}

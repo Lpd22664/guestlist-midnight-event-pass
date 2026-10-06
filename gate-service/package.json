@@ -1,0 +1,20 @@
+{
+  "name": "@event-pass/gate-service",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24.19.0 <25" },
+  "exports": {
+    "./client": { "types": "./dist/client.d.ts", "import": "./dist/client.js" },
+    ".": { "types": "./dist/service.d.ts", "import": "./dist/service.js" }
+  },
+  "scripts": {
+    "build": "node ../node_modules/typescript/bin/tsc -p tsconfig.json",
+    "typecheck": "node ../node_modules/typescript/bin/tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "verify": "npm run typecheck && npm test",
+    "start:loopback": "node dist/main.js",
+    "owner:setup": "node dist/owner-setup.js",
+    "owner:launch": "node dist/owner-launch.js"
+  }
+}

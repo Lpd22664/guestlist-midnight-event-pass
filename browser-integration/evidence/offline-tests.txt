@@ -1,0 +1,85 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 build
+> npm run sync && tsc -p tsconfig.json && node sync-contract.mjs --dist
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 sync
+> node sync-contract.mjs
+
+✔ private storage denial creates no database and never requests a wallet/seed (3.249408ms)
+✔ vault requires explicit nonextractable AES256 custody; no address-derived/default key (0.699706ms)
+✔ encrypted state survives close/reopen only with the existing owner key (62.28651ms)
+✔ vault isolates owner/network/event/role and contract/state identifiers (14.975916ms)
+✔ bearer vault never accepts issuer capability or maintenance authority (23.734128ms)
+✔ vault disables plaintext and unreviewed import/export recovery (1.657412ms)
+✔ ciphertext hides capabilities; unique IVs and scope AAD reject moved/tampered records (5.142446ms)
+✔ durable journal atomically rejects concurrent same-event submissions across tabs (7.620903ms)
+✔ journal scope/private-field/identity checks fail closed and unknown stays unresolved (1.977342ms)
+✔ browser ZK provider fetches actual compiler assets and refuses wrong/corrupted sets (40.775856ms)
+✔ browser wire codecs reject odd/nonhex/empty transaction bytes instead of truncating (0.372266ms)
+✔ all-zero event scope is rejected before opening storage (0.21803ms)
+✔ protected same-origin public artifacts use existing app cookies only, external assets omit credentials (4.287752ms)
+✔ adapter commitment helpers equal the actual generated Compact pure circuits (9.739512ms)
+✔ explicit witnesses reject absent capabilities and never add an issuer capability to a bearer (0.269225ms)
+✔ reads distinguish a never-issued commitment from active/used/revoked tombstones (272.778147ms)
+✔ gate rejects FailEntirely, including partial success (0.379367ms)
+✔ gate rejects FailFallible, including partial success (0.239151ms)
+✔ gate rejects pending, including partial success (0.124823ms)
+✔ gate rejects confirmed, including partial success (4.278498ms)
+✔ gate rejects unknown, including partial success (0.19756ms)
+✔ gate also rejects a failed execution segment despite an overall success string (0.388981ms)
+✔ issue receipt requires an independent state query pinned to the finalized block (81.216107ms)
+✔ redeem receipt requires an independent state query pinned to the finalized block (92.131086ms)
+✔ revoke receipt requires an independent state query pinned to the finalized block (81.303181ms)
+✔ a used public state alone is never a successful redemption receipt (52.243899ms)
+✔ successful-looking receipt with stale ACTIVE public state cannot admit (28.401658ms)
+✔ wrong event/issuer and missing contract state fail closed (44.652511ms)
+✔ deployment denial stops before SDK/private/prover/wallet/network work (1.717689ms)
+✔ no automatic maintenance key creation and no anonymous private store (0.403111ms)
+✔ a slow mock prover times out without subsequent balance/sign/submit, and blocks concurrent work (522.334367ms)
+✔ wallet injection enumeration never chooses/connects a wallet silently (0.652667ms)
+✔ read-only chain helper uses finalized head/header and system_version only (1.112672ms)
+✔ read-only query timeout never produces a success receipt (11.051548ms)
+✔ all Midnight.js dependencies are exactly pinned at 4.1.1 (5.201389ms)
+✔ gate receipt replay is claimed at most once, even with a different request id (129.688921ms)
+✔ bearer-scoped deployment fails before approval, proving, journal or DUST work (0.527985ms)
+✔ fixed owner session event mismatch and missing guarded provider boundary fail closed (0.309473ms)
+✔ an unrelated successful transaction after a pass is USED cannot become a redemption receipt (59.360626ms)
+✔ arbitrary commitment occurrence and malformed/counter-less public transcripts fail attribution (78.022836ms)
+✔ receipt requires its actual public transaction identifier and rejects missing public tx (34.055544ms)
+✔ closing an adapter during proof revokes later balance/submit and forbids new operations (79.436719ms)
+✔ browser session reads public durable attempts without exposing private storage (53.759757ms)
+✔ browser session account guard closes session and prevents further wallet checks (7.010347ms)
+✔ browser session snapshots wallet configuration so in-place service changes lock it (2.097798ms)
+✔ official maintenance generator rejects missing owner final action or bearer role before generation (0.339889ms)
+✔ actual SDK-created deploy/issue/redeem/revoke transactions satisfy exact public attribution (548.58965ms)
+✔ API4 key bridge blocks account changes before balance and submission (1.920959ms)
+✔ denied wallet prover grant never obtains a proving provider (0.996983ms)
+✔ genuine browser provider factory uses API4 delegated proving and native WebSocket (5.719213ms)
+✔ wallet services reject wrong networks, credentials and insecure remote transport (0.315533ms)
+✔ bearer joins real locally-built SDK contract without generating maintenance authority (240.702388ms)
+✔ WebSocket read-only node status queries the exact finalized header and rejects response ID mismatch (11.919041ms)
+✔ live credential uses real commitment and rejects demo/cross-network/event/contract inputs (1.842624ms)
+✔ owner account changes stop the delegated proof before any preimage is sent (1.187102ms)
+✔ expired guard blocks a new wallet balance/submit after delayed identity reads (0.506653ms)
+✔ expired guard blocks private transaction proving after delayed owner identity check (0.796479ms)
+ℹ tests 57
+ℹ suites 0
+ℹ pass 57
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3230.869697
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

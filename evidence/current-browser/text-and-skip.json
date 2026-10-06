@@ -1,0 +1,105 @@
+{
+  "checkedAt": "2026-10-05T20:07:20Z",
+  "sourceCommit": "6845df614c97985c34da85434a5d7e803b536e26",
+  "environment": "Supported cloud Chrome, same-origin CSS viewport harness",
+  "textScale": "200%",
+  "baselineRootFontSizePx": 16,
+  "baselinePassHeadingPx": 22,
+  "scaledPassHeadingPx": 44,
+  "cases": [
+    {
+      "frameWidth": 320,
+      "view": "issue",
+      "htmlFontSizePx": 32,
+      "clientWidth": 305,
+      "scrollWidth": 305,
+      "hiddenOrClippedTextCandidates": []
+    },
+    {
+      "frameWidth": 320,
+      "view": "wallet",
+      "htmlFontSizePx": 32,
+      "clientWidth": 305,
+      "scrollWidth": 305,
+      "hiddenOrClippedTextCandidates": []
+    },
+    {
+      "frameWidth": 320,
+      "view": "checkin",
+      "htmlFontSizePx": 32,
+      "clientWidth": 305,
+      "scrollWidth": 305,
+      "hiddenOrClippedTextCandidates": []
+    },
+    {
+      "frameWidth": 390,
+      "view": "issue",
+      "htmlFontSizePx": 32,
+      "clientWidth": 375,
+      "scrollWidth": 375,
+      "hiddenOrClippedTextCandidates": []
+    },
+    {
+      "frameWidth": 390,
+      "view": "wallet",
+      "htmlFontSizePx": 32,
+      "clientWidth": 375,
+      "scrollWidth": 375,
+      "hiddenOrClippedTextCandidates": []
+    },
+    {
+      "frameWidth": 390,
+      "view": "checkin",
+      "htmlFontSizePx": 32,
+      "clientWidth": 375,
+      "scrollWidth": 375,
+      "hiddenOrClippedTextCandidates": []
+    },
+    {
+      "frameWidth": 1280,
+      "view": "issue",
+      "htmlFontSizePx": 32,
+      "clientWidth": 1265,
+      "scrollWidth": 1265,
+      "hiddenOrClippedTextCandidates": []
+    },
+    {
+      "frameWidth": 1280,
+      "view": "wallet",
+      "htmlFontSizePx": 32,
+      "clientWidth": 1265,
+      "scrollWidth": 1265,
+      "hiddenOrClippedTextCandidates": []
+    },
+    {
+      "frameWidth": 1280,
+      "view": "checkin",
+      "htmlFontSizePx": 32,
+      "clientWidth": 1265,
+      "scrollWidth": 1265,
+      "hiddenOrClippedTextCandidates": []
+    }
+  ],
+  "skip": {
+    "demoFirstTab": "Skip to content",
+    "demoAfterActivation": {
+      "focused": "MAIN#main",
+      "hash": "#wallet",
+      "heading": "Present your pass"
+    },
+    "liveFirstTab": "Skip to content",
+    "liveAfterActivation": {
+      "focused": "MAIN#live-main",
+      "hash": "#wallet",
+      "heading": "1. Your private custody"
+    },
+    "livePresentationAfterSkip": {
+      "focused": "MAIN#live-main",
+      "hash": "#wallet",
+      "heading": "Your own bearer pass"
+    }
+  },
+  "ownerActions": 0,
+  "walletConnections": 0,
+  "networkTransactions": 0
+}

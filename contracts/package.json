@@ -1,0 +1,20 @@
+{
+  "name": "@event-pass/contract",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Original single-event Compact bearer-pass contract. Synthetic-data prototype only.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "compile": "node ./compile.mjs",
+    "compile:full": "node ./compile.mjs --full",
+    "test": "node --test ../contract-tests/event-pass.test.mjs",
+    "test:compiler": "node --test ../contract-tests/compiler.test.mjs"
+  },
+  "dependencies": {
+    "@midnight-ntwrk/compact-runtime": "0.16.0"
+  },
+  "overrides": {
+    "@midnight-ntwrk/onchain-runtime-v3": "3.0.0"
+  }
+}

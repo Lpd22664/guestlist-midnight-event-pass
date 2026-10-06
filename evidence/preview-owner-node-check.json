@@ -1,0 +1,161 @@
+{
+  "checkedAt": "2026-10-05T20:28:25.873955+00:00",
+  "endpoint": "https://rpc.preview.midnight.network",
+  "readOnly": true,
+  "reportedOwnerObservation": {
+    "blockHeight": 1168785,
+    "blockHash": "0xabf2768a4aaf03cf732655718f307c99b9984945088ba2cb8bcf45353bf40f05",
+    "nodeVersion": "2.1.0-00000000000",
+    "source": "owner report; owner endpoint URL not yet confirmed"
+  },
+  "independentOfficialRpc": {
+    "nodeVersion": "1.0.400-c338b9ac",
+    "chainName": "Midnight Preview",
+    "canonicalBlockHashAtHeight": "0xabf2768a4aaf03cf732655718f307c99b9984945088ba2cb8bcf45353bf40f05",
+    "header": {
+      "parentHash": "0xbe93a7f733d938d37936d7eecb0ccc6cccd599cb4c0cbab0c21c6a06053d2477",
+      "number": "0x11d591",
+      "stateRoot": "0x7fc3e7e5948670b566fe3d8342e3a4161d7973b485741b805b626fa41e0c566b",
+      "extrinsicsRoot": "0x2330be0c083b95ba32d72935ddcabb6e911d47fec34fd06e8dd82597892e6b93",
+      "digest": {
+        "logs": [
+          "0x0661757261208756cb1100000000",
+          "0x066d637368801bc8ad80c4b7b059eac54ea4ddcf3cd232794dedc21492cdfc3b4c51c9dde6f9",
+          "0x044d4e5356106c430f00",
+          "0x04424545468403c2271a948facac882f1723c283d9d1d3e05d304268d527a15ef2d961fb00e60c",
+          "0x05617572610101243c38e505fdf326e1e3e2de2fd2cc7c15f7c1ce1ec00536c76b0997908130379ec3388c8eec28ecf93562fbdcbe0747a5d9e1f8412c4edf3e42e29a5040b78b"
+        ]
+      }
+    },
+    "currentFinalizedHead": "0xafcefab329434fe8fe11ae5f737e4fce3bfca6e23aaefcfcaf5023e4cb1692b3",
+    "runtimeVersion": {
+      "specName": "midnight",
+      "implName": "midnight",
+      "authoringVersion": 1,
+      "specVersion": 1000300,
+      "implVersion": 0,
+      "apis": [
+        [
+          "0xa0c89371ec56244c",
+          1
+        ],
+        [
+          "0xf78b278be53f454c",
+          2
+        ],
+        [
+          "0x91d5df18b0d2cf58",
+          3
+        ],
+        [
+          "0xd9bc84ac3bfb8a0c",
+          1
+        ],
+        [
+          "0x7d699da8a672e867",
+          5
+        ],
+        [
+          "0x393b2599ea57bca2",
+          1
+        ],
+        [
+          "0xbc9d89904f5b923f",
+          1
+        ],
+        [
+          "0x49eaaf1b548a0cb0",
+          6
+        ],
+        [
+          "0x40fe3ad401f8959a",
+          6
+        ],
+        [
+          "0x2a5e924655399e60",
+          1
+        ],
+        [
+          "0xdd718d5cc53262d4",
+          1
+        ],
+        [
+          "0xc3c222f40af6f42b",
+          1
+        ],
+        [
+          "0xc7805fd5ec973a86",
+          1
+        ],
+        [
+          "0x279a32908e96410d",
+          1
+        ],
+        [
+          "0xfbc577b9d747efd6",
+          1
+        ],
+        [
+          "0x22a0eaa81c05f0d3",
+          1
+        ],
+        [
+          "0x19dba14093498f16",
+          2
+        ],
+        [
+          "0x0093e736d7484c30",
+          1
+        ],
+        [
+          "0x37e397fc7c91f5e4",
+          2
+        ],
+        [
+          "0xd2bc9897eed08f15",
+          3
+        ],
+        [
+          "0xab3c0572291feb8b",
+          2
+        ],
+        [
+          "0xa897625b130086bd",
+          1
+        ],
+        [
+          "0xed99c5acb25eedf5",
+          3
+        ],
+        [
+          "0xdf6acb689907609b",
+          5
+        ]
+      ],
+      "transactionVersion": 3,
+      "systemVersion": 3,
+      "stateVersion": 3
+    }
+  },
+  "exactOwnerBlockMatchesPreview": true,
+  "proofServerVersion": "not-read",
+  "contractDeployment": "not-run",
+  "feeBalancing": "not-run",
+  "indexerEventVerification": "not-run",
+  "independentOfficialIndexer": {
+    "checkedAt": "2026-10-05T20:45:52Z",
+    "endpoint": "https://indexer.preview.midnight.network/api/v4/graphql",
+    "query": "query PreviewPublicBlock($offset: BlockOffset) { block(offset: $offset) { height hash timestamp } }",
+    "variables": {
+      "offset": {
+        "height": 1168785
+      }
+    },
+    "result": {
+      "height": 1168785,
+      "hash": "abf2768a4aaf03cf732655718f307c99b9984945088ba2cb8bcf45353bf40f05",
+      "timestamp": 1791231786000
+    },
+    "scope": "Public block read only; not a contract/event or transaction verification"
+  }
+}

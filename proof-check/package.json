@@ -1,0 +1,20 @@
+{
+  "name": "@event-pass/synthetic-proof-check",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local-only synthetic witness proof check; never a deployment",
+  "dependencies": {
+    "@midnight-ntwrk/zkir-v2": "2.1.0"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check:syntax": "node --check attempt-circuit-proof.mjs && node --check prepare-local-transaction.mjs && node --check verify-saved-transaction.mjs && node --check check-mismatched-verifier.mjs && node --check prove-all-circuits.mjs",
+    "proof": "node --max-old-space-size=2048 prepare-local-transaction.mjs",
+    "verify:stored": "node verify-saved-transaction.mjs",
+    "proof:negative": "node --max-old-space-size=2048 check-mismatched-verifier.mjs",
+    "proof:all": "node --max-old-space-size=2048 prove-all-circuits.mjs"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "midnight-browser-integration-verification-status-v1",
+  "last_verified_before_reset_utc": "2026-10-05T18:19:09Z",
+  "strict_application_typecheck": "passed-before-workspace-reset",
+  "offline_tests": {
+    "passed": 52,
+    "failed": 0,
+    "scope": "real SDK-built deploy/issue/redeem/revoke transaction attribution plus generated Compact fixtures and synthetic finalization/wallet/prover data; fake IndexedDB"
+  },
+  "production_browser_bundle": "built-before-workspace-reset; 17.86 MB ESM with inline WASM",
+  "browser_built_bundle_in_node": "import and genuine Compact fixture derivation passed; not browser QA",
+  "chromium_runtime": "blocked: process singleton Unix socket denied; supported escalation failed before launch on /root/.codex synthetic mount",
+  "workspace_reset_observed_utc": "2026-10-05T18:23:11Z",
+  "original_repo_and_compiled_artifacts": "restored and rebuilt",
+  "recovered_sources": "strictly typechecked, 52 offline tests passed, production browser bundle rebuilt; native Chromium runtime still blocked",
+  "owner_wallet_connections": 0,
+  "owner_credentials_created": 0,
+  "real_proofs_generated_by_this_task": 0,
+  "network_transactions_submitted": 0,
+  "network_finality_verified": false,
+  "workspace_recovered_from_commit": "eeff71400ff821336094d6216e768f94b70865bc",
+  "verified_after_recovery_utc": "2026-10-05T18:48:37Z"
+}

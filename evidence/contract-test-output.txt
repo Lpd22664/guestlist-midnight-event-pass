@@ -1,0 +1,37 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 test:contract
+> npm --prefix contracts test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/contract@0.1.0 test
+> node --test ../contract-tests/event-pass.test.mjs
+
+✔ build evidence matches the exact original source and compiler-runtime pair (2.103772ms)
+✔ constructor fixes one event and one secret-derived issuer with empty counters (52.458474ms)
+✔ issuer issues an active pass; bearer atomically consumes it once (56.730672ms)
+✔ issuer revokes an active pass; correct bearer can no longer use it (57.830613ms)
+✔ wrong issuer secret cannot issue or revoke, even with the correct bearer (49.771498ms)
+✔ wrong bearer secret cannot consume an otherwise active pass (27.336874ms)
+✔ permanent tombstone rejects reissuance of a active pass (30.027936ms)
+✔ permanent tombstone rejects reissuance of a used pass (36.681052ms)
+✔ permanent tombstone rejects reissuance of a revoked pass (38.528889ms)
+✔ unissued valid commitment cannot be redeemed or revoked (35.791339ms)
+✔ used pass cannot be revoked or resurrected (48.663445ms)
+✔ event binding and domain separation prevent bearer/issuer reuse (37.288211ms)
+✔ a second distinct pass remains usable after the first is consumed (52.70236ms)
+✔ fixed public state contains only commitments and status, never raw secrets (49.707194ms)
+✔ bearer redeem intentionally does not require issuer credential (34.668314ms)
+✔ zero credentials/commitments and malformed byte inputs are rejected (100.772046ms)
+✔ contract rejects missing witnesses and incomplete circuit context (30.866655ms)
+✔ serial duplicate gate attempts have exactly one accepted state transition (59.548981ms)
+✔ local calls against stale ACTIVE snapshots are not consensus finality (50.740076ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1016.375425

@@ -1,0 +1,32 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.tools/
+test-results/
+playwright-report/
+*.log
+*.key
+*.pem
+private-state/
+wallet-data/
+
+# Build caches are not source
+**/npm-cache/
+**/.npm-cache/
+**/qa-mount/
+**/bundle/
+public/qa/sdk/
+public/midnight/
+
+# Never publish owner custody or durable gate data
+**/*-private-recovery.json
+**/*gate-client*.json
+**/*gate-server*.json
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# Generated browser reporter output; retain only after a verified real run
+evidence/e2e-results.json

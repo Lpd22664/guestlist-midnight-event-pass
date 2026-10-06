@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-10-05T16:47:28.796Z",
+  "compiler": "0.31.0",
+  "runtime": "0.16.0",
+  "sourceSha256": "18e896fd19ad963e9b9b612f640b0da3350bff73937f789d57f7d60096e013b0",
+  "output": "generated/event-pass",
+  "keyGeneration": "completed",
+  "proofGeneration": "not-run",
+  "proofVerification": "not-run",
+  "networkDeployment": "not-run",
+  "syntheticDataOnly": true
+}

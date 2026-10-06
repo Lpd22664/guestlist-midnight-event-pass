@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-10-05T22:14:50.114Z",
+  "currentCompiler": "0.31.1",
+  "originalProofCompiler": "0.31.0",
+  "sourceSha256": "18e896fd19ad963e9b9b612f640b0da3350bff73937f789d57f7d60096e013b0",
+  "checks": [
+    {
+      "path": "../contracts/event-pass.compact",
+      "sha256": "18e896fd19ad963e9b9b612f640b0da3350bff73937f789d57f7d60096e013b0"
+    },
+    {
+      "path": "../contracts/generated/event-pass/keys/issue.prover",
+      "sha256": "ee91629b62ce20c7db533515317bd78aca0abdf82baaa1d7c337dd73254ae238"
+    },
+    {
+      "path": "../contracts/generated/event-pass/keys/issue.verifier",
+      "sha256": "fffb13b258633fe6a66e59a42793d11e956a8c993c0c536a14a0d996b403ebaa"
+    },
+    {
+      "path": "../contracts/generated/event-pass/zkir/issue.bzkir",
+      "sha256": "edebe8724bef5deff99f8d1b1470e09117626537ee46f211a2041790927b28c9"
+    },
+    {
+      "path": "../contracts/generated/event-pass/keys/revoke.verifier",
+      "sha256": "8f691f1eeccebe069bf780b986317edfc23d837b07b11f955b56cd00b9e327ec"
+    },
+    {
+      "path": "node_modules/@midnight-ntwrk/zkir-v2/midnight_zkir_wasm_bg.wasm",
+      "sha256": "5e7f60cc8be6c10a9d3a003f9109157bfd02419ec9c2188d4974ed9ae6bb7a1d"
+    },
+    {
+      "path": "../integration/node_modules/@midnight-ntwrk/ledger-v8/midnight_ledger_wasm_bg.wasm",
+      "sha256": "88ff7c7c47c30138ee8f3a0c8bcbf12dbdcdeba591edebfb955c30d732ea7638"
+    },
+    {
+      "path": "evidence/synthetic-issue-proof.bin",
+      "sha256": "63be0d410bf646025bfb5d015e232fd5d2936b7c77beca7d6b1418103be66e3c"
+    },
+    {
+      "path": "evidence/synthetic-issue-transaction-proof.bin",
+      "sha256": "43ef374c36828b3cf15a3c4982ccd04e4aa0f2e5589f99adc66ba32897a7ad8b"
+    },
+    {
+      "path": "evidence/synthetic-proven-transaction.bin",
+      "sha256": "18614e8163c4077214c0b22be7503e0483f8326616280b8d71cbe9a476764b7b"
+    },
+    {
+      "path": "evidence/local-reference-ledger.bin",
+      "sha256": "ffc7745bdd52b302aff30b87efec28c3bc06f291e68a757b7fca4bdc7991a4c5"
+    },
+    {
+      "path": "evidence/issue-self-checked-0311.bin",
+      "sha256": "9e31d0fd87326115f4b06ae21b061f7ca00867ce8a7707f7a8fa856c926b93c2"
+    },
+    {
+      "path": "evidence/redeem-self-checked-0311.bin",
+      "sha256": "8152be7fe3a875a591bac57e940e2e67eefd30d18e4d9636e186ffe75b8d94e2"
+    },
+    {
+      "path": "evidence/revoke-self-checked-0311.bin",
+      "sha256": "b031c438002dff5ec9b62e4683de3d2bbdc4f0124391d16cd3b3a3dbdb11cfb2"
+    }
+  ],
+  "effect": "hash checks only; no independent proof verification or network transaction"
+}

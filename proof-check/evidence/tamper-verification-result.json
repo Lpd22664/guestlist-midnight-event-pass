@@ -1,0 +1,9 @@
+{
+  "syntheticOnly": true,
+  "tamperedProofAcceptedByLedgerWasm": true,
+  "independentLedgerCryptographicVerification": false,
+  "mutationOffset": 4987,
+  "verifyContractProofsRequested": true,
+  "explanation": "Official ledger-wasm disables ledger default features; contract proof_verify is a no-op without proof-verifying. This structural pass is not cryptographic proof verification.",
+  "transactionSubmitted": false
+}

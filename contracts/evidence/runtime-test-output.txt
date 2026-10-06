@@ -1,0 +1,37 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 test:contract
+> npm --prefix contracts test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/contract@0.1.0 test
+> node --test ../contract-tests/event-pass.test.mjs
+
+✔ build evidence matches the exact original source and compiler-runtime pair (2.445827ms)
+✔ constructor fixes one event and one secret-derived issuer with empty counters (126.221265ms)
+✔ issuer issues an active pass; bearer atomically consumes it once (177.976494ms)
+✔ issuer revokes an active pass; correct bearer can no longer use it (159.308307ms)
+✔ wrong issuer secret cannot issue or revoke, even with the correct bearer (142.146049ms)
+✔ wrong bearer secret cannot consume an otherwise active pass (77.074742ms)
+✔ permanent tombstone rejects reissuance of a active pass (71.295886ms)
+✔ permanent tombstone rejects reissuance of a used pass (200.977516ms)
+✔ permanent tombstone rejects reissuance of a revoked pass (207.966799ms)
+✔ unissued valid commitment cannot be redeemed or revoked (110.206149ms)
+✔ used pass cannot be revoked or resurrected (223.550544ms)
+✔ event binding and domain separation prevent bearer/issuer reuse (67.870874ms)
+✔ a second distinct pass remains usable after the first is consumed (102.490213ms)
+✔ fixed public state contains only commitments and status, never raw secrets (82.669525ms)
+✔ bearer redeem intentionally does not require issuer credential (66.60661ms)
+✔ zero credentials/commitments and malformed byte inputs are rejected (185.162863ms)
+✔ contract rejects missing witnesses and incomplete circuit context (29.348881ms)
+✔ serial duplicate gate attempts have exactly one accepted state transition (107.553247ms)
+✔ local calls against stale ACTIVE snapshots are not consensus finality (73.372637ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2717.604178

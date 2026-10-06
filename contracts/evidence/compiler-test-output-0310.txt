@@ -1,0 +1,18 @@
+
+> @event-pass/contract@0.1.0 test:compiler
+> node --test ../contract-tests/compiler.test.mjs
+
+✔ official pinned compiler is actually available (428.756775ms)
+✔ original source passes actual compiler type and disclosure checks (506.17887ms)
+✔ compiler rejects a new circuit mutating the sealed event (505.62341ms)
+✔ compiler rejects a new circuit mutating the sealed issuer authority (442.454037ms)
+✔ compiler rejects accidental raw bearer-secret disclosure (391.669858ms)
+✔ compiler rejects a dishonest pure annotation on a witness-reading circuit (391.306182ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2806.315436

@@ -1,0 +1,74 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 prebuild
+> npm run stage:live
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 stage:live
+> npm --prefix browser-integration run bundle && node scripts/stage-live-assets.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 bundle
+> npm run build && vite build --config vite.config.ts
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 build
+> npm run sync && tsc -p tsconfig.json && node sync-contract.mjs --dist
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 sync
+> node sync-contract.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+node_modules/@scure/base/index.js (2:0): A comment
+
+"// Freeze the result of a thunk. `/* @__PURE__ */ freeze(() => expr)` keeps the whole"
+
+in "node_modules/@scure/base/index.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs (794:89): "WebSocket" is not exported by "node_modules/isomorphic-ws/browser.js", imported by "node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs".
+node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs (1040:81): "WebSocket" is not exported by "node_modules/isomorphic-ws/browser.js", imported by "node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs".
+✓ 1351 modules transformed.
+[plugin vite:reporter] 
+(!) /workspace/shared/midnight-event-pass/browser-integration/node_modules/@midnight-ntwrk/midnight-js-contracts/dist/index.mjs is dynamically imported by /workspace/shared/midnight-event-pass/browser-integration/src/adapter.ts but also statically imported by /workspace/shared/midnight-event-pass/browser-integration/src/adapter.ts, dynamic import will not move module into another chunk.
+
+[plugin vite:reporter] 
+(!) /workspace/shared/midnight-event-pass/browser-integration/src/bytes.ts is dynamically imported by /workspace/shared/midnight-event-pass/browser-integration/src/adapter.ts but also statically imported by /workspace/shared/midnight-event-pass/browser-integration/src/adapter.ts, /workspace/shared/midnight-event-pass/browser-integration/src/admission.ts, /workspace/shared/midnight-event-pass/browser-integration/src/contract.ts, /workspace/shared/midnight-event-pass/browser-integration/src/credentials.ts, /workspace/shared/midnight-event-pass/browser-integration/src/owner-storage.ts, /workspace/shared/midnight-event-pass/browser-integration/src/receipts.ts, /workspace/shared/midnight-event-pass/browser-integration/src/session.ts, /workspace/shared/midnight-event-pass/browser-integration/src/wallet.ts, /workspace/shared/midnight-event-pass/browser-integration/src/zk-assets.ts, dynamic import will not move module into another chunk.
+
+rendering chunks...
+computing gzip size...
+bundle/event-pass.js  17,883.75 kB │ gzip: 6,412.43 kB
+✓ built in 10.20s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+Staged the isolated genuine browser SDK and complete compiler assets; no wallet or private custody action
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> guestlist-midnight-event-pass@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 1640 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.65 kB │ gzip:   0.41 kB
+dist/assets/index-BLW4uZb6.css   35.63 kB │ gzip:   7.86 kB
+dist/assets/index-B5KCbhNh.js   362.25 kB │ gzip: 112.63 kB
+✓ built in 3.63s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

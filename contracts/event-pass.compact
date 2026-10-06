@@ -1,0 +1,76 @@
+pragma language_version 0.23;
+
+import CompactStandardLibrary;
+
+// Original minimal contract: one deployment, one event, one issuer.
+// Absence in passes means NEVER issued. Entries are permanent tombstones.
+export enum PassStatus { ACTIVE, USED, REVOKED }
+
+export sealed ledger eventId: Bytes<32>;
+export sealed ledger issuerCommitment: Bytes<32>;
+export ledger passes: Map<Bytes<32>, PassStatus>;
+export ledger issuedCount: Counter;
+export ledger redeemedCount: Counter;
+export ledger revokedCount: Counter;
+
+// These are local private inputs, not wallet identity or public transaction args.
+witness issuerSecret(): Bytes<32>;
+witness bearerSecret(): Bytes<32>;
+
+constructor(initialEventId: Bytes<32>, initialIssuerSecret: Bytes<32>) {
+  assert(initialEventId != default<Bytes<32>>, "Event ID cannot be zero");
+  assert(initialIssuerSecret != default<Bytes<32>>, "Issuer secret cannot be zero");
+  eventId = disclose(initialEventId);
+  issuerCommitment = disclose(deriveIssuerCommitment(initialEventId, initialIssuerSecret));
+}
+
+// Pure helpers use the exact Compact runtime serialization/hash, avoiding a
+// look-alike browser SHA-256 implementation with incompatible encodings.
+export pure circuit deriveIssuerCommitment(id: Bytes<32>, secret: Bytes<32>): Bytes<32> {
+  return disclose(persistentHash<Vector<3, Bytes<32>>>(
+    [pad(32, "midnight:event-pass:issuer:v1"), id, secret]
+  ));
+}
+
+export pure circuit derivePassCommitment(id: Bytes<32>, secret: Bytes<32>): Bytes<32> {
+  return disclose(persistentHash<Vector<3, Bytes<32>>>(
+    [pad(32, "midnight:event-pass:bearer:v1"), id, secret]
+  ));
+}
+
+circuit assertIssuer(): [] {
+  const secret = issuerSecret();
+  assert(secret != default<Bytes<32>>, "Issuer secret cannot be zero");
+  assert(deriveIssuerCommitment(eventId, secret) == issuerCommitment, "Issuer authorization failed");
+}
+
+export circuit issue(commitment: Bytes<32>): [] {
+  assertIssuer();
+  const publicCommitment = disclose(commitment);
+  assert(publicCommitment != default<Bytes<32>>, "Pass commitment cannot be zero");
+  assert(!passes.member(publicCommitment), "Pass has already been issued");
+  passes.insert(publicCommitment, PassStatus.ACTIVE);
+  issuedCount.increment(1);
+}
+
+export circuit revoke(commitment: Bytes<32>): [] {
+  assertIssuer();
+  const publicCommitment = disclose(commitment);
+  assert(passes.member(publicCommitment), "Pass has not been issued");
+  assert(passes.lookup(publicCommitment) == PassStatus.ACTIVE, "Only active passes can be revoked");
+  passes.insert(publicCommitment, PassStatus.REVOKED);
+  revokedCount.increment(1);
+}
+
+export circuit redeem(commitment: Bytes<32>): [] {
+  const publicCommitment = disclose(commitment);
+  const secret = bearerSecret();
+  assert(secret != default<Bytes<32>>, "Bearer secret cannot be zero");
+  assert(derivePassCommitment(eventId, secret) == publicCommitment, "Bearer authorization failed");
+  assert(passes.member(publicCommitment), "Pass has not been issued");
+  assert(passes.lookup(publicCommitment) == PassStatus.ACTIVE, "Pass is not active");
+  // The check and write belong to the SAME circuit. The network's validated
+  // transaction must win the state conflict before a gate admits anyone.
+  passes.insert(publicCommitment, PassStatus.USED);
+  redeemedCount.increment(1);
+}

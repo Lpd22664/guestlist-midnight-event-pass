@@ -1,0 +1,53 @@
+{
+  "name": "guestlist-midnight-event-pass",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.19.0 <25"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4173",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173",
+    "check": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "test:e2e": "playwright test",
+    "verify": "npm run verify:offline && npm run test:e2e",
+    "test:contract": "npm --prefix contracts test",
+    "test:compiler": "npm --prefix contracts run test:compiler",
+    "compile:contract": "npm --prefix contracts run compile:full",
+    "check:contrast": "node scripts/check-contrast.mjs",
+    "test:integration": "npm --prefix integration test",
+    "check:integration": "npm --prefix integration run typecheck",
+    "stage:live": "npm --prefix browser-integration run bundle && node scripts/stage-live-assets.mjs",
+    "test:live": "node --import tsx --test tests/live-*.test.ts",
+    "predev": "npm run stage:live",
+    "prebuild": "npm run stage:live",
+    "check:browser": "npm --prefix browser-integration run typecheck",
+    "test:browser": "npm --prefix browser-integration run verify:offline",
+    "install:packages": "npm --prefix contracts ci --ignore-scripts && npm --prefix browser-integration ci --ignore-scripts && npm --prefix integration ci --ignore-scripts && npm --prefix proof-check ci --ignore-scripts",
+    "verify:offline": "npm run check && npm test && npm run test:contract && npm run test:browser && npm --prefix gate-service run verify && npm --prefix integration test && node scripts/check-artifact-integrity.mjs && node scripts/scan-public-source.mjs && npm run check:contrast && npm run build",
+    "verify:compiler": "npm run compile:contract && npm run test:compiler && npm run test:contract",
+    "check:artifacts": "node scripts/check-artifact-integrity.mjs",
+    "precheck": "npm --prefix browser-integration run build"
+  },
+  "dependencies": {
+    "lucide-react": "0.468.0",
+    "qrcode": "1.5.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "@types/node": "24.7.0",
+    "@types/qrcode": "1.5.5",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "jsqr": "1.4.0",
+    "pngjs": "7.0.0",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "vite": "7.3.6"
+  }
+}

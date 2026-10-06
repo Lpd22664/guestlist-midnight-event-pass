@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-10-05T21:18:21.761Z",
+  "readOnly": true,
+  "endpoints": {
+    "node": "https://rpc.preview.midnight.network",
+    "indexer": "https://indexer.preview.midnight.network/api/v4/graphql",
+    "indexerWs": "wss://indexer.preview.midnight.network/api/v4/graphql/ws"
+  },
+  "receipt": {
+    "schema": "midnight-event-pass-receipt-v1",
+    "network": "preview",
+    "action": "deploy",
+    "contractAddress": "856fb78cc68d912c92e1c1bf33afaced96cb35baa5d0973daaab93eaadca0c65",
+    "txId": "003ccdf04e97f8670e725cb37d7a1a0603f2d324b997cd9ce7c71a6578683a9954",
+    "identifiers": [
+      "003ccdf04e97f8670e725cb37d7a1a0603f2d324b997cd9ce7c71a6578683a9954",
+      "008bd30af302d4572cc232c0ca069dd700478855d6192d32c4e0f80496fb99c866"
+    ],
+    "txHash": "81960a7a8b3c7b1a35b4dc2ff8c4c5a4b34f0d7a1d768960365df9bf9e1bf619",
+    "blockHash": "c8ce2bf73dbac938508eb1edaba8f74d48f7e0ed4fd47a1c80a503c26959a9e8",
+    "blockHeight": 1169309,
+    "blockTimestamp": 1791234930000,
+    "transactionStatus": "SucceedEntirely",
+    "stateCheck": "verified-at-finalized-block",
+    "eventId": "d033b2269fb0a7716928e3fa6fe2c6ca30daed553147c3cabd49998d875632d9",
+    "publicState": {
+      "eventId": "d033b2269fb0a7716928e3fa6fe2c6ca30daed553147c3cabd49998d875632d9",
+      "issuerCommitment": "d8f045c7bdae2e34113d6abba5f27d6d3a9a0bfefd6c8aed5f72e55230a68b06",
+      "issuedCount": "0",
+      "redeemedCount": "0",
+      "revokedCount": "0"
+    }
+  },
+  "compiler": "0.31.1",
+  "runtime": "0.16.0",
+  "verifierKeyCompatibility": "PASS: all original issue/redeem/revoke verifier keys match",
+  "independentCanonicalBlockHash": "0xc8ce2bf73dbac938508eb1edaba8f74d48f7e0ed4fd47a1c80a503c26959a9e8",
+  "independentNodeFinalizedHeight": 1169335,
+  "ownerProverHealth": "owner reported ok/version8.1.0; not accessed by this process",
+  "walletConnections": 0,
+  "proofsGenerated": 0,
+  "submittedTransactions": 0
+}

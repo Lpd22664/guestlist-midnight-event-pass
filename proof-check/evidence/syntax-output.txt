@@ -1,0 +1,5 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/synthetic-proof-check@0.1.0 check:syntax
+> node --check attempt-circuit-proof.mjs && node --check prepare-local-transaction.mjs && node --check verify-saved-transaction.mjs && node --check check-mismatched-verifier.mjs
+

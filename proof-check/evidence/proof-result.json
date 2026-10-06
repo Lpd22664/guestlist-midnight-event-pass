@@ -1,0 +1,12 @@
+{
+  "stage": "real-proof-returned",
+  "proofBytes": 4501,
+  "proofSha256": "63be0d410bf646025bfb5d015e232fd5d2936b7c77beca7d6b1418103be66e3c",
+  "elapsedMs": 32172,
+  "syntheticOnly": true,
+  "transactionSubmitted": false,
+  "networkFinalization": false,
+  "separateCryptographicVerification": false,
+  "proofSelfVerification": true,
+  "verificationMechanism": "Mandatory verifier_key.verify in official prover, corroborated by mismatched verifier negative control"
+}

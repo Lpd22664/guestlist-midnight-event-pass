@@ -1,0 +1,14 @@
+{
+  "schema": "midnight-browser-built-artifact-node-smoke-v2",
+  "checkedAt": "2026-10-05T22:14:42.327Z",
+  "checks": [
+    "actual browser-conditioned WASM/ESM imports",
+    "genuine Compact commitment",
+    "API4 Bech32m bridge with no global Buffer or process"
+  ],
+  "browserRuntimeExercised": false,
+  "walletConnections": 0,
+  "credentialsCreated": 0,
+  "proofsGenerated": 0,
+  "networkTransactions": 0
+}

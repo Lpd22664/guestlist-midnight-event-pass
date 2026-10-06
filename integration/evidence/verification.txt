@@ -1,0 +1,51 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-integration@0.1.0 verify
+> npm run typecheck && npm test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-integration@0.1.0 typecheck
+> node sync-contract.mjs && tsc -p tsconfig.json --noEmit
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-integration@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-integration@0.1.0 build
+> node sync-contract.mjs && tsc -p tsconfig.json && node sync-contract.mjs --dist
+
+✔ adapter commitment helpers equal the actual generated Compact pure circuits (4.754118ms)
+✔ explicit witnesses reject absent capabilities and never add an issuer capability to a bearer (0.240865ms)
+✔ reads distinguish a never-issued commitment from active/used/revoked tombstones (108.383908ms)
+✔ gate rejects FailEntirely, including partial success (0.445485ms)
+✔ gate rejects FailFallible, including partial success (0.165401ms)
+✔ gate rejects pending, including partial success (0.08597ms)
+✔ gate rejects confirmed, including partial success (0.096937ms)
+✔ gate rejects unknown, including partial success (0.137509ms)
+✔ gate also rejects a failed execution segment despite an overall success string (0.487589ms)
+✔ issue receipt requires an independent state query pinned to the finalized block (38.606352ms)
+✔ redeem receipt requires an independent state query pinned to the finalized block (30.005119ms)
+✔ revoke receipt requires an independent state query pinned to the finalized block (32.477843ms)
+✔ a used public state alone is never a successful redemption receipt (21.843553ms)
+✔ successful-looking receipt with stale ACTIVE public state cannot admit (22.179791ms)
+✔ wrong event/issuer and missing contract state fail closed (24.222343ms)
+✔ deployment denial stops before SDK/private/prover/wallet/network work (0.68728ms)
+✔ no automatic maintenance key creation and no anonymous private store (0.204199ms)
+✔ a slow mock prover times out without subsequent balance/sign/submit, and blocks concurrent work (524.982122ms)
+✔ wallet injection enumeration never chooses/connects a wallet silently (1.126566ms)
+✔ read-only chain helper uses finalized head/header and system_version only (1.184674ms)
+✔ read-only query timeout never produces a success receipt (13.290357ms)
+✔ all Midnight.js dependencies are exactly pinned at 4.1.1 (8.894847ms)
+✔ gate receipt replay is claimed at most once, even with a different request id (91.326358ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1927.807306

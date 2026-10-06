@@ -1,0 +1,102 @@
+{
+  "compiler": "0.31.1",
+  "sourceSha256": "18e896fd19ad963e9b9b612f640b0da3350bff73937f789d57f7d60096e013b0",
+  "artifacts": [
+    {
+      "path": "compiler/contract-info.json",
+      "sha256": "158eb114eca4ca64fb4046c88d59d9f16423f98bcf12658b6099c19f11332add",
+      "bytes": 3533,
+      "sameAs0310": false
+    },
+    {
+      "path": "contract/index.d.ts",
+      "sha256": "ac2d1f7d4278584d64b3e1cc75a5c7c32700163058ae9d6791f0e53ebb992934",
+      "bytes": 3285,
+      "sameAs0310": true
+    },
+    {
+      "path": "contract/index.js",
+      "sha256": "4125784d89a704bb4c3779bef3ee007063e747b8253bc5f21c9d5a2b29525357",
+      "bytes": 67567,
+      "sameAs0310": true
+    },
+    {
+      "path": "contract/index.js.map",
+      "sha256": "44c1ec61a8b73f53ed1214c7d57d1baf0a9c74c11f75af511574cb2cb235a0e3",
+      "bytes": 2566,
+      "sameAs0310": false
+    },
+    {
+      "path": "keys/issue.prover",
+      "sha256": "ee91629b62ce20c7db533515317bd78aca0abdf82baaa1d7c337dd73254ae238",
+      "bytes": 2820730,
+      "sameAs0310": true
+    },
+    {
+      "path": "keys/issue.verifier",
+      "sha256": "fffb13b258633fe6a66e59a42793d11e956a8c993c0c536a14a0d996b403ebaa",
+      "bytes": 2119,
+      "sameAs0310": true
+    },
+    {
+      "path": "keys/redeem.prover",
+      "sha256": "87303d746a324a919d87ea76c9ea0ad63abb2857e6c84faa7b4e341c3dabbe3a",
+      "bytes": 2820707,
+      "sameAs0310": true
+    },
+    {
+      "path": "keys/redeem.verifier",
+      "sha256": "2731b18910f27d41c55977c7745b8a483dc47cb5b148fd24c9488924378aeea7",
+      "bytes": 2119,
+      "sameAs0310": true
+    },
+    {
+      "path": "keys/revoke.prover",
+      "sha256": "75acec7322cfdfef3d20944877d90c922a5a97b45634c02e4ff4bfd32ce3d537",
+      "bytes": 2820715,
+      "sameAs0310": true
+    },
+    {
+      "path": "keys/revoke.verifier",
+      "sha256": "8f691f1eeccebe069bf780b986317edfc23d837b07b11f955b56cd00b9e327ec",
+      "bytes": 2119,
+      "sameAs0310": true
+    },
+    {
+      "path": "zkir/issue.bzkir",
+      "sha256": "edebe8724bef5deff99f8d1b1470e09117626537ee46f211a2041790927b28c9",
+      "bytes": 383,
+      "sameAs0310": true
+    },
+    {
+      "path": "zkir/issue.zkir",
+      "sha256": "76475f297124acc4f5a92e5a030cb136cb464e743fda6a95e42e1ea1eb805c06",
+      "bytes": 6037,
+      "sameAs0310": true
+    },
+    {
+      "path": "zkir/redeem.bzkir",
+      "sha256": "4cd691dd1a982ea513143d6c8b16b7f62916829de3963da037edd9fc4d2fb631",
+      "bytes": 378,
+      "sameAs0310": true
+    },
+    {
+      "path": "zkir/redeem.zkir",
+      "sha256": "69e1da89c7bbfd6db3ab944b0ee4652705ef1a2f3c6ea2a207c9e085703ab39f",
+      "bytes": 6011,
+      "sameAs0310": true
+    },
+    {
+      "path": "zkir/revoke.bzkir",
+      "sha256": "9fcb5cdbeb62abf0240145118f2b0157ac606192529f75fc85a50cc6f24d63cc",
+      "bytes": 414,
+      "sameAs0310": true
+    },
+    {
+      "path": "zkir/revoke.zkir",
+      "sha256": "a0df36b4f2aab56cde4da72f121b0885d6ac4a5c5588903a791e47e6192b2e17",
+      "bytes": 6707,
+      "sameAs0310": true
+    }
+  ]
+}

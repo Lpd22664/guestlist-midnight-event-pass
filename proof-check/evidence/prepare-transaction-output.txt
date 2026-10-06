@@ -1,0 +1,4 @@
+Local no-call constructor fixture validated; all proof/signature checks enabled, fee balancing disabled
+Local fixture state result success undefined
+Fixture exists true
+Local synthetic issue transaction prepared 1097
