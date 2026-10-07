@@ -3,7 +3,8 @@ import { readPublicState, verifyReceipt, type PublicReceipt } from '../../browse
 import { publicBytes } from '../../browser-integration/dist/bytes.js';
 import type { GateEvent, GateReceipt, OpenRedemptionRequest } from './types.js';
 import { GateError } from './types.js';
-import { blockHash, publicHex, transactionId } from './validation.js';
+import { blockHash, publicHex, transactionId, eventKey } from './validation.js';
+import { ReadOnlyAsOfIndexer, localPinnedStateVerifier, type AsOfStateReader } from './as-of-state.js';
 
 export interface FinalizedBaseline { hash: string; height: number }
 export interface GateChainReader {
@@ -63,15 +64,28 @@ export function createMidnightChainReader(configuration: PublicChainConfiguratio
   publicServiceUrl(configuration.indexerWsUri, ['ws:', 'wss:']);
   const node = new ReadOnlyNode(configuration.nodeRpcUri);
   const provider = createReadOnlyPublicProvider(configuration.network, configuration.indexerUri, configuration.indexerWsUri, globalThis.WebSocket);
-  return createVerifiedChainReader(configuration, provider, node);
+  return createVerifiedChainReader(configuration, provider, node, new ReadOnlyAsOfIndexer(configuration.indexerUri));
 }
 /** Backend dependency-injection boundary for offline tests; production uses only the factory above. */
-export function createVerifiedChainReader(configuration: GateEvent, provider: Parameters<typeof verifyReceipt>[0], node: CanonicalFinalityReader): GateChainReader {
+export function createVerifiedChainReader(configuration: GateEvent, provider: Parameters<typeof verifyReceipt>[0], node: CanonicalFinalityReader, asOf: AsOfStateReader): GateChainReader {
+  const verifyState = localPinnedStateVerifier();
+  const verifiedProvider: typeof provider = { ...provider, queryContractState: async (address, config) => {
+    const state = await provider.queryContractState(address, config);
+    if (state) await verifyState(state);
+    return state;
+  } };
   return {
     async readActiveBaseline(request) {
       assertNetwork(configuration.network);
+      if (eventKey(request) !== eventKey(configuration)) throw new GateError('event-not-configured', 403);
       const baseline = await node.finalizedHead();
-      const state = await readPublicState(provider, request.contractAddress, publicBytes(request.commitment), baseline.hash);
+      blockHash(baseline.hash);
+      if (!Number.isSafeInteger(baseline.height) || baseline.height < 0) throw new GateError('verification-failed', 503);
+      const snapshot = await asOf.readContractState(configuration.contractAddress, baseline);
+      if (snapshot) await verifyState(snapshot);
+      // Decode the SAME key-verified snapshot. Never query latest or an exact-action SDK block for the baseline.
+      const state = await readPublicState({ ...provider, queryContractState: async () => snapshot }, configuration.contractAddress, publicBytes(publicHex(request.commitment)));
+      await node.assertFinalizedCanonical(baseline.hash, baseline.height);
       assertNetwork(configuration.network);
       if (!state || state.eventId !== configuration.eventId || state.issuerCommitment !== configuration.issuerCommitment || state.passStatus !== 'ACTIVE') throw new GateError('not-active', 409);
       return baseline;
@@ -82,7 +96,7 @@ export function createVerifiedChainReader(configuration: GateEvent, provider: Pa
       if (data.txId !== txId && !data.identifiers.includes(txId) || !data.tx || typeof data.tx.identifiers !== 'function' || !data.tx.identifiers().includes(txId) || data.blockHeight <= attempt.baselineBlockHeight) throw new GateError('verification-failed', 409);
       // Independent trusted node checks indexer block is canonical and already finalized.
       await node.assertFinalizedCanonical(data.blockHash, data.blockHeight);
-      const receipt: PublicReceipt = await verifyReceipt(provider, data, {
+      const receipt: PublicReceipt = await verifyReceipt(verifiedProvider, data, {
         network: configuration.network, action: 'redeem', contractAddress: configuration.contractAddress,
         eventId: publicBytes(configuration.eventId), issuerCommitment: publicBytes(configuration.issuerCommitment), commitment: publicBytes(attempt.commitment),
       });
