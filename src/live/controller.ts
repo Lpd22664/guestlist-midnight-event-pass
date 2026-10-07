@@ -70,7 +70,7 @@ export class LiveController {
   disconnect(): void {
     this.#generation++; this.#ownerControl.abort(); this.#ownerControl = new AbortController(); this.consent.respond(false); this.#session?.close(); this.#session = undefined;
     forgetCustody(this.#custody); this.#custody = undefined; this.#gate?.close(); this.#gate = undefined;
-    this.#set({ connected: false, joined: false, gateReady: false, publicVerified: false, publicCheckedAt: undefined, state: undefined, role: undefined, custodyReady: false, credential: undefined, commitment: undefined, chain: undefined, admission: undefined, busy: this.#working, message: 'Locked. Any unresolved request remains recorded; do not resubmit.' });
+    this.#set({ error: this.#historyFailed ? 'Public request history is unreadable. Live actions are locked. Keep site data and recover original request IDs.' : '', connected: false, joined: false, gateReady: false, publicVerified: false, publicCheckedAt: undefined, state: undefined, role: undefined, custodyReady: false, credential: undefined, commitment: undefined, chain: undefined, admission: undefined, busy: this.#working, message: 'Locked. Any unresolved request remains recorded; do not resubmit.' });
   }
   async setGate(client: GateClient): Promise<void> {
     await this.#work(async (generation) => {
@@ -87,7 +87,7 @@ export class LiveController {
       const event = trustedEvent(eventInput);
       if (this.#custody && this.#custody.eventId !== event.eventId) throw new Error('Lock existing access before selecting a different event. No authority was replaced.');
       if (this.#gateAttempt && this.#gateAttempt.status !== 'closed' && (this.#gateAttempt.contractAddress !== event.contractAddress || this.#gateAttempt.eventId !== event.eventId || this.#gateAttempt.issuerCommitment !== event.issuerCommitment)) throw new Error('Resolve the existing gate request in its original event before switching events.');
-      if (!await this.#review(generation, { requirement: 'storage', title: 'Review this trusted public event?', acceptLabel: 'Trust this exact Preview identity', details: [`Contract: ${event.contractAddress}`, `Event: ${event.eventId}`, `Issuer: ${event.issuerCommitment}`, 'Obtain these public values from the real event organiser, independently of any attendee QR. Gate operations will also verify exact configured onchain identity. No private capability or wallet connection is needed for this gate-only review.'] })) throw new Error('Trusted event review was declined');
+      if (!await this.#review(generation, { requirement: 'storage', title: 'Review this trusted public event?', acceptLabel: 'Trust this exact Preview identity', details: [`Contract: ${event.contractAddress}`, `Event: ${event.eventId}`, `Issuer: ${event.issuerCommitment}`, 'Obtain these public values from the real event organiser, independently of any attendee QR. Gate operations will also verify exact configured onchain identity. No private capability or wallet connection is needed for this public event review.'] })) throw new Error('Trusted event review was declined');
       this.#guard(generation); this.#saveEvent(event); this.#gate?.close(); this.#gate = undefined; this.#set({ event, admission: undefined, joined: false, gateReady: false, publicVerified: false, publicCheckedAt: undefined, state: undefined, message: 'Owner-reviewed public event identity loaded. This is a trust anchor, not a finalized deployment claim.' });
     });
   }

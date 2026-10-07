@@ -32,7 +32,7 @@ async function contained(page:Page) {
   expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(await page.evaluate(()=>innerWidth));
 }
 
-test('the synthetic journey measures four actions with no copy or file transfer',async({page})=>{
+test('the synthetic journey measures four actions with no copy or file transfer',async({page},testInfo)=>{
   await freshDemo(page);
   const before=await state(page);
   expect(before.passes).toHaveLength(18);
@@ -53,10 +53,11 @@ test('the synthetic journey measures four actions with no copy or file transfer'
   let fileTransfers=0;
   page.on('filechooser',()=>fileTransfers++);
   page.on('download',()=>fileTransfers++);
-  for(const action of journey)await (await primary(page,action)).click();
+  for(const action of journey){await (await primary(page,action)).click();if(action==='Present this pass')await page.screenshot({path:testInfo.outputPath('demo-present.png'),fullPage:true})}
   await expect(page.getByRole('heading',{name:'Admitted',exact:true})).toBeVisible();
   await expect(page.locator('.gate-result')).toBeFocused();
   await expect(page.getByText('Morgan Journey',{exact:true})).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath('demo-admitted.png'),fullPage:true});
   const measured=await page.evaluate(()=>(window as unknown as {journeyLog:{actions:string[];clipboard:number}}).journeyLog);
   expect(measured.actions).toEqual(journey);
   expect(measured.actions).toHaveLength(4);
