@@ -20,7 +20,8 @@ async function state(page:Page) {
   return page.evaluate(key=>JSON.parse(localStorage.getItem(key)!),demoKey);
 }
 async function contained(page:Page) {
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  const layout=await page.evaluate(()=>({fits:document.documentElement.scrollWidth<=innerWidth,width:innerWidth,scroll:document.documentElement.scrollWidth,overflow:Array.from(document.querySelectorAll('main *')).map(node=>({tag:node.tagName,className:node.className,x:node.getBoundingClientRect().x,right:node.getBoundingClientRect().right})).filter(node=>node.x<0||node.right>innerWidth).slice(0,12)}));
+  expect(layout.fits,JSON.stringify(layout)).toBe(true);
   const button=page.locator('main button.primary:visible');
   await expect(button).toHaveCount(1);
   const bounds=await button.boundingBox();

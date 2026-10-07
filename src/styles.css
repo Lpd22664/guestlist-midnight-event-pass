@@ -37,3 +37,5 @@
 .ticket-top>span,.ticket-id>span{max-width:100%;overflow-wrap:anywhere}
 .ticket-date>span{min-width:0;overflow-wrap:anywhere}
 .gate-pass-summary .status{max-width:100%;white-space:normal}
+/* Terminal results must wrap the same long synthetic labels as pass cards. */
+.gate-result{min-width:0}.gate-result>*{min-width:0;max-width:100%}.gate-result p{max-width:min(330px,100%);overflow-wrap:anywhere}
