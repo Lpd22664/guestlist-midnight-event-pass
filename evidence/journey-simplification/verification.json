@@ -1,12 +1,80 @@
 {
   "date": "2026-10-07",
   "baseCommit": "6bb1b2bc8f99c7c2a3ea951d010c8290f01a390a",
-  "scope": "Local cloud source build; synthetic fixtures and read-only source review only",
-  "offlineTests": { "application": 249, "generatedContract": 19, "browserSdk": 73, "gateService": 75, "retiredAdapter": 4, "total": 420, "failures": 0 },
-  "checks": { "typescript": "passed", "productionBuild": "passed", "compilerAssetIntegrity": "passed", "sourcePatternScan": "passed, zero findings", "designatedContrastPairs": "40 passed; not a rendered accessibility audit", "independentCodeReview": "no remaining actionable findings in reviewed scope; not an external security audit" },
-  "browserCases": { "discovered": 50, "executedOnThisRevision": 0, "status": "blocked", "reason": "Local Chromium IPC socket permission failure, including approved elevation. Cloud browser denies loopback. Restrictions were not bypassed." },
-  "measurements": { "newDemoPrimaryActions": "target and implemented assertion: 4 after label entry, not browser-measured yet", "priorHostedObservation": "5 actions including opening Preview tools; hosted commit not established", "liveRoleSavings": "not measured" },
-  "unrun": ["native SDK browser-runtime suite on this revision", "new browser E2E and camera/lifecycle QA", "real owner vault/password/backup browser acceptance", "actual Preview issue/redeem/revoke lifecycle", "live durable gate acceptance and concurrency", "new genuine proof generation or compiler rebuild"],
-  "unchanged": ["original Compact source and verified Preview deployment", "gate backend authorization model", "owner authority and recovery files", "supported Lace/local-prover architecture", "main branch and existing private site until separately approved publication"],
-  "limitations": ["Latest public indexed status is not finalized admission evidence", "Public gate QR is not signed gate authority", "Already-started wallet operations or submissions cannot be recalled", "Browser password encryption does not prevent malicious same-origin script", "Browser storage is not a backup"]
+  "scope": "CI and hosted synthetic browser verification; no real owner authority or transaction operation",
+  "offlineTests": {
+    "application": 249,
+    "generatedContract": 19,
+    "browserSdk": 73,
+    "gateService": 75,
+    "retiredAdapter": 4,
+    "total": 420,
+    "failures": 0
+  },
+  "checks": {
+    "typescript": "passed",
+    "productionBuild": "passed",
+    "compilerAssetIntegrity": "passed",
+    "sourcePatternScan": "passed, zero findings",
+    "designatedContrastPairs": "40 passed; not a rendered accessibility audit",
+    "independentCodeReview": "no remaining actionable findings in reviewed scope; not an external security audit"
+  },
+  "browserCases": {
+    "executed": 58,
+    "passed": 58,
+    "failed": 0,
+    "projects": [
+      "desktop",
+      "phone"
+    ],
+    "nativeDeviceVaultCases": 6,
+    "sdkBrowserRuntime": "passed"
+  },
+  "measurements": {
+    "newDemoPrimaryActions": 4,
+    "scenario": "After entering an invented label: Create pass → Present this pass → Try check-in → Check in",
+    "clipboardOperations": 0,
+    "fileTransfers": 0,
+    "replay": "One direct additional action rejected; no additional admission",
+    "priorHostedObservation": "5 actions including opening Preview tools, before version10 update; not a timing benchmark",
+    "liveRoleSavings": "not measured"
+  },
+  "unrun": [
+    "real owner wallet, custody and live Preview issue/redeem/revoke acceptance",
+    "physical camera and device-to-device live public QR handoffs",
+    "live durable gate baseline/concurrency/outage acceptance",
+    "screen-reader usability evaluation",
+    "new genuine proof generation or compiler rebuild (contract unchanged)"
+  ],
+  "unchanged": [
+    "original Compact source and verified Preview deployment",
+    "gate backend authorization model",
+    "owner authority and recovery files",
+    "supported Lace/local-prover architecture",
+    "GitHub main remains 6bb1b2bc8f99c7c2a3ea951d010c8290f01a390a",
+    "existing Site remains owner-only"
+  ],
+  "limitations": [
+    "Latest public indexed status is not finalized admission evidence",
+    "Public gate QR is not signed gate authority",
+    "Already-started wallet operations or submissions cannot be recalled",
+    "Browser password encryption does not prevent malicious same-origin script",
+    "Browser storage is not a backup"
+  ],
+  "checkedCodeCommit": "7af0661a34b400eb958e48b70b5c7e61ee5d6f00",
+  "ciRun": "https://github.com/Lpd22664/guestlist-midnight-event-pass/actions/runs/37616640355",
+  "hostedQA": {
+    "version": 12,
+    "siteSourceCommit": "68506604e185228d633b3a797d176460e563a674",
+    "matchingApplicationCommit": "7af0661a34b400eb958e48b70b5c7e61ee5d6f00",
+    "result": "Synthetic four-action flow, direct replay, selected-pass reload, role routes, malformed public input, review decline and status-reset regressions passed",
+    "physicalViewport": "desktop; phone layouts separately tested in CI"
+  },
+  "resolvedQaFindings": [
+    "long-name overflow on small/enlarged result screens",
+    "selected synthetic pass lost on reload",
+    "stale input and declined-review messages",
+    "role-specific text shown in shared public review"
+  ],
+  "remainingEnvironmentLimit": "Native browser subprocesses and loopback cloud navigation are blocked in the local shell. Equivalent browser cases ran successfully in GitHub CI, and the approved owner-private hosted app was manually checked."
 }

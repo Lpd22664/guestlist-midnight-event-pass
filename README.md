@@ -18,7 +18,7 @@ Public screenshots appear below. The owner's private hosted preview is not a rev
 
 The current source separates **Organise an event**, **My pass** and **Run the door**. It carries public event identity through strict invitation links and public QR handoffs. Guests can prepare a request and read compatible public state without connecting a wallet; real redemption still requires the supported Lace/local-prover path and explicit approvals. Password-protected device access can unlock the same authority on return visits, with optional encrypted recovery backups.
 
-[Implementation, security boundaries and exact validation status](docs/journey-simplification.md). The recorded deployment and original Compact contract are unchanged. These UI and offline checks do not establish a completed live network lifecycle or physical gate acceptance.
+[CI passed on the guided-journey application commit](https://github.com/Lpd22664/guestlist-midnight-event-pass/actions/runs/37616640355): 420 offline tests and 58 desktop/phone browser cases, including native encrypted-vault recovery. The synthetic demo was measured at four primary actions after label entry, with no copying or files. [Implementation, security boundaries and exact validation status](docs/journey-simplification.md). The recorded deployment and original Compact contract are unchanged. These UI and offline checks do not establish a completed live network lifecycle or physical gate acceptance.
 
 ## What actually works
 
@@ -41,15 +41,15 @@ The current source separates **Organise an event**, **My pass** and **Run the do
 - Independent official node/indexer read, 5 October 2026: [minimal public receipt and state evidence](evidence/testnet/deployment-independent-read.json)
 - No owner private recovery file, wallet seed or signing key is included
 
-### Interface preview · earlier checkpoint
+### Current interface preview
 
-These native browser captures show the earlier **synthetic local demo** checkpoint, not network admission. Fresh guided-journey browser captures are pending; see the dated verification limits above:
+These captures show the guided role entry and **synthetic** admission, not network admission. Desktop/phone role captures come from the successful CI run; admission was separately checked on the owner-private hosted version 12.
 
-![Issue a synthetic pass](evidence/current-browser/issue.png)
+![Role-specific Preview entry](evidence/journey-browser/roles-desktop.png)
 
-![Actual one-time synthetic admission](evidence/current-browser/demo-admission.png)
+![Four-action synthetic admission](evidence/journey-browser/demo-admitted-desktop.png)
 
-[Mobile pass capture](evidence/current-browser/mobile-pass-390.png) · [Dated QA and limits](docs/qa-checklist.md)
+[Phone role entry](evidence/journey-browser/roles-phone.png) · [Verification, security assumptions and limits](docs/journey-simplification.md)
 
 The `proof-check/` scripts generated real local proofs for all three circuits using public test witnesses. Those are cryptographic prover checks, not wallet-balanced, submitted or network-finalized transactions. See the dated hash-pinned evidence. Never describe live mode capability or a consent dialog as completed deployment.
 

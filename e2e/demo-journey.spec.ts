@@ -53,10 +53,11 @@ test('the synthetic journey measures four actions with no copy or file transfer'
   let fileTransfers=0;
   page.on('filechooser',()=>fileTransfers++);
   page.on('download',()=>fileTransfers++);
-  for(const action of journey){await (await primary(page,action)).click();if(action==='Present this pass')await page.screenshot({path:testInfo.outputPath('demo-present.png'),fullPage:true})}
+  for(const action of journey){await (await primary(page,action)).click();if(action==='Present this pass'){await expect(page.locator('.toast')).toHaveCount(0);await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:testInfo.outputPath('demo-present.png'),fullPage:true})}}
   await expect(page.getByRole('heading',{name:'Admitted',exact:true})).toBeVisible();
   await expect(page.locator('.gate-result')).toBeFocused();
   await expect(page.getByText('Morgan Journey',{exact:true})).toBeVisible();
+  await page.evaluate(()=>window.scrollTo(0,0));
   await page.screenshot({path:testInfo.outputPath('demo-admitted.png'),fullPage:true});
   const measured=await page.evaluate(()=>(window as unknown as {journeyLog:{actions:string[];clipboard:number}}).journeyLog);
   expect(measured.actions).toEqual(journey);

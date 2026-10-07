@@ -45,15 +45,17 @@ Limits:
 - Dismissing or leaving a displayed admission consumes its UI display epoch. A late successful response or later remount cannot resurrect the green admission grant
 - No remote proving, fee sponsor, embedded wallet, experimental WASM rollout, security-setting change, new on-chain deployment or owner-private-data action was performed
 
-## Measurements and verification limits
+## Measured browser results
 
-The implementation includes an automated four-primary-action demo assertion. It records actual button/summary activations after label entry, verifies no clipboard/files, confirms one local admission, and checks direct rejected replay. Until the browser suite runs successfully, **four actions is implemented and asserted by a test, not a measured completed browser result**.
+[CI passed on application commit `7af0661`](https://github.com/Lpd22664/guestlist-midnight-event-pass/actions/runs/37616640355): **420 offline tests and 58 browser cases**, including actual SDK browser execution and six native WebCrypto/IndexedDB device-vault cases.
 
-The earlier hosted audit observed five actions: Create pass → Present this pass → Preview tools → Try check-in → Check in. Its screenshots did not establish the hosted commit, so it is not a controlled same-build timing baseline. No live-role click/time savings are asserted.
+The demo test records actual button/summary activations after the invented label is entered: **Create pass → Present this pass → Try check-in → Check in**. Exactly four app actions, zero clipboard operations and zero file transfers passed on desktop and phone. One direct replay action rejects without adding admission. All 320/390px × 100/200% text cases and selected-pass reload checks passed. This is a synthetic interaction measurement, not a network-performance or live-role benchmark.
 
-Current verification commands and exact outcomes will be recorded in the accompanying build report. Offline tests do not prove browser native IndexedDB/WebCrypto behavior, camera compatibility, accessibility, network finality, real wallet integration or physical admission.
+The owner-private hosted version 12 was separately checked in a desktop cloud browser. It reproduced the four-action admission/refused replay, kept the same used pass after reload, presented distinct roles, rejected malformed public input, kept event review declined, and cleared replaced-input/role-transition messages. Its Site source `68506604e185228d633b3a797d176460e563a674` matches the checked application code. No owner private access, wallet, proof, signature, transaction or gate authentication was used.
 
-Browser verification in this cloud shell is blocked by Chromium IPC socket restrictions, including an approved elevated launch. The cloud browser also blocks local loopback navigation. These restrictions were not bypassed. If an approved private hosted preview is available, visual/manual synthetic QA can run there; otherwise screenshots and native browser suites remain pending.
+The earlier hosted flow required the extra **Preview tools** disclosure: five actions for the same synthetic progression. Before screenshots are from owner-private version 10; this is not a controlled timing benchmark. No live-role click/time savings are asserted.
+
+Local cloud-shell Chromium IPC and cloud-browser loopback were blocked and were not bypassed. CI supplied real desktop/phone Chromium execution; the approved private deployment supplied manual visual QA. Camera hardware, screen readers, actual owner devices and live network/gate acceptance remain separate checks.
 
 ## Owner-controlled acceptance still required
 
@@ -69,8 +71,10 @@ Before any live claim:
 
 Existing independent evidence proves genuine local circuit proofs and the original Preview deployment at block 1169309. It does not prove this end-to-end network lifecycle or live gate acceptance.
 
-## Offline verification record
+## Verification record
 
-The final local aggregate passed 420 tests: 249 application, 19 generated-contract, 73 genuine-SDK offline, 75 gate-service and 4 retired-adapter checks. TypeScript, production build, compiler-asset hashes, source-pattern scan and 40 designated contrast pairs passed. The independent code review added 14 race/scope/recovery regressions and identified no remaining actionable finding in its reviewed scope. This is not an external security audit.
+The aggregate passed 420 tests: 249 application, 19 generated-contract, 73 genuine-SDK offline, 75 gate-service and 4 retired-adapter checks. TypeScript, production build, compiler-asset hashes, source-pattern scan and 40 designated contrast pairs passed. A separate assistant code review added 14 race/scope/recovery regressions; reported issues were fixed and rechecked. This is not a human or external security audit.
 
-Fifty desktop/phone browser cases are discoverable, including the existing 22 and 28 new journey cases. They have not executed on this revision in the blocked cloud shell. Native SDK browser-runtime checks, screenshots, camera tests, measured click counts and the real owner/network/gate acceptance remain unrun. Exact machine-readable scope and limitations: [verification.json](../evidence/journey-simplification/verification.json).
+All 58 desktop/phone browser cases passed. Six native device-vault cases verify encrypted-only persistence, reload and key continuity, wrong-password/replacement nonmutation, cancellation, and encrypted-backup restoration in a fresh context. These tests use fixed synthetic authority in isolated browser contexts, never owner profiles or real deployment credentials.
+
+Exact evidence and remaining limits: [verification.json](../evidence/journey-simplification/verification.json). The CI run retains synthetic screenshots and diagnostics as an artifact; selected durable captures are included alongside this checkpoint.
