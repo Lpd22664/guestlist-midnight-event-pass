@@ -14,15 +14,15 @@ Suggested explanation: “This is a synthetic pass in browser storage. Names and
 
 ## 0:35–1:00 Present
 
-Show the event, label, status and QR in the holder view. **Pass details** holds the commitment; **Copy credential** exposes the same synthetic bearer credential used by the QR.
+Show the event, label, status and QR in the holder view. **Pass details** holds the commitment; **Preview tools** contains **Copy credential**, which exposes the same synthetic bearer credential used by the QR.
 
 Explain that anyone with a copied bearer credential could use it first. Public commitments and status changes remain linkable. In the live design, the bearer keeps their own secret and gives the issuer only a public Compact commitment; this same-browser demo simulates the roles.
 
 ## 1:00–1:40 Admit and reject a replay
 
-Open **Preview tools → Try check-in**, then select **Check in**. The app shows **Admitted**, records one local admission, and marks the pass used.
+Select the visible **Try check-in**, then **Check in**. The selected pass is already carried through; no copying is needed. The app shows **Admitted**, records one local admission, and marks the pass used.
 
-Select **Check another pass → Use a demo pass**, choose **Morgan Harper · Checked in**, select **Use pass**, then **Check in** again. **Already used** and **No entry recorded** show the refused replay.
+Select **Test this used pass again** for a direct replay. Alternate synthetic passes remain under **Check another pass → Use a demo pass**. **Already used** and **No entry recorded** show the refused replay.
 
 Suggested explanation: “This result is local. A live gate must independently verify a finalized redemption and claim entry once through the shared backend.”
 

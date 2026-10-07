@@ -7,6 +7,7 @@ import type { Attempt } from '../browser-integration/dist/journal.js';
 import { sharedHistoryLock } from './live-history-lock-fixture';
 const eventId='11'.repeat(32), contract='22'.repeat(32), issuer='33'.repeat(32), commitment='44'.repeat(32);
 const manifest={network:'preview',contractAddress:contract,eventId,issuerCommitment:issuer};
+const gateRequest=()=>({schema:'guestlist-gate-request-v1',...manifest,commitment,requestId:'bearer-gate-request-1',baselineBlockHash:'dd'.repeat(32),baselineBlockHeight:41,expiresAt:Date.now()+60_000});
 function receipt(action:'issue'|'redeem'='issue'):PublicReceipt {
  const txId=(action==='issue'?'aa':'bb').repeat(33);
  return {schema:'midnight-event-pass-receipt-v1',network:'preview',action,contractAddress:contract,txId,identifiers:[txId],txHash:'cc'.repeat(32),blockHash:'dd'.repeat(32),blockHeight:42,blockTimestamp:1,transactionStatus:'SucceedEntirely',stateCheck:'verified-at-finalized-block',eventId,commitment,publicState:{eventId,issuerCommitment:issuer,issuedCount:'1',redeemedCount:action==='redeem'?'1':'0',revokedCount:'0',passStatus:action==='redeem'?'USED':'ACTIVE'}};
@@ -46,7 +47,7 @@ function environment() {
 for(const outcome of ['verified','unknown'] as const)test(`stale bearer tab preserves issuer ${outcome} request across reload and read-only reconciliation`,async()=>{
  const env=environment(),issuerTab=env.make(),bearerTab=env.make('bearer');await issuerTab.ready();await bearerTab.ready();if(outcome==='unknown')issuerTab.setUnknown();
  await issuerTab.c.issue(commitment);assert.equal(issuerTab.c.getSnapshot().attempts[0].status,outcome);assert.equal(bearerTab.c.getSnapshot().attempts.length,0);
- await bearerTab.c.redeem('bearer-gate-request-1',commitment);const persisted=loadPublicAttempts(env.storage);assert.equal(persisted.length,2);assert.equal(persisted.find(item=>item.requestId==='issuer-request-1')?.status,outcome);
+ await bearerTab.c.redeemGateRequest(gateRequest());const persisted=loadPublicAttempts(env.storage);assert.equal(persisted.length,2);assert.equal(persisted.find(item=>item.requestId==='issuer-request-1')?.status,outcome);
  const reloaded=env.make();await reloaded.ready();const before=env.reads();await reloaded.c.reconcile('issuer-request-1');assert.ok(env.reads()>before);assert.equal(reloaded.c.getSnapshot().attempts.length,2);assert.equal(env.effects.length,2);
  if(outcome==='unknown'){await reloaded.c.issue(commitment);assert.equal(env.effects.length,2);issuerTab.journal.set('issuer-request-1',sdkAttempt('issuer-request-1'));await reloaded.c.reconcile('issuer-request-1');assert.equal(reloaded.c.getSnapshot().attempts.find(item=>item.requestId==='issuer-request-1')?.status,'verified');assert.equal(env.effects.length,2)}
 });
@@ -55,7 +56,7 @@ test('simultaneous issuer reservations serialize unresolved checks and permit on
  const first=a.c.issue(commitment);await pause.began.promise;await b.c.issue(commitment);assert.equal(env.effects.length,1);assert.equal(loadPublicAttempts(env.storage).length,1);pause.done.resolve();await first;assert.equal(loadPublicAttempts(env.storage)[0].status,'verified');
 });
 test('simultaneous different-role SDK writers retain both public histories',async()=>{
- const env=environment(),a=env.make(),b=env.make('bearer');await a.ready();await b.ready();await Promise.all([a.c.issue(commitment),b.c.redeem('bearer-gate-request-1',commitment)]);assert.equal(loadPublicAttempts(env.storage).length,2);assert.equal(env.effects.length,2);
+ const env=environment(),a=env.make(),b=env.make('bearer');await a.ready();await b.ready();await Promise.all([a.c.issue(commitment),b.c.redeemGateRequest(gateRequest())]);assert.equal(loadPublicAttempts(env.storage).length,2);assert.equal(env.effects.length,2);
 });
 test('all history helpers share one named lock and concurrent merges lose no rows',async()=>{
  const env=environment();let active=0,max=0;const names=new Set<string>();

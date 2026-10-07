@@ -14,6 +14,12 @@ At the 6 October 2026 checkpoint, [CI passed on source commit `3a18aa7`](https:/
 
 Public screenshots appear below. The owner's private hosted preview is not a reviewer demo; the public source, captures and local setup are the review path.
 
+## Guided journey update
+
+The current source separates **Organise an event**, **My pass** and **Run the door**. It carries public event identity through strict invitation links and public QR handoffs. Guests can prepare a request and read compatible public state without connecting a wallet; real redemption still requires the supported Lace/local-prover path and explicit approvals. Password-protected device access can unlock the same authority on return visits, with optional encrypted recovery backups.
+
+[CI passed on the guided-journey application commit](https://github.com/Lpd22664/guestlist-midnight-event-pass/actions/runs/37616640355): 420 offline tests and 58 desktop/phone browser cases, including native encrypted-vault recovery. The synthetic demo was measured at four primary actions after label entry, with no copying or files. [Implementation, security boundaries and exact validation status](docs/journey-simplification.md). The recorded deployment and original Compact contract are unchanged. These UI and offline checks do not establish a completed live network lifecycle or physical gate acceptance.
+
 ## What actually works
 
 - Organiser: issue a synthetic bearer pass, browse/filter guests, revoke an unused pass and inspect its history
@@ -35,15 +41,15 @@ Public screenshots appear below. The owner's private hosted preview is not a rev
 - Independent official node/indexer read, 5 October 2026: [minimal public receipt and state evidence](evidence/testnet/deployment-independent-read.json)
 - No owner private recovery file, wallet seed or signing key is included
 
-### Interface preview
+### Current interface preview
 
-These native browser captures show the functional **synthetic local demo**, not network admission:
+These captures show the guided role entry and **synthetic** admission, not network admission. Desktop/phone role captures come from the successful CI run; admission was separately checked on the owner-private hosted version 12.
 
-![Issue a synthetic pass](evidence/current-browser/issue.png)
+![Role-specific Preview entry](evidence/journey-browser/roles-desktop.png)
 
-![Actual one-time synthetic admission](evidence/current-browser/demo-admission.png)
+![Four-action synthetic admission](evidence/journey-browser/demo-admitted-desktop.png)
 
-[Mobile pass capture](evidence/current-browser/mobile-pass-390.png) · [Dated QA and limits](docs/qa-checklist.md)
+[Phone role entry](evidence/journey-browser/roles-phone.png) · [Verification, security assumptions and limits](docs/journey-simplification.md)
 
 The `proof-check/` scripts generated real local proofs for all three circuits using public test witnesses. Those are cryptographic prover checks, not wallet-balanced, submitted or network-finalized transactions. See the dated hash-pinned evidence. Never describe live mode capability or a consent dialog as completed deployment.
 
@@ -144,4 +150,4 @@ No open-source license grant for the original project has been selected. Depende
 
 ## Current release scope
 
-The reviewed recovery picker restores only empty public metadata after owner approval. Shared public request history uses atomic native Web Locks, monotonic receipts and exact-scope read-only journal recovery; there is no unlocked production fallback. The gate service has offline tested owner-only provisioning and durable claim logic, but **live acceptance remains unverified**. A real Preview read identified that SDK exact-action-block queries cannot serve arbitrary-head as-of baselines; a dedicated as-of reader is being validated separately. The release does not claim a working physical gate before that boundary and owner infrastructure are accepted.
+The reviewed recovery picker restores only empty public metadata after owner approval. Shared public request history uses atomic native Web Locks, monotonic receipts and exact-scope read-only journal recovery; there is no unlocked production fallback. The gate service has offline tested owner-only provisioning and durable claim logic, but **live acceptance remains unverified**. The gate now uses a bounded genuine as-of finalized-state reader instead of the SDK's exact-action-block lookup. The original Preview contract passed its public read-only anchor/key check on 7 October; [repair evidence and limitations](gate-service/README.md#as-of-finalized-state-repair-7-october-2026) distinguish that from owner acceptance. The release does not claim a working physical gate before that boundary and owner infrastructure are accepted.

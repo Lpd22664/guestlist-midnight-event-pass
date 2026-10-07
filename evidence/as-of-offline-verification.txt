@@ -1,0 +1,804 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 verify:offline
+> npm run check && npm test && npm run test:contract && npm run test:browser && npm --prefix gate-service run verify && npm --prefix integration test && node scripts/check-artifact-integrity.mjs && node scripts/scan-public-source.mjs && npm run check:contrast && npm run build
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 precheck
+> npm --prefix browser-integration run build
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 build
+> npm run sync && tsc -p tsconfig.json && node sync-contract.mjs --dist
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 sync
+> node sync-contract.mjs
+
+
+> guestlist-midnight-event-pass@0.1.0 check
+> tsc --noEmit
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ initialisation writes fresh synthetic data and reloads a valid saved ledger (17.3542ms)
+✔ missing storage supports in-memory issue, redeem, revoke, and reset (20.866391ms)
+✔ storage read failure reports fresh synthetic fallback and stays usable (5.114392ms)
+✔ storage write failure truthfully warns while preserving usable in-memory state (4.757357ms)
+✔ storage write failure after successful persistence does not roll back the action (5.446712ms)
+✔ persistent write failure cannot resync stale storage over unsaved in-memory actions (8.371386ms)
+✔ initialisation recovers from invalid JSON storage (2.518834ms)
+✔ initialisation recovers from null storage (3.338735ms)
+✔ initialisation recovers from array storage (2.232283ms)
+✔ initialisation recovers from empty object storage (2.429219ms)
+✔ saved-state validation rejects wrong version and recovers to operable data (8.85313ms)
+✔ saved-state validation rejects wrong event and recovers to operable data (5.840864ms)
+✔ saved-state validation rejects fractional revision and recovers to operable data (6.712253ms)
+✔ saved-state validation rejects negative revision and recovers to operable data (8.857004ms)
+✔ saved-state validation rejects missing pass array and recovers to operable data (4.366169ms)
+✔ saved-state validation rejects null pass and recovers to operable data (8.639578ms)
+✔ saved-state validation rejects invalid pass ID and recovers to operable data (4.409153ms)
+✔ saved-state validation rejects mismatching ID and commitment and recovers to operable data (4.074751ms)
+✔ saved-state validation rejects invalid secret and recovers to operable data (3.533949ms)
+✔ saved-state validation rejects missing sequence and recovers to operable data (5.497538ms)
+✔ saved-state validation rejects fractional sequence and recovers to operable data (3.668651ms)
+✔ saved-state validation rejects zero sequence and recovers to operable data (4.142824ms)
+✔ saved-state validation rejects invalid pass type and recovers to operable data (8.639328ms)
+✔ saved-state validation rejects non-string label and recovers to operable data (3.821131ms)
+✔ saved-state validation rejects invalid status and recovers to operable data (4.656866ms)
+✔ saved-state validation rejects invalid issued time and recovers to operable data (3.54859ms)
+✔ saved-state validation rejects invalid expiry and recovers to operable data (5.746553ms)
+✔ saved-state validation rejects missing activity array and recovers to operable data (3.990705ms)
+✔ saved-state validation rejects null activity entry and recovers to operable data (7.212875ms)
+✔ saved-state validation rejects invalid activity type and recovers to operable data (3.38196ms)
+✔ saved-state validation rejects invalid activity time and recovers to operable data (4.007711ms)
+✔ saved-state validation rejects null requests and recovers to operable data (3.944836ms)
+✔ saved-state validation rejects array requests and recovers to operable data (14.830849ms)
+✔ saved-state validation rejects null request record and recovers to operable data (4.683195ms)
+✔ saved-state validation rejects missing request fingerprint and recovers to operable data (4.625949ms)
+✔ saved-state validation rejects invalid request fingerprint and recovers to operable data (4.451257ms)
+✔ saved-state validation rejects invalid request receipt and recovers to operable data (4.65997ms)
+✔ saved-state validation rejects non-demo receipt and recovers to operable data (4.434943ms)
+✔ resync adopts another valid revision and notifies listeners once (1.936429ms)
+✔ execute resyncs before applying a new command so a previous tab change is retained (3.477754ms)
+✔ resync retains in-memory data on missing, corrupt, invalid, and unreadable storage (4.664958ms)
+✔ a remote synthetic reset is adopted even though its revision restarts at zero (3.892618ms)
+✔ subscription cleanup removes a listener without affecting other listeners (6.54394ms)
+✔ rapid repeated issue using one request ID returns one receipt without duplicate state (29.929521ms)
+✔ rapid duplicate issue with distinct request IDs succeeds once and rejects the duplicates (25.327838ms)
+✔ rapid unique issues stay serial, retain all passes, and have unique increasing numbers (37.279161ms)
+✔ rapid repeated redemption permits exactly one use and leaves no duplicate audit record (21.236982ms)
+✔ a queue failure does not poison later valid actions or reset (7.856893ms)
+✔ service request conflict leaves state and saved ledger unchanged; a later command succeeds (5.393673ms)
+✔ reset runs after queued changes, clears all synthetic changes, saves, and notifies (7.346826ms)
+✔ reset storage failure preserves fresh synthetic state and reports the limitation (3.420794ms)
+✔ Web Locks path acquires the shared preview-ledger lock for every command (3.931807ms)
+✔ two service instances with a shared Web Lock retain concurrent changes (2.950452ms)
+✔ reset followed by issue in another tab cannot reuse a revision and overwrite post-reset work (6.193794ms)
+✔ resync also accepts a changed same-revision legacy snapshot (3.305099ms)
+✔ reset acquires the same shared Web Lock as issue and redemption (4.519879ms)
+✔ portfolio preview still issues and redeems when visitor wall clock is years after the fixture (4.263895ms)
+✔ synthetic seed has stable identifiers, status counts, and no chain receipts (27.669435ms)
+✔ commitments match SHA-256 and are separated by event, protocol, and secret (1.341635ms)
+✔ new secrets are 32 random bytes represented as lowercase hexadecimal (1.280784ms)
+✔ pass display helpers format synthetic identifiers without changing them (0.260852ms)
+✔ credential round trip declares only the local demo mode and expected event (1.381475ms)
+✔ credential parser rejects empty (0.639771ms)
+✔ credential parser rejects other protocol (0.157257ms)
+✔ credential parser rejects unprefixed (0.08646ms)
+✔ credential parser rejects invalid base64 (0.149094ms)
+✔ credential parser rejects invalid JSON (0.195504ms)
+✔ credential parser rejects null JSON (0.90508ms)
+✔ credential parser rejects array JSON (0.105959ms)
+✔ credential parser rejects wrong version (0.089084ms)
+✔ credential parser rejects chain mode (0.21338ms)
+✔ credential parser rejects missing event (0.167412ms)
+✔ credential parser rejects non-string event (0.184948ms)
+✔ credential parser rejects missing pass ID (0.095263ms)
+✔ credential parser rejects short pass ID (0.060771ms)
+✔ credential parser rejects uppercase pass ID (0.061772ms)
+✔ credential parser rejects non-string pass ID (0.070236ms)
+✔ credential parser rejects missing secret (0.089094ms)
+✔ credential parser rejects short secret (0.097567ms)
+✔ credential parser rejects uppercase secret (0.065869ms)
+✔ credential parser rejects non-string secret (0.150476ms)
+✔ credential parser rejects oversize credential (0.190165ms)
+✔ credential parser distinguishes a valid credential from another event (0.123035ms)
+✔ status becomes expired exactly at expiry; terminal statuses stay terminal (5.964861ms)
+✔ organiser issues a trimmed label, monotonic sequence, local receipt, and one audit entry immutably (6.206333ms)
+✔ organiser may issue a host pass and labels at the permitted boundaries (1.733184ms)
+✔ attendee cannot issue, including replaying an organiser request (2.027686ms)
+✔ attendee cannot revoke, including replaying an organiser request (1.88323ms)
+✔ issue rejects empty label without recording a request (1.268946ms)
+✔ issue rejects whitespace label without recording a request (1.456267ms)
+✔ issue rejects short label without recording a request (2.034606ms)
+✔ issue rejects long label without recording a request (1.288035ms)
+✔ issue rejects invalid secret without recording a request (1.127544ms)
+✔ issue rejects uppercase secret without recording a request (1.455657ms)
+✔ issue rejects invalid pass type without recording a request (0.891679ms)
+✔ request ID rejects empty value (1.093292ms)
+✔ request ID rejects oversize value (3.40791ms)
+✔ request ID permits its 128-character boundary (1.269067ms)
+✔ sequence uses the highest issued number rather than the array length (1.255185ms)
+✔ an already issued ready credential cannot be reissued (1.120603ms)
+✔ an already issued used credential cannot be reissued (2.318873ms)
+✔ an already issued revoked credential cannot be reissued (0.908195ms)
+✔ an already issued expired credential cannot be reissued (1.373012ms)
+✔ attendee may redeem the correct ready credential exactly once (1.456337ms)
+✔ organiser may redeem the correct ready credential exactly once (1.222466ms)
+✔ redeem rejects a wrong secret, unknown ID, malformed input, and wrong event (1.666994ms)
+✔ redeem rejects a used pass and preserves its terminal data (1.876279ms)
+✔ revoke rejects a used pass and preserves its terminal data (0.829817ms)
+✔ redeem rejects a revoked pass and preserves its terminal data (0.772901ms)
+✔ revoke rejects a revoked pass and preserves its terminal data (0.770488ms)
+✔ redeem rejects a expired pass and preserves its terminal data (0.73876ms)
+✔ revoke rejects a expired pass and preserves its terminal data (0.610898ms)
+✔ organiser revocation records one terminal change and cannot subsequently redeem (1.041094ms)
+✔ revocation rejects unknown pass identifiers (0.714263ms)
+✔ redemption succeeds immediately before expiry and fails at the exact boundary (1.038039ms)
+✔ capacity counts every issued pass including terminal and expired passes (22.868153ms)
+✔ issue request replay returns the original receipt and leaves revision, passes, and history unchanged (1.623189ms)
+✔ redeem request replay returns the original receipt and leaves revision, passes, and history unchanged (1.222707ms)
+✔ revoke request replay returns the original receipt and leaves revision, passes, and history unchanged (1.482477ms)
+✔ same request ID with changed command fields or type is a conflict (1.606834ms)
+✔ failed requests are not cached and a corrected action may reuse their request ID (1.603869ms)
+✔ bounded request ID __proto__ does not collide with inherited object properties (1.26421ms)
+✔ bounded request ID constructor does not collide with inherited object properties (0.934624ms)
+✔ bounded request ID toString does not collide with inherited object properties (1.875592ms)
+✔ an explicit real time outside the event window cannot issue an already-expired pass (1.052912ms)
+✔ loading/default live controller never connects wallet, provisions private authority or submits (1.3844ms)
+✔ declined owner storage/connect setup stays disconnected with no provider effect (1.006362ms)
+✔ issuer join receives issuer capability only; real receipt fields are distinct from request ID (2.623762ms)
+✔ unknown submission preserves public request and prevents duplicate/new submission until read-only reconciliation (2.026003ms)
+✔ owner decline before submission records rejection without provider side effect (0.51942ms)
+✔ scope and role checks prevent issuer redemption and bearer issuance (0.767683ms)
+✔ wallet disconnect/account guard locks session and discards in-memory capability, keeps pending request (0.776095ms)
+✔ gate opening timeout persists original public request and blocks fresh open (2.64313ms)
+✔ gate never admits mismatched/forged success and status reads remain closed (1.452672ms)
+✔ matching durable first claim alone grants admission; replay response stays closed (0.744789ms)
+✔ lock during deferred successful gate claim discards late admission and preserves unknown request (0.513742ms)
+✔ lock during gate health prevents late credential attachment (0.291839ms)
+✔ lock during gate open preserves unknown context without late ready/admission message (0.817318ms)
+✔ lock cancels pending owner event review without restoring trusted event (0.149424ms)
+✔ malformed truthy admission wire values are rejected and never rendered as a grant (2.288688ms)
+✔ starting a different gate request removes a previous admission grant immediately (0.634413ms)
+✔ lock during delayed join never restores joined role or custody (0.400061ms)
+✔ lock during finalized node read cannot restore chain readiness (0.354072ms)
+✔ lock during private presentation read cannot reveal a late credential (0.573992ms)
+✔ lock during late successful chain result preserves request as unknown until explicit read-only reconcile (0.961995ms)
+✔ actual strict browser admission client integrates through controller using public-only synthetic transport (12.602472ms)
+✔ actual strict browser admission client rejects malformed grants before controller can render success (1.308996ms)
+✔ password validation permits long passphrases and requires at least 15 characters (1.20477ms)
+✔ password vault persists ciphertext only and a fresh instance restores the exact original authority (184.148608ms)
+✔ return unlock preserves the SDK vault namespace, private state, maintenance key and unresolved journal (173.378395ms)
+✔ wrong password and attempted replacement never alter an existing saved authority (340.582934ms)
+✔ separate scopes keep owner/event/role isolated; outer scope substitution fails authentication (506.739915ms)
+✔ backup schema, bounded input, fixed KDF cost and authenticated salt/IV/ciphertext fail closed (361.581948ms)
+✔ encrypted backup imports only after successful decryption and never overwrites another record (534.862945ms)
+✔ explicit owner approval is required before any private processing or persistence (0.489745ms)
+✔ lock during PBKDF2 cancels save and creates no saved record (102.676747ms)
+✔ lock during decrypt or final AES import prevents a late custody resurrection (280.676165ms)
+✔ simultaneous tabs cannot replace each other: add-only transaction commits exactly one authority (172.267782ms)
+✔ malformed storage never silently becomes a new vault or leaks additional metadata (175.252124ms)
+✔ controller lock aborts owner-local writes and rotates its signal without deleting public history (0.664298ms)
+✔ locking during the IndexedDB write aborts the whole transaction before it persists authority (109.415197ms)
+✔ independent wraps use fresh random salts and IVs even for the exact same authority and password (164.69861ms)
+✔ legacy recovery and password unlock snapshot mutable scope before asynchronous AES import (186.562456ms)
+✔ manifest and fragment link round trip only public identity and never confer trust (13.398768ms)
+✔ manifest rejects non-Preview, malformed, zero, uppercase and missing identities (1.704331ms)
+✔ manifest refuses all authority, endpoint, account, private and unknown fields (0.486491ms)
+✔ bounded strict flat JSON rejects duplicates, escaped duplicate keys and nesting (1.734795ms)
+✔ event links reject unsafe schemes, credentials, queries and extra fragment data (2.011091ms)
+✔ request-pass and check-in QR schemas are distinct and exact-event-bound (1.842387ms)
+✔ gate request is exact-event/commitment bound, bounded and unexpired (2.288348ms)
+✔ receipt handoff retains exact gate context and real tagged transaction ID after expiry (2.5892ms)
+✔ preserved expired gate context supports receipt recovery but fails new-action validation (1.059202ms)
+✔ receipt builder rejects unrelated, failed, pre-baseline, non-USED or malformed receipts (3.333588ms)
+✔ reviewed event replacement cannot attach an old bearer commitment to a new event (8.505898ms)
+✔ unresolved gate context cannot be stranded by trusting a different contract (1.935097ms)
+✔ walletless verification uses fixed official readers and confers no wallet, custody, or admission (3.866248ms)
+✔ locking during walletless verification prevents late public readiness resurrection (0.714112ms)
+✔ failed public recheck removes previous ACTIVE readiness and does not leak provider error details (0.484728ms)
+✔ lost opening is recovered only as the exact public request and never an admission (1.139171ms)
+✔ strict gate recovery refuses event, request, commitment, baseline, expiry and bound-transaction drift (6.189128ms)
+✔ an expired read with an open backend row closes local context without granting entry (0.472119ms)
+✔ pending bound recovery preserves its candidate and permits only explicit same-request claim continuation (0.965581ms)
+✔ closed requests cannot reopen on a stale pending read (5.325089ms)
+✔ dismissed admission and later status recovery cannot resurrect a green entry grant (0.546691ms)
+✔ a status response claiming admission cannot restore readiness or grant entry (0.46625ms)
+✔ lost claim before backend binding can recover open context without changing its intended transaction (0.350767ms)
+✔ dismissing the door during a pending claim prevents a later admission resurrection (0.32595ms)
+✔ public route survives reload but explicit demo path remains demo (4.170655ms)
+✔ event invitation starts guest review and cannot unlock private state (1.523228ms)
+✔ corrupt or unavailable navigation storage is harmless (0.340982ms)
+✔ public navigation serialization has only its allowlist (0.249575ms)
+✔ Preview event identity rejects demo/mainnet credentials and missing public trust anchors (3.707741ms)
+✔ public attempt persistence strips private extras and preserves request/real transaction identity (1.145361ms)
+✔ live success requires complete finalized attributed receipt and matching scope (0.32603ms)
+✔ corrupt public request history fails closed instead of resetting (0.216225ms)
+✔ gate public context strips authority/capabilities and keeps unknown request identity (0.321643ms)
+✔ all owner custody steps have explicit non-agent final action requirements (0.240992ms)
+✔ consent stays pending until exact owner response; decline and cancellation are false (0.547072ms)
+✔ owner-selected issuer fixture imports nonextractable AES and excludes bearer custody (4.819499ms)
+✔ owner bearer fixture cannot contain issuer or maintenance authority (0.629706ms)
+✔ provisioning synthetic fixture requires final owner action and never implicitly creates maintenance key (0.615044ms)
+✔ persisted deployment registry carries only public finalized evidence and stays separate from custody (1.067924ms)
+✔ stale bearer tab preserves issuer verified request across reload and read-only reconciliation (9.47922ms)
+✔ stale bearer tab preserves issuer unknown request across reload and read-only reconciliation (2.929761ms)
+✔ simultaneous issuer reservations serialize unresolved checks and permit only one SDK effect (1.213052ms)
+✔ simultaneous different-role SDK writers retain both public histories (1.69117ms)
+✔ all history helpers share one named lock and concurrent merges lose no rows (6.467906ms)
+✔ stale status writes cannot downgrade verified receipts or uncertainty, and collisions are rejected atomically (1.402857ms)
+✔ missing atomic locks fail closed before any SDK transaction effect (0.681183ms)
+✔ storage failure before reservation blocks SDK effects and does not reset existing history (0.524568ms)
+✔ post-submission public persistence failure remains unknown and reload recovers authoritative finalized SDK receipt without resubmission (1.497791ms)
+✔ SDK read errors and null journal reads never establish failed/absent submission (0.936998ms)
+✔ known request missing from UI is reconstructed only from the exact unlocked authoritative SDK scope (0.542014ms)
+✔ authoritative missing-row recovery rejects wrong event/network/role/issuer/contract/request/receipt and private extras (2.153886ms)
+✔ reconciliation refreshes a stale controller and rejects SDK identity collisions without overwriting shared rows (0.628514ms)
+✔ disconnect during delayed lock acquisition cannot reserve, review or invoke a new SDK transaction (0.619881ms)
+✔ disconnect while final receipt persistence waits on a lock retains unknown public request and no late success (1.295316ms)
+✔ native adapter requests the fixed exclusive same-origin Web Lock with no unsafe fallback (0.815475ms)
+✔ actual native API absence fails closed even when localStorage-like writes are available (1.577039ms)
+✔ silent persistence nonacknowledgement is rejected before SDK effects (0.444408ms)
+✔ corrupt or unreadable history is never reset, treated as empty or allowed to submit (0.68565ms)
+✔ an unresolved-policy rejection refreshes again after read-only reconciliation and does not poison valid history (1.108546ms)
+✔ a disconnect after public finalization commit but before lock return cannot show late success or downgrade the durable receipt (0.688614ms)
+✔ a cached verified public receipt is not downgraded by missing authoritative journal evidence (0.469736ms)
+✔ obsolete finalization-lock cancellation permits same-controller reconnect, scoped read-only recovery and one fresh valid request (1.566403ms)
+✔ QR redemption binds exact event/pass/request and forwards expiry to the SDK (7.14924ms)
+✔ wrong identity, wrong own commitment, secrets or expired QR fail before review and reservation (4.8731ms)
+✔ expiry during physical-gate consent stops before any reservation or adapter call (0.831459ms)
+✔ expiry while reserving public history fails closed before adapter invocation (0.820773ms)
+✔ expiry during the later SDK transaction consent forwards the same deadline and creates no effect (0.957008ms)
+✔ mutating caller input during consent cannot extend expiry or switch request identity (0.921734ms)
+✔ lock during review, issuer scope and raw legacy IDs cannot bypass QR context (1.535417ms)
+✔ unknown submission retains the original request and blocks a repeat QR redemption (1.407815ms)
+✔ issuer inspection returns only frozen public metadata, excluding every private field (3.025615ms)
+✔ bearer inspection returns only that role’s frozen public scope (0.606481ms)
+✔ recovery fills both empty public fields without mutating the entered identity (0.782495ms)
+✔ partial recovery fills only missing fields and accepts matching explicit fields (0.358389ms)
+✔ explicit role, owner or event mismatches reject instead of changing identity (0.537347ms)
+✔ wrong schema, network, role or expected role fail closed (0.738199ms)
+✔ unknown private extras and cross-role or bearer maintenance authority reject (0.63904ms)
+✔ malformed JSON and nonobject roots reject with the same redacted error (0.298528ms)
+✔ public fields require exact owner ID and lowercase nonzero 32-byte event types (0.431108ms)
+✔ required fields and private material types/formats are validated without importing (1.185241ms)
+✔ recovery inspection is bounded at 8192 characters before JSON parsing (0.249295ms)
+✔ errors never echo private, malformed or mismatching values (0.1868ms)
+✔ scope resolver independently rejects malformed metadata and entered field types (1.170989ms)
+✔ inspection and declined owner consent never import or generate keys (0.283426ms)
+✔ explicit synthetic owner import remains exact-scope and nonextractable after recovery (2.80206ms)
+✔ private import rejects wrong or malformed scope before WebCrypto accepts material (0.657538ms)
+ℹ tests 249
+ℹ suites 0
+ℹ pass 249
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4925.463572
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 test:contract
+> npm --prefix contracts test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/contract@0.1.0 test
+> node --test ../contract-tests/event-pass.test.mjs
+
+✔ build evidence matches the exact original source and compiler-runtime pair (2.037361ms)
+✔ constructor fixes one event and one secret-derived issuer with empty counters (72.587561ms)
+✔ issuer issues an active pass; bearer atomically consumes it once (73.882319ms)
+✔ issuer revokes an active pass; correct bearer can no longer use it (59.80053ms)
+✔ wrong issuer secret cannot issue or revoke, even with the correct bearer (41.194067ms)
+✔ wrong bearer secret cannot consume an otherwise active pass (27.912182ms)
+✔ permanent tombstone rejects reissuance of a active pass (29.805177ms)
+✔ permanent tombstone rejects reissuance of a used pass (33.699648ms)
+✔ permanent tombstone rejects reissuance of a revoked pass (35.662707ms)
+✔ unissued valid commitment cannot be redeemed or revoked (35.635777ms)
+✔ used pass cannot be revoked or resurrected (33.86118ms)
+✔ event binding and domain separation prevent bearer/issuer reuse (27.418071ms)
+✔ a second distinct pass remains usable after the first is consumed (39.486462ms)
+✔ fixed public state contains only commitments and status, never raw secrets (25.296874ms)
+✔ bearer redeem intentionally does not require issuer credential (21.999059ms)
+✔ zero credentials/commitments and malformed byte inputs are rejected (84.790873ms)
+✔ contract rejects missing witnesses and incomplete circuit context (20.738196ms)
+✔ serial duplicate gate attempts have exactly one accepted state transition (48.945958ms)
+✔ local calls against stale ACTIVE snapshots are not consensus finality (33.203061ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 898.636654
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 test:browser
+> npm --prefix browser-integration run verify:offline
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 verify:offline
+> npm run typecheck && npm test && npm run test:bundle
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 typecheck
+> npm run sync && tsc -p tsconfig.json --noEmit
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 sync
+> node sync-contract.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 build
+> npm run sync && tsc -p tsconfig.json && node sync-contract.mjs --dist
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 sync
+> node sync-contract.mjs
+
+✔ private storage denial creates no database and never requests a wallet/seed (4.268191ms)
+✔ vault requires explicit nonextractable AES256 custody; no address-derived/default key (0.982336ms)
+✔ encrypted state survives close/reopen only with the existing owner key (72.207782ms)
+✔ vault isolates owner/network/event/role and contract/state identifiers (7.98144ms)
+✔ bearer vault never accepts issuer capability or maintenance authority (10.795357ms)
+✔ vault disables plaintext and unreviewed import/export recovery (1.75738ms)
+✔ ciphertext hides capabilities; unique IVs and scope AAD reject moved/tampered records (9.0336ms)
+✔ durable journal atomically rejects concurrent same-event submissions across tabs (4.470977ms)
+✔ journal scope/private-field/identity checks fail closed and unknown stays unresolved (2.375668ms)
+✔ browser ZK provider fetches actual compiler assets and refuses wrong/corrupted sets (40.336023ms)
+✔ browser wire codecs reject odd/nonhex/empty transaction bytes instead of truncating (0.623297ms)
+✔ all-zero event scope is rejected before opening storage (0.347482ms)
+✔ protected same-origin public artifacts use existing app cookies only, external assets omit credentials (9.496586ms)
+✔ adapter commitment helpers equal the actual generated Compact pure circuits (5.561805ms)
+✔ explicit witnesses reject absent capabilities and never add an issuer capability to a bearer (0.263225ms)
+✔ reads distinguish a never-issued commitment from active/used/revoked tombstones (153.525353ms)
+✔ gate rejects FailEntirely, including partial success (0.470077ms)
+✔ gate rejects FailFallible, including partial success (0.18662ms)
+✔ gate rejects pending, including partial success (0.156175ms)
+✔ gate rejects confirmed, including partial success (0.118558ms)
+✔ gate rejects unknown, including partial success (0.162515ms)
+✔ gate also rejects a failed execution segment despite an overall success string (0.298769ms)
+✔ issue receipt requires an independent state query pinned to the finalized block (29.500055ms)
+✔ redeem receipt requires an independent state query pinned to the finalized block (31.324396ms)
+✔ revoke receipt requires an independent state query pinned to the finalized block (36.886061ms)
+✔ a used public state alone is never a successful redemption receipt (22.869856ms)
+✔ successful-looking receipt with stale ACTIVE public state cannot admit (22.686781ms)
+✔ wrong event/issuer and missing contract state fail closed (24.343609ms)
+✔ deployment denial stops before SDK/private/prover/wallet/network work (1.454134ms)
+✔ no automatic maintenance key creation and no anonymous private store (0.321623ms)
+✔ a slow mock prover times out without subsequent balance/sign/submit, and blocks concurrent work (523.918318ms)
+✔ wallet injection enumeration never chooses/connects a wallet silently (0.699621ms)
+✔ read-only chain helper uses finalized head/header and system_version only (1.256538ms)
+✔ read-only query timeout never produces a success receipt (10.171279ms)
+✔ all Midnight.js dependencies are exactly pinned at 4.1.1 (0.774824ms)
+✔ gate receipt replay is claimed at most once, even with a different request id (47.246094ms)
+✔ bearer-scoped deployment fails before approval, proving, journal or DUST work (0.342395ms)
+✔ fixed owner session event mismatch and missing guarded provider boundary fail closed (0.217126ms)
+✔ an unrelated successful transaction after a pass is USED cannot become a redemption receipt (26.38075ms)
+✔ arbitrary commitment occurrence and malformed/counter-less public transcripts fail attribution (26.222091ms)
+✔ receipt requires its actual public transaction identifier and rejects missing public tx (19.185101ms)
+✔ closing an adapter during proof revokes later balance/submit and forbids new operations (29.063735ms)
+✔ browser session reads public durable attempts without exposing private storage (24.183538ms)
+✔ browser session account guard closes session and prevents further wallet checks (3.399997ms)
+✔ browser session snapshots wallet configuration so in-place service changes lock it (3.021619ms)
+✔ official maintenance generator rejects missing owner final action or bearer role before generation (0.297827ms)
+✔ walletless helper verifies one exact public state with all three hash-pinned verifier keys (296.350276ms)
+✔ walletless status returns NEVER_ISSUED, ACTIVE, USED and REVOKED without inventing admission (44.771566ms)
+✔ walletless read rejects missing contract, wrong identity, absent/mismatched verifier and tampered asset (11.317581ms)
+✔ walletless helper rejects malformed inputs before any public reads (0.55275ms)
+✔ walletless timeout and realm-network drift fail closed (6.854257ms)
+✔ SDK gate deadline rejects expired and malformed values before consent, journal or effects (234.372518ms)
+✔ SDK rechecks gate expiry after slow public preflight and after transaction consent (47.657041ms)
+✔ SDK rechecks gate expiry after journal reservation before private effects (27.639771ms)
+✔ SDK current-time guard blocks beforeProof after delayed external identity check without waiting for a timer (51.791642ms)
+✔ SDK current-time guard blocks beforeBalance after delayed external identity check without waiting for a timer (51.449278ms)
+✔ SDK current-time guard blocks beforeSubmit after delayed external identity check without waiting for a timer (45.478298ms)
+✔ proof already started before expiry may finish but cannot start balancing afterward (37.27159ms)
+✔ gate deadline never extends a shorter existing SDK operation timeout (39.60193ms)
+✔ submission started before expiry stays unknown after lost response and cannot imply cancellation (38.780547ms)
+✔ actual SDK-created deploy/issue/redeem/revoke transactions satisfy exact public attribution (348.267368ms)
+✔ API4 key bridge blocks account changes before balance and submission (3.029912ms)
+✔ denied wallet prover grant never obtains a proving provider (1.583358ms)
+✔ genuine browser provider factory uses API4 delegated proving and native WebSocket (5.530579ms)
+✔ wallet services reject wrong networks, credentials and insecure remote transport (0.627663ms)
+✔ validated service configuration is an immutable independent snapshot (0.376485ms)
+✔ in-place service drift cannot move the provider baseline before private proving (1.623219ms)
+✔ bearer joins real locally-built SDK contract without generating maintenance authority (156.768479ms)
+✔ WebSocket read-only node status queries the exact finalized header and rejects response ID mismatch (3.011444ms)
+✔ live credential uses real commitment and rejects demo/cross-network/event/contract inputs (1.728437ms)
+✔ owner account changes stop the delegated proof before any preimage is sent (0.893592ms)
+✔ expired guard blocks a new wallet balance/submit after delayed identity reads (0.416176ms)
+✔ expired guard blocks private transaction proving after delayed owner identity check (0.966762ms)
+ℹ tests 73
+ℹ suites 0
+ℹ pass 73
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2011.933797
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 test:bundle
+> npm run bundle && node test/bundle-smoke.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 bundle
+> npm run build && vite build --config vite.config.ts
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 build
+> npm run sync && tsc -p tsconfig.json && node sync-contract.mjs --dist
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 sync
+> node sync-contract.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+node_modules/@scure/base/index.js (2:0): A comment
+
+"// Freeze the result of a thunk. `/* @__PURE__ */ freeze(() => expr)` keeps the whole"
+
+in "node_modules/@scure/base/index.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs (794:89): "WebSocket" is not exported by "node_modules/isomorphic-ws/browser.js", imported by "node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs".
+node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs (1040:81): "WebSocket" is not exported by "node_modules/isomorphic-ws/browser.js", imported by "node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs".
+✓ 1352 modules transformed.
+[plugin vite:reporter] 
+(!) /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/node_modules/@midnight-ntwrk/midnight-js-contracts/dist/index.mjs is dynamically imported by /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/adapter.ts but also statically imported by /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/adapter.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/public-event.ts, dynamic import will not move module into another chunk.
+
+[plugin vite:reporter] 
+(!) /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/bytes.ts is dynamically imported by /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/adapter.ts but also statically imported by /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/adapter.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/admission.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/contract.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/credentials.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/owner-storage.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/public-event.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/receipts.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/session.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/wallet.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/zk-assets.ts, dynamic import will not move module into another chunk.
+
+rendering chunks...
+computing gzip size...
+bundle/event-pass.js  17,886.33 kB │ gzip: 6,413.11 kB
+✓ built in 4.97s
+{
+  "schema": "midnight-browser-built-artifact-node-smoke-v3",
+  "checkedAt": "2026-10-07T14:35:19.310Z",
+  "checks": [
+    "bounded offline WASM fetch host fixture and rejected non-artifact URLs",
+    "actual browser-conditioned WASM/ESM imports",
+    "genuine Compact commitment",
+    "API4 Bech32m bridge with no global Buffer or process"
+  ],
+  "hostFixture": {
+    "initializedBrowserConstructors": [
+      "Headers",
+      "Request",
+      "Response",
+      "FormData",
+      "WebSocket"
+    ],
+    "allowedEmbeddedWasmAssets": 2,
+    "responseContentType": "application/octet-stream",
+    "sdkFetches": 0,
+    "nativeFetchUsed": false
+  },
+  "browserRuntimeExercised": false,
+  "walletConnections": 0,
+  "credentialsCreated": 0,
+  "proofsGenerated": 0,
+  "networkTransactions": 0
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/gate-service@0.1.0 verify
+> npm run typecheck && npm test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/gate-service@0.1.0 typecheck
+> node ../node_modules/typescript/bin/tsc -p tsconfig.json --noEmit
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/gate-service@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/gate-service@0.1.0 build
+> node ../node_modules/typescript/bin/tsc -p tsconfig.json
+
+✔ real SDK public redeem transcript plus independent finalized-block state admits once (263.398814ms)
+✔ latest USED or unrelated successful transaction never substitutes for exact typed attribution (10.339953ms)
+✔ server ACTIVE baseline rejects real generated USED, REVOKED and never-issued states (22.684337ms)
+✔ canonical and submitted identifiers may differ: reader → service → SQLite commit keeps bound alias (26.724576ms)
+✔ indexer-only invented alias is rejected when typed public tx has no such identifier (1.546113ms)
+✔ prebaseline/same-block consumption and noncanonical/nonfinalized node evidence fail closed (2.956141ms)
+✔ independent Node RPC pins finalized head/header and exact canonical block hash (2.195128ms)
+✔ node rejects embedded credentials, non-TLS remote URI and malformed/error response (0.46613ms)
+✔ runtime node method allowlist prevents arbitrary RPC even from untyped callers (0.264187ms)
+✔ global SDK network drift fails closed before chain reads (0.378138ms)
+✔ idle finalized head inherits older ACTIVE state without any exact-action or latest fallback (18.237827ms)
+✔ as-of query selects the latest update no later than the anchor, including several updates and an action at the anchor (52.919327ms)
+✔ wrong, stale, missing and future indexer anchors fail closed before decoding or baseline creation (6.691212ms)
+✔ malformed/partial/error/wrong-contract public state is rejected without a latest fallback (2.997022ms)
+✔ absent contract and never-issued commitment are not ACTIVE, while wrong event/issuer/request identity fails closed (29.966467ms)
+✔ reorg/unfinalized finality recheck cannot open ACTIVE attempt or fall back to a different head (21.739712ms)
+✔ pinned verifier keys and exact operation set are checked on both ACTIVE and receipt snapshots (16.20625ms)
+✔ offline, HTTP failure, invalid JSON/type and oversized streamed indexer replies are bounded and redacted (2.179615ms)
+✔ as-of timeout aborts the HTTP read and invalid public endpoint/baseline never contacts a service (10.363438ms)
+✔ early HTTP/type/length refusals cancel the response stream immediately (0.784818ms)
+✔ indexer timeout also bounds a stalled streamed response after its headers (11.21661ms)
+✔ fragmented streamed responses enforce the cumulative byte cap (0.904409ms)
+✔ nonempty key subsets fail closed, and a failed pinned-key load can recover on the next read (0.647733ms)
+✔ browser validates exact healthy policy/storage/event registry and rejects extras/identity errors (11.960397ms)
+✔ open response must exactly deny admission and match all public request/gate fields (4.381752ms)
+✔ claim requires exact boolean/discriminator/request and rejects truthy false or contradictory grant (3.919849ms)
+✔ claim validates complete receipt/state public schema, identifiers and immutable opened identity (5.24544ms)
+✔ canonical/submitted aliases and genuine 66-character IDs remain compatible after wire validation (0.707894ms)
+✔ read is always admit false and enforces status/receipt discriminator and gate ownership (1.995678ms)
+✔ known errors preserve fixed code but unexpected server code/body/JSON fragments are redacted (1.168285ms)
+✔ response size is bounded with and without Content-Length and non-JSON MIME is refused (1.486063ms)
+✔ a loaded registry prevents changed event identity; close aborts and refuses late responses (1.50424ms)
+✔ HTTP authenticated lifecycle and read-only recovery never trust client receipt (9.421453ms)
+✔ HTTP auth precedes body parsing and provider errors are redacted (2.84898ms)
+✔ HTTP bounded JSON rejects extras/large body/content encoding/query secrets (2.319415ms)
+✔ CORS permits only exact owner-approved app origins and no credential cookies (1.213353ms)
+✔ Preview manifest is exact, public-only and nonzero (2.404573ms)
+✔ Only exact HTTPS or exact loopback app origins are accepted (0.429475ms)
+✔ No port, gate identity or private-directory defaults (0.573571ms)
+✔ Synthetic pair exactly matches existing app connection import and one database (0.434953ms)
+✔ Every public setup field binds the exact final owner phrase (1.041474ms)
+✔ TTY required and no unattended approval or argument bypass exists (0.264157ms)
+✔ Node and SQLite policies reject unsupported and prerelease runtimes (0.296696ms)
+✔ Synthetic authority validation matches GateAuth limits (0.207112ms)
+✔ Server validation refuses altered network endpoints, unknown fields and relocated DB (0.637198ms)
+✔ Validated launcher mapping replaces every legacy env configuration input (0.637338ms)
+✔ Private storage cannot be in source, public, dist or gate-service (0.774574ms)
+✔ Fixed fixture writes are exclusive, owner-only and read back without creating SQLite state (2.8553ms)
+✔ Existing directory is refused even when it is empty (0.573201ms)
+✔ Shared parent permissions are rejected without changing them (0.615595ms)
+✔ Symlink directory and symlink parent aliases are rejected (0.512189ms)
+✔ Launcher rejects a permissive private directory or server config without chmod changes (1.992604ms)
+✔ Launcher never recreates a missing database or accepts a shared-permission replacement (1.177199ms)
+✔ Launcher refuses private config or database symlinks and hardlinks (0.935055ms)
+✔ Bounded public manifest reading rejects private/unknown fields and symlinks (0.514102ms)
+✔ Bounded private config rejects unknown fields without echoing fixture authority (1.450148ms)
+✔ SQLite creates owner-only WAL sidecars from the reserved synthetic database (5.592751ms)
+✔ Importing setup, launch and main never provisions, prompts, listens or accesses owner config (701.903799ms)
+✔ Direct setup from pipes fails closed and cannot accept --yes (126.990393ms)
+✔ Separate launch requires one absolute owner config path and no --yes mode (266.367396ms)
+✔ A non-sticky writable ancestor is rejected even when its immediate parent is private (1.350208ms)
+✔ A replaced owner-private database is rejected using original instance metadata (1.221124ms)
+✔ A missing DB after configuration loading is refused before SQLite creation (1.214335ms)
+✔ Database instance metadata schema rejects absent, unknown, malformed and zero-inode identities (0.201532ms)
+✔ requires durable absolute database and explicit existing authority; no default key (1.465842ms)
+✔ unauthorized and unconfigured clients do not read chain or reserve (3.976964ms)
+✔ schema rejects secret, name, email, client receipt and uppercase/unbounded inputs (1.349127ms)
+✔ USED/revoked/absent baseline fails closed; receipt cannot create an attempt (1.711642ms)
+✔ independent baseline errors and late timeout never reserve (32.26912ms)
+✔ open retry preserves baseline and public gate context without another chain read (2.44979ms)
+✔ independent concurrent scanners cannot open two live attempts for same commitment (1.515116ms)
+✔ same request ID cannot change event/commitment or gate owner (1.453163ms)
+✔ expired unbound attempt denies binding and can reserve new ID; unknown bound attempt never resets (12.825387ms)
+✔ successful verified receipt commits once; concurrent/replay responses never re-admit (3.860369ms)
+✔ one candidate is permanently bound; mismatch and reopen never resubmit (12.589593ms)
+✔ timeouts share bounded outstanding read; late resolution never autonomously admits; retry reconciles (43.908701ms)
+✔ bounded verification capacity fails closed while unknown candidate remains recoverable (12.368881ms)
+✔ wrong status/state/event/issuer/commitment/prebaseline receipt cannot claim (7.958816ms)
+✔ public-only whitelist excludes raw provider/private extras from disk and recovery (1.573314ms)
+✔ restart persists bound unknown candidate and committed claim; lost response is never a second grant (2.579124ms)
+✔ storage failure after verification and service stop both fail closed (3.971886ms)
+✔ durable capacity exhausts safely; no destructive cleanup erases claims (1.725262ms)
+✔ process-isolated concurrent claim grants only once across shared SQLite file (78.607536ms)
+✔ browser client sends public allowlist only and close revokes new use (5.993073ms)
+✔ timed-out baseline reads share bounded pending work and never become late reservations (43.371134ms)
+✔ real SQLite write lock contention fails closed without issuing an admission (23.02585ms)
+✔ restart recovers the same durable unknown candidate without creating a new attempt (12.489812ms)
+✔ stop during an outstanding verifier revokes late commit and admission (2.304372ms)
+ℹ tests 88
+ℹ suites 0
+ℹ pass 88
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1234.3827
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-integration@0.1.0 test
+> npm run build && node --test test/deprecation.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-integration@0.1.0 build
+> node sync-contract.mjs && tsc -p tsconfig.json && node sync-contract.mjs --dist
+
+✔ retired live adapter cannot be constructed or call authorization (0.939221ms)
+✔ retired receipt verifier rejects even unrelated successful receipts before provider reads (0.260251ms)
+✔ retired wallet entry points never connect or inspect owner wallet (0.298108ms)
+✔ historical Compact commitment helper remains genuine and read-only (3.446968ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 657.829008
+PASS: current full compiler identity and 14 historical proof input/artifact hashes
+{
+  "filesChecked": 240,
+  "findings": []
+}
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 check:contrast
+> node scripts/check-contrast.mjs
+
+┌─────────┬─────────────────────────┬───────────┬───────────┬────────┬────────────────────┐
+│ (index) │ label                   │ fg        │ bg        │ ratio  │ passesNormalTextAA │
+├─────────┼─────────────────────────┼───────────┼───────────┼────────┼────────────────────┤
+│ 0       │ 'body'                  │ '#1d1d1f' │ '#f5f5f7' │ 15.457 │ true               │
+│ 1       │ 'secondary copy'        │ '#6e6e73' │ '#f5f5f7' │ 4.658  │ true               │
+│ 2       │ 'surface copy'          │ '#6e6e73' │ '#ffffff' │ 5.071  │ true               │
+│ 3       │ 'primary button'        │ '#ffffff' │ '#0071e3' │ 4.697  │ true               │
+│ 4       │ 'secondary action'      │ '#515158' │ '#ffffff' │ 7.872  │ true               │
+│ 5       │ 'link'                  │ '#0066cc' │ '#f5f5f7' │ 5.112  │ true               │
+│ 6       │ 'ready status'          │ '#4f7950' │ '#edf5ee' │ 4.517  │ true               │
+│ 7       │ 'used status'           │ '#456d98' │ '#edf2fa' │ 4.798  │ true               │
+│ 8       │ 'revoked status'        │ '#95584f' │ '#faeeeb' │ 4.884  │ true               │
+│ 9       │ 'expired status'        │ '#666671' │ '#f0f0f4' │ 4.988  │ true               │
+│ 10      │ 'event metadata'        │ '#cad4e3' │ '#263245' │ 8.641  │ true               │
+│ 11      │ 'pass metadata'         │ '#bfd0ef' │ '#273c68' │ 6.977  │ true               │
+│ 12      │ 'warning'               │ '#736952' │ '#f3f1ec' │ 4.806  │ true               │
+│ 13      │ 'demo banner'           │ '#5f6570' │ '#f0f1f5' │ 5.194  │ true               │
+│ 14      │ 'inactive navigation'   │ '#515158' │ '#f8f8fa' │ 7.421  │ true               │
+│ 15      │ 'active navigation'     │ '#0066cc' │ '#e5edf9' │ 4.722  │ true               │
+│ 16      │ 'informational chip'    │ '#526b8a' │ '#edf3fc' │ 4.917  │ true               │
+│ 17      │ 'neutral chip'          │ '#666671' │ '#f1f1f5' │ 5.033  │ true               │
+│ 18      │ 'pass class'            │ '#556681' │ '#f0f3f9' │ 5.243  │ true               │
+│ 19      │ 'private detail'        │ '#586a83' │ '#f3f6fa' │ 5.093  │ true               │
+│ 20      │ 'inline warning'        │ '#746442' │ '#f6f2e9' │ 5.158  │ true               │
+│ 21      │ 'success metadata'      │ '#506e55' │ '#ffffff' │ 5.672  │ true               │
+│ 22      │ 'input hint'            │ '#6e6e73' │ '#fafafc' │ 4.865  │ true               │
+│ 23      │ 'empty/waiting copy'    │ '#666671' │ '#eef0f5' │ 4.973  │ true               │
+│ 24      │ 'actual empty heading'  │ '#596476' │ '#eef0f5' │ 5.248  │ true               │
+│ 25      │ 'waiting heading'       │ '#5e6c83' │ '#eef0f5' │ 4.664  │ true               │
+│ 26      │ 'inactive filter/count' │ '#666671' │ '#f0f0f4' │ 4.988  │ true               │
+│ 27      │ 'created pass ID'       │ '#666671' │ '#eaedf5' │ 4.841  │ true               │
+│ 28      │ 'execution mode'        │ '#515158' │ '#edeef3' │ 6.794  │ true               │
+│ 29      │ 'live ordinary copy'    │ '#5e606b' │ '#ffffff' │ 6.247  │ true               │
+│ 30      │ 'live status'           │ '#415c7c' │ '#eef4fb' │ 6.226  │ true               │
+│ 31      │ 'live owner review'     │ '#665b44' │ '#f4f0e7' │ 5.871  │ true               │
+│ 32      │ 'journey ordinary copy' │ '#606674' │ '#ffffff' │ 5.753  │ true               │
+│ 33      │ 'journey progress'      │ '#606674' │ '#f5f5f7' │ 5.284  │ true               │
+│ 34      │ 'journey current step'  │ '#ffffff' │ '#395d83' │ 6.846  │ true               │
+│ 35      │ 'role hint'             │ '#395d83' │ '#ffffff' │ 6.846  │ true               │
+│ 36      │ 'public QR note'        │ '#5c6777' │ '#ffffff' │ 5.735  │ true               │
+│ 37      │ 'request evidence'      │ '#55665e' │ '#f3f7f4' │ 5.632  │ true               │
+│ 38      │ 'setup requirement'     │ '#495e77' │ '#f3f6fa' │ 6.149  │ true               │
+│ 39      │ 'pending request'       │ '#665632' │ '#fcf9ef' │ 6.776  │ true               │
+└─────────┴─────────────────────────┴───────────┴───────────┴────────┴────────────────────┘
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 prebuild
+> npm run stage:live
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> guestlist-midnight-event-pass@0.1.0 stage:live
+> npm --prefix browser-integration run bundle && node scripts/stage-live-assets.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 bundle
+> npm run build && vite build --config vite.config.ts
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 build
+> npm run sync && tsc -p tsconfig.json && node sync-contract.mjs --dist
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @event-pass/midnight-browser-integration@0.1.0 sync
+> node sync-contract.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+node_modules/@scure/base/index.js (2:0): A comment
+
+"// Freeze the result of a thunk. `/* @__PURE__ */ freeze(() => expr)` keeps the whole"
+
+in "node_modules/@scure/base/index.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs (794:89): "WebSocket" is not exported by "node_modules/isomorphic-ws/browser.js", imported by "node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs".
+node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs (1040:81): "WebSocket" is not exported by "node_modules/isomorphic-ws/browser.js", imported by "node_modules/@midnight-ntwrk/midnight-js-indexer-public-data-provider/dist/index.mjs".
+✓ 1352 modules transformed.
+[plugin vite:reporter] 
+(!) /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/node_modules/@midnight-ntwrk/midnight-js-contracts/dist/index.mjs is dynamically imported by /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/adapter.ts but also statically imported by /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/adapter.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/public-event.ts, dynamic import will not move module into another chunk.
+
+[plugin vite:reporter] 
+(!) /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/bytes.ts is dynamically imported by /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/adapter.ts but also statically imported by /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/adapter.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/admission.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/contract.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/credentials.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/owner-storage.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/public-event.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/receipts.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/session.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/wallet.ts, /workspace/scratch/c5064193acea/guestlist-interview/current/source/browser-integration/src/zk-assets.ts, dynamic import will not move module into another chunk.
+
+rendering chunks...
+computing gzip size...
+bundle/event-pass.js  17,886.33 kB │ gzip: 6,413.11 kB
+✓ built in 4.94s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+Staged the isolated genuine browser SDK and complete compiler assets; no wallet or private custody action
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> guestlist-midnight-event-pass@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 1649 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.65 kB │ gzip:   0.41 kB
+dist/assets/index-qx6VNQgO.css   45.64 kB │ gzip:   9.65 kB
+dist/assets/jsQR-DNlqmA8B.js    130.72 kB │ gzip:  47.46 kB
+dist/assets/index-BcnUZ1Gl.js   410.95 kB │ gzip: 127.45 kB
+✓ built in 2.44s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

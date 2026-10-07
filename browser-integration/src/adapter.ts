@@ -127,10 +127,16 @@ export class EventPassAdapter {
   }
   issue(requestId: string, commitment: Uint8Array): Promise<PublicReceipt> { return this.#call(requestId, 'issue', commitment); }
   revoke(requestId: string, commitment: Uint8Array): Promise<PublicReceipt> { return this.#call(requestId, 'revoke', commitment); }
-  redeem(requestId: string, commitment: Uint8Array): Promise<PublicReceipt> { return this.#call(requestId, 'redeem', commitment); }
-  async #call(requestId: string, action: EventPassCircuit, input: Uint8Array): Promise<PublicReceipt> {
+  /** Optional exact public gate deadline. It restricts new effects, not an
+   * already-started wallet/prover/network action or an already submitted tx. */
+  redeem(requestId: string, commitment: Uint8Array, gate?: { expiresAt: number }): Promise<PublicReceipt> { return this.#call(requestId, 'redeem', commitment, gate?.expiresAt); }
+  async #call(requestId: string, action: EventPassCircuit, input: Uint8Array, deadline?: number): Promise<PublicReceipt> {
     this.#begin();
     try {
+      const checkDeadline = () => {
+        if (deadline !== undefined && (!Number.isSafeInteger(deadline) || deadline <= Date.now())) throw new Error('Public gate request expired; no new redemption effect is authorized');
+      };
+      checkDeadline();
       if (action === 'redeem' ? this.#options.ownerRole !== 'bearer' : this.#options.ownerRole !== 'issuer') throw new Error('Circuit action does not match the owner role');
       if (!this.#joined || !this.#address || !this.#eventId || !this.#issuerCommitment) throw new Error('Join or deploy the expected event first');
       const commitment = bytes32(input, 'Pass commitment');
@@ -143,22 +149,24 @@ export class EventPassAdapter {
       if (!state) throw new Error('Private capability state is absent');
       if (action === 'redeem' && (!state.bearerSecret || !equalBytes(derivePassCommitment(eventId, state.bearerSecret), commitment))) throw new Error('Bearer capability mismatch');
       if (action !== 'redeem' && (!state.issuerSecret || !equalBytes(deriveIssuerCommitment(eventId, state.issuerSecret), issuerCommitment))) throw new Error('Issuer capability mismatch');
+      checkDeadline();
       await this.#authorize({ action, network: this.#options.network, contractAddress: address, eventId: publicHex(eventId), commitment: publicHex(commitment), usesPrivateProver: true, proofDestination: this.#options.proofDestination, persistsMaintenanceKey: false, persistsPrivateState: true, paysDust: true });
+      checkDeadline();
       return await this.#run(requestId, action, eventId, issuerCommitment, commitment, async (providers) => {
         // Recreate call interfaces using guarded providers; never use the unguarded found.callTx.
         const { createCircuitCallTxInterface } = await import('@midnight-ntwrk/midnight-js-contracts');
         const callTx = createCircuitCallTxInterface<EventPassContract>(providers, this.#compiled, address, this.#options.privateStateId);
         const call = await callTx[action](commitment);
         return { data: call.public, address };
-      });
+      }, deadline);
     } finally { this.#busy = false; }
   }
-  async #run(requestId: string, action: 'deploy' | EventPassCircuit, eventId: Uint8Array, issuerCommitment: Uint8Array, commitment: Uint8Array | undefined, operation: (providers: EventPassProviders) => Promise<{ data: FinalizedTxData; address: string }>): Promise<PublicReceipt> {
+  async #run(requestId: string, action: 'deploy' | EventPassCircuit, eventId: Uint8Array, issuerCommitment: Uint8Array, commitment: Uint8Array | undefined, operation: (providers: EventPassProviders) => Promise<{ data: FinalizedTxData; address: string }>, deadline?: number): Promise<PublicReceipt> {
     if (!/^[a-zA-Z0-9._:-]{1,128}$/.test(requestId)) throw new Error('Provide a non-secret unique requestId');
     const journal = this.#options.journal;
     let attempt: Attempt = { requestId, network: this.#options.network, action,
       ...(this.#address ? { contractAddress: this.#address } : {}), eventId: publicHex(eventId), issuerCommitment: publicHex(issuerCommitment),
-      ...(commitment ? { commitment: publicHex(commitment) } : {}), state: 'started', expiresAt: Date.now() + (this.#options.timeoutMs ?? 120_000) };
+      ...(commitment ? { commitment: publicHex(commitment) } : {}), state: 'started', expiresAt: Math.min(Date.now() + (this.#options.timeoutMs ?? 120_000), deadline ?? Number.MAX_SAFE_INTEGER) };
     await journal.create(attempt);
     let active = true;
     const guard = () => {

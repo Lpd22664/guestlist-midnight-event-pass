@@ -7,6 +7,7 @@ Direct browser dependencies:
 - React / React DOM 19.3.0: MIT, https://github.com/facebook/react/blob/main/LICENSE
 - Lucide React 0.468.0: ISC, https://github.com/lucide-icons/lucide/blob/main/LICENSE
 - QRCode 1.5.4: MIT, https://github.com/soldair/node-qrcode/blob/master/license
+- jsQR 1.4.0: Apache-2.0, https://github.com/cozmo/jsQR/blob/master/LICENSE (on-device public QR decoding; camera frames are not uploaded)
 
 Development dependencies are recorded with exact versions and integrity hashes in package-lock.json. Their licenses remain applicable. Vite, TypeScript, Playwright and tsx are build/test tools rather than original Guestlist features.
 

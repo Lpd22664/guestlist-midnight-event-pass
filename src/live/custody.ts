@@ -5,7 +5,7 @@ export interface RecoveryFile {
   issuerSecretHex?: string; bearerSecretHex?: string; maintenanceSigningKey?: string;
 }
 export type RecoveryMetadata = Readonly<{ role: Role; network: 'preview'; ownerAccountId: string; eventId: string }>;
-type RecoveryScope = { role: Role; ownerAccountId: string; eventId: string };
+export type RecoveryScope = { role: Role; ownerAccountId: string; eventId: string };
 const RECOVERY_REJECTED = 'Private recovery file was rejected. Check the Preview event, owner ID and role. No private material was accepted.';
 function validRole(role: unknown): role is Role { return role === 'issuer' || role === 'bearer'; }
 /** Validate in place without decoding, importing, retaining or returning private key bytes. */
@@ -44,15 +44,18 @@ export function resolveRecoveryScope(metadata: RecoveryMetadata, entered: Recove
 }
 /** Called only after the owner selects their own file and performs the local import. Never accepts a URL. */
 export async function importOwnerFile(text: string, expected: RecoveryScope, cryptoImpl: Crypto = crypto): Promise<Custody> {
-  let keyBytes: Uint8Array | undefined;
+  let keyBytes: Uint8Array | undefined, capability: Uint8Array | undefined;
   try {
-    const file = parseRecoveryFile(text, expected.role);
-    if (file.eventId !== expected.eventId || file.ownerAccountId !== expected.ownerAccountId) throw new Error('Role/scope mismatch');
+    // Snapshot before the first await: callers may mutate their form/scope object while crypto runs.
+    if (!expected || typeof expected.eventId !== 'string' || !validRole(expected.role)) throw new Error('Invalid recovery scope');
+    const scope = Object.freeze({ role: expected.role, ownerAccountId: ownerId(expected.ownerAccountId), eventId: publicHex32(expected.eventId) });
+    const file = parseRecoveryFile(text, scope.role);
+    if (file.eventId !== scope.eventId || file.ownerAccountId !== scope.ownerAccountId) throw new Error('Role/scope mismatch');
     keyBytes = bytesFromHex(file.vaultKeyHex);
-    const capability = bytesFromHex(expected.role === 'issuer' ? file.issuerSecretHex! : file.bearerSecretHex!);
+    capability = bytesFromHex(scope.role === 'issuer' ? file.issuerSecretHex! : file.bearerSecretHex!);
     const encryptionKey = await cryptoImpl.subtle.importKey('raw', keyBytes as Uint8Array<ArrayBuffer>, 'AES-GCM', false, ['encrypt','decrypt']);
-    return { role: expected.role, eventId: publicHex32(expected.eventId), ownerAccountId: ownerId(expected.ownerAccountId), encryptionKey, capability, ...(file.maintenanceSigningKey ? { maintenanceSigningKey: file.maintenanceSigningKey } : {}) };
-  } catch { throw new Error(RECOVERY_REJECTED); }
+    return { ...scope, encryptionKey, capability, ...(file.maintenanceSigningKey ? { maintenanceSigningKey: file.maintenanceSigningKey } : {}) };
+  } catch { capability?.fill(0); throw new Error(RECOVERY_REJECTED); }
   finally { keyBytes?.fill(0); }
 }
 /** Owner-operated provisioning only: final control must be handed to the owner before this function is invoked. */

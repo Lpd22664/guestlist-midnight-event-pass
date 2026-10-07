@@ -4,10 +4,11 @@ import { ownerId, publicAttemptCopy, bytesFromHex, hexFromBytes, gateContextCopy
 import { PublicHistory, PublicHistoryError, PublicHistoryCancelledError, mergePublicAttempt, type PublicHistoryLock } from './public-history';
 import type { Attempt as SdkAttempt } from '../../browser-integration/dist/journal.js';
 import { forgetCustody } from './custody';
+import { parseGateRequest } from './handoffs';
 export interface GateClient {
   health(): Promise<{ schema: string; policy: string; storage: string; events: Array<{network: string; contractAddress: string; eventId: string; issuerCommitment: string}> }>;
   close(): void;
-  readRedemption?(input: { requestId: string }): Promise<{ admit: false; code: string; attempt: { status: string }; receipt?: PublicReceipt }>;
+  readRedemption?(input: { requestId: string }): Promise<{ admit: false; code: string; attempt: { status: string; requestId?: string; network?: string; contractAddress?: string; eventId?: string; issuerCommitment?: string; commitment?: string; baselineBlockHash?: string; baselineBlockHeight?: number; expiresAt?: number; txId?: string }; receipt?: PublicReceipt }>;
   openRedemption(input: { requestId: string; network: 'preview'; contractAddress: string; eventId: string; issuerCommitment: string; commitment: string }): Promise<{ admit: false; code: string; attempt: { requestId: string; network: string; contractAddress: string; eventId: string; issuerCommitment: string; commitment: string; baselineBlockHash: string; baselineBlockHeight: number; expiresAt: number } }>;
   claimRedemption(input: { requestId: string; txId: string }): Promise<{ admit: boolean; receipt?: PublicReceipt; code?: string; requestId: string }>;
 }
@@ -28,9 +29,11 @@ export class LiveController {
   #session?: BrowserSession;
   #custody?: Custody;
   #generation = 0;
+  #ownerControl = new AbortController();
   #working = false;
   #gate?: GateClient;
   #gateAttempt?: GateContext;
+  #admissionEpoch = 0;
   #historyFailed = false;
   #history: PublicHistory;
   constructor(options: ControllerOptions = {}) {
@@ -40,6 +43,8 @@ export class LiveController {
     catch { this.#historyFailed = true; this.#state.error = 'Public request history is unreadable. Live actions are locked. Keep site data and recover the original request IDs before continuing.'; }
   }
   ownerControlGuard(): () => boolean { const generation = this.#generation; return () => generation === this.#generation; }
+  /** Cancels in-flight owner-local custody work when this session is locked or replaced. */
+  ownerControlSignal(): AbortSignal { return this.#ownerControl.signal; }
   #storage(): Pick<Storage, 'getItem' | 'setItem'> { return this.#options.storage ?? localStorage; }
   getSnapshot = () => this.#state;
   subscribe = (listener: () => void) => { this.#listeners.add(listener); return () => { this.#listeners.delete(listener); }; };
@@ -63,9 +68,9 @@ export class LiveController {
     const c = this.#custody; return c ? { role: c.role, ownerAccountId: c.ownerAccountId, eventId: c.eventId } : undefined;
   }
   disconnect(): void {
-    this.#generation++; this.consent.respond(false); this.#session?.close(); this.#session = undefined;
+    this.#generation++; this.#ownerControl.abort(); this.#ownerControl = new AbortController(); this.consent.respond(false); this.#session?.close(); this.#session = undefined;
     forgetCustody(this.#custody); this.#custody = undefined; this.#gate?.close(); this.#gate = undefined;
-    this.#set({ connected: false, joined: false, role: undefined, custodyReady: false, credential: undefined, commitment: undefined, chain: undefined, admission: undefined, busy: this.#working, message: 'Locked. Any unresolved request remains recorded; do not resubmit.' });
+    this.#set({ error: this.#historyFailed ? 'Public request history is unreadable. Live actions are locked. Keep site data and recover original request IDs.' : '', connected: false, joined: false, gateReady: false, publicVerified: false, publicCheckedAt: undefined, state: undefined, role: undefined, custodyReady: false, credential: undefined, commitment: undefined, chain: undefined, admission: undefined, busy: this.#working, message: 'Locked. Any unresolved request remains recorded; do not resubmit.' });
   }
   async setGate(client: GateClient): Promise<void> {
     await this.#work(async (generation) => {
@@ -73,26 +78,39 @@ export class LiveController {
       try {
         const health = await client.health(); this.#guard(generation);
         if (health.schema !== 'guestlist-gate-health-v1' || health.policy !== 'active-before-redemption-v1' || health.storage !== 'durable-shared' || !health.events.some(e => e.network === 'preview' && e.contractAddress === event.contractAddress && e.eventId === event.eventId && e.issuerCommitment === event.issuerCommitment)) throw new Error('Wrong gate deployment');
-        this.#gate?.close(); this.#gate = client; this.#set({ message: 'Authenticated gate service reports durable shared storage, ACTIVE-before-redemption policy and this exact configured Preview event.' });
+        this.#gate?.close(); this.#gate = client; this.#set({ gateReady: true, message: 'Authenticated gate service reports durable shared storage, ACTIVE-before-redemption policy and this exact configured Preview event.' });
       } catch { client.close(); throw new Error('Gate health or exact event verification failed. Gate remains disconnected.'); }
     });
   }
   async reviewEvent(eventInput: unknown): Promise<void> {
     await this.#work(async (generation) => {
       const event = trustedEvent(eventInput);
-      if (!await this.#review(generation, { requirement: 'storage', title: 'Review this trusted public event?', acceptLabel: 'Trust this exact Preview identity', details: [`Contract: ${event.contractAddress}`, `Event: ${event.eventId}`, `Issuer: ${event.issuerCommitment}`, 'Obtain these public values from the real event organiser, independently of any attendee QR. Gate operations will also verify exact configured onchain identity. No private capability or wallet connection is needed for this gate-only review.'] })) throw new Error('Trusted event review was declined');
-      this.#guard(generation); this.#saveEvent(event); this.#gate?.close(); this.#gate = undefined; this.#set({ event, joined: false, state: undefined, message: 'Owner-reviewed public event identity loaded. This is a trust anchor, not a finalized deployment claim.' });
+      if (this.#custody && this.#custody.eventId !== event.eventId) throw new Error('Lock existing access before selecting a different event. No authority was replaced.');
+      if (this.#gateAttempt && this.#gateAttempt.status !== 'closed' && (this.#gateAttempt.contractAddress !== event.contractAddress || this.#gateAttempt.eventId !== event.eventId || this.#gateAttempt.issuerCommitment !== event.issuerCommitment)) throw new Error('Resolve the existing gate request in its original event before switching events.');
+      if (!await this.#review(generation, { requirement: 'storage', title: 'Review this trusted public event?', acceptLabel: 'Trust this exact Preview identity', details: [`Contract: ${event.contractAddress}`, `Event: ${event.eventId}`, `Issuer: ${event.issuerCommitment}`, 'Obtain these public values from the real event organiser, independently of any attendee QR. Gate operations will also verify exact configured onchain identity. No private capability or wallet connection is needed for this public event review.'] })) throw new Error('Trusted event review was declined');
+      this.#guard(generation); this.#saveEvent(event); this.#gate?.close(); this.#gate = undefined; this.#set({ event, admission: undefined, joined: false, gateReady: false, publicVerified: false, publicCheckedAt: undefined, state: undefined, message: 'Owner-reviewed public event identity loaded. This is a trust anchor, not a finalized deployment claim.' });
     });
   }
   #saveEvent(event: TrustedEvent): void { this.#storage().setItem(PUBLIC_EVENT_STORAGE_KEY, JSON.stringify(eventRegistryCopy(event))); }
   #saveGate(context: GateContext): void { const copy = gateContextCopy(context); this.#storage().setItem(PUBLIC_GATE_STORAGE_KEY, JSON.stringify(copy)); this.#gateAttempt = copy; this.#set({ gateContext: copy }); }
+  dismissAdmission(): void { this.#admissionEpoch++; this.#set({ admission: undefined }); }
   async readGate(requestId: string): Promise<void> {
     await this.#work(async (generation) => {
+      const context = this.#gateAttempt, event = this.#state.event;
+      if (!context || context.requestId !== requestId || !event || context.contractAddress !== event.contractAddress || context.eventId !== event.eventId || context.issuerCommitment !== event.issuerCommitment) throw new Error('Recover the preserved gate request only in its original trusted event');
+      this.#set({ admission: { admit: false, requestId, code: 'checking-status' } });
       if (!this.#gate?.readRedemption) throw new Error('Owner-operated gate status recovery is unavailable');
       const result = await this.#gate.readRedemption({ requestId }); this.#guard(generation);
-      if (result.admit !== false) throw new Error('Read-only gate status must never grant entry');
-      if (this.#gateAttempt?.requestId === requestId && ['claimed','expired'].includes(result.attempt.status)) this.#saveGate({ ...this.#gateAttempt, status: 'closed' });
-      this.#set({ admission: { admit: false, requestId, code: result.code }, message: `Gate recovery status: ${result.code}. A status read never grants entry or resubmits a chain transaction.` });
+      const a = result.attempt;
+      if (result.admit !== false || a.requestId !== requestId || a.network !== 'preview' || a.contractAddress !== context.contractAddress || a.eventId !== context.eventId || a.issuerCommitment !== context.issuerCommitment || a.commitment !== context.commitment || !['open','bound','claimed','expired'].includes(a.status) || !Number.isSafeInteger(a.baselineBlockHeight) || a.baselineBlockHeight! < 0 || !Number.isSafeInteger(a.expiresAt) || a.expiresAt! <= 0 || typeof a.baselineBlockHash !== 'string') throw new Error('Gate recovery context mismatch. Entry remains closed.');
+      publicHex32(a.baselineBlockHash, 'Gate baseline');
+      if (context.baselineBlockHash !== undefined && context.baselineBlockHash !== a.baselineBlockHash || context.baselineBlockHeight !== undefined && context.baselineBlockHeight !== a.baselineBlockHeight || context.expiresAt !== undefined && context.expiresAt !== a.expiresAt || context.txId && a.txId !== undefined && context.txId !== a.txId) throw new Error('Gate recovery changed the preserved baseline or transaction');
+      if (a.txId !== undefined && !/^(?:[0-9a-f]{64}|[0-9a-f]{66})$/.test(a.txId) || (a.status === 'bound' || a.status === 'claimed') !== !!a.txId) throw new Error('Gate recovery transaction binding is invalid');
+      const closed = result.code === 'claimed' && a.status === 'claimed' || result.code === 'expired' && (a.status === 'expired' || a.status === 'open' && a.expiresAt! <= Date.now());
+      if (!closed && !(result.code === 'pending' && (a.status === 'open' || a.status === 'bound'))) throw new Error('Gate recovery status is inconsistent');
+      const restored: GateContext = { ...context, baselineBlockHash: a.baselineBlockHash, baselineBlockHeight: a.baselineBlockHeight!, expiresAt: a.expiresAt!, ...(a.txId ? {txId:a.txId} : {}), status: context.status === 'closed' || closed ? 'closed' : 'open' };
+      this.#saveGate(restored);
+      this.#set({ admission: { admit: false, requestId, code: result.code }, message: closed ? `Gate recovery: ${result.code}. A status read never grants entry again.` : a.txId ? 'The same gate request is durably bound to this transaction. You may explicitly continue its verification; no new redemption is needed.' : 'The existing gate request is still open. No entry has been granted.' });
     });
   }
   async connect(wallet: WalletApi, proofDestination: string): Promise<void> {
@@ -135,6 +153,21 @@ export class LiveController {
         if (!state || state.eventId !== this.#state.event.eventId || state.issuerCommitment !== this.#state.event.issuerCommitment) throw new Error('Indexer event identity does not match the trusted manifest');
       }
       this.#set({ chain, ...(state ? { state } : {}), message: state ? 'Node finalized head and independent indexer event state read successfully.' : 'Node finalized head read. Join a trusted event to verify indexer contract state. This does not verify wallet funding or the prover installation.' });
+    });
+  }
+  /** Public information only; fixed official Preview readers cannot be overridden by invitation links. */
+  async readPublicEvent(commitment?: string): Promise<void> {
+    await this.#work(async (generation) => {
+      const event = this.#state.event;
+      if (!event) throw new Error('Review the trusted event identity first');
+      this.#set({ publicVerified: false, state: undefined, publicCheckedAt: undefined });
+      const checked = commitment === undefined ? undefined : publicHex32(commitment, 'Public commitment');
+      const sdk = this.sdk();
+      const provider = sdk.createReadOnlyPublicProvider('preview', 'https://indexer.preview.midnight.network/api/v4/graphql', 'wss://indexer.preview.midnight.network/api/v4/graphql/ws');
+      const state = await sdk.verifyPublicEvent({ event, publicDataProvider: provider, compiledAssetsBaseUrl: (this.#options.assets ?? assetsUrl)(), ...(checked ? {commitment: checked} : {}) });
+      this.#guard(generation);
+      if (this.#state.event !== event) throw new Error('Event changed during verification');
+      this.#set({ state, publicVerified: true, publicCheckedAt: new Date().toISOString(), message: checked ? 'Pass status checked against the trusted event and original verifier keys. This indexed status does not grant admission.' : 'Public event identity and original circuit keys verified. No wallet, proof or transaction was requested.' });
     });
   }
   async join(eventInput: unknown): Promise<void> {
@@ -215,21 +248,48 @@ export class LiveController {
       this.#set({ admission: { admit: false, requestId: id, code: 'opened-awaiting-bearer' }, message: 'Gate independently observed ACTIVE and opened this public request. Bearer must redeem after this baseline; no entry is granted yet.' });
     });
   }
+  /** Legacy callers must have the same complete preserved gate context. Raw IDs
+   * alone cannot authorize redemption or bypass the QR request's expiry policy. */
   async redeem(gateRequestId: string, commitment: string): Promise<void> {
+    const c = this.#gateAttempt;
+    if (!c || c.status !== 'open' || c.requestId !== gateRequestId || c.commitment !== commitment || c.expiresAt === undefined || c.baselineBlockHash === undefined || c.baselineBlockHeight === undefined) {
+      await this.#work(async () => { throw new Error('Use the public gate request QR with its complete event, pass, baseline and expiry before redemption'); });
+      return;
+    }
+    await this.redeemGateRequest({ schema: 'guestlist-gate-request-v1', network: c.network, contractAddress: c.contractAddress, eventId: c.eventId, issuerCommitment: c.issuerCommitment, commitment: c.commitment, requestId: c.requestId, expiresAt: c.expiresAt, baselineBlockHash: c.baselineBlockHash, baselineBlockHeight: c.baselineBlockHeight });
+  }
+  /** Exact public gate handoff only; the capability remains on this bearer device. */
+  async redeemGateRequest(input: unknown): Promise<void> {
     await this.#work(async (generation) => {
       const session = this.#requireJoined(), custody = this.#custody!;
       if (custody.role !== 'bearer') throw new Error('Only the bearer device can prove redemption. Never give bearer material to the gate service.');
       const own = hexFromBytes(this.sdk().derivePassCommitment(bytesFromHex(custody.eventId), custody.capability));
-      if (publicHex32(commitment, 'Commitment') !== own) throw new Error('Commitment does not match your bearer capability');
-      if (!/^[A-Za-z0-9_-]{8,96}$/.test(gateRequestId)) throw new Error('Use the public request ID opened by your gate before redemption');
-      if (!await this.#review(generation, { requirement: 'transaction', title: 'Confirm the gate opened this attempt first', acceptLabel: 'This request came from my active gate', details: [`Public gate request ID: ${gateRequestId}`, `Public commitment: ${own}`, 'Confirm your actual gate observed finalized ACTIVE and opened this request before you redeem. Redemption without this prior gate baseline cannot be admitted.', 'Your device retains the bearer capability. Only public request and transaction IDs go to the gate. Finalized redemption still requires the gate’s independent claim-once decision.'] })) throw new Error('Gate baseline confirmation was declined');
-      const attempt = await this.#newAttempt('redeem', generation, own, gateRequestId);
-      await this.#transaction(attempt, () => session.adapter.redeem(attempt.requestId, bytesFromHex(own)), generation, session);
+      const event = this.#state.event!;
+      const expected = { network: 'preview' as const, contractAddress: event.contractAddress, eventId: event.eventId, issuerCommitment: event.issuerCommitment };
+      // Parse creates an independent allowlisted copy: changing a caller's object
+      // while consent is open cannot change the reviewed request or its deadline.
+      const request = parseGateRequest(input, expected, own);
+      const guard = () => {
+        this.#guard(generation);
+        if (this.#session !== session || this.#state.event !== event) throw new Error('Event differs from the reviewed gate request');
+        parseGateRequest(request, expected, own);
+      };
+      guard();
+      if (!await this.#review(generation, { requirement: 'transaction', title: 'Confirm the gate opened this attempt first', acceptLabel: 'This request came from my active gate', details: [`Public gate request ID: ${request.requestId}`, `Public commitment: ${own}`, `Preview contract: ${request.contractAddress}`, `ACTIVE baseline: ${request.baselineBlockHeight} · ${request.baselineBlockHash}`, `Request expires: ${new Date(request.expiresAt).toISOString()}`, 'Confirm your actual gate observed finalized ACTIVE and opened this request before you redeem. A public code is not a cryptographic gate challenge.', 'Expiry prevents starting later proof, balance or submission steps. A wallet operation already started cannot be recalled; preserve the request and reconcile any unknown outcome.', 'Your device retains the bearer capability. Only public request and transaction IDs go to the gate. Finalized redemption still requires the gate’s independent claim-once decision.'] })) throw new Error('Gate baseline confirmation was declined');
+      guard();
+      const attempt = await this.#newAttempt('redeem', generation, own, request.requestId);
+      await this.#transaction(attempt, () => {
+        guard();
+        // The adapter rechecks after its later transaction consent and binds this
+        // deadline into every guarded proving, balancing and submission effect.
+        return session.adapter.redeem(attempt.requestId, bytesFromHex(own), { expiresAt: request.expiresAt });
+      }, generation, session);
       this.#set({ credential: undefined });
     });
   }
   async claimGate(requestId: string, txId: string): Promise<void> {
     await this.#work(async (generation) => {
+      const admissionEpoch = this.#admissionEpoch;
       if (this.#historyFailed) throw new Error('Unreadable public request history locks new gate operations');
       this.#set({ admission: undefined });
       if (!this.#gate) throw new Error('Owner-operated durable gate service required');
@@ -246,7 +306,8 @@ export class LiveController {
       const attempt: PublicAttempt = { requestId, action: 'redeem', ownerAccountId: 'gate', eventId: context.eventId, role: 'bearer', commitment: context.commitment, status: 'pending' };
       if (result.requestId !== requestId || !receipt || !receiptIsFinal(receipt, attempt, this.#state.event) || receipt.publicState.passStatus !== 'USED' || !receipt.identifiers.includes(txId) && receipt.txId !== txId || typeof result.admit !== 'boolean' || (result.admit === true ? result.code !== 'admitted' : result.code !== 'already-claimed')) { this.#saveGate({ ...context, status: 'unknown', txId }); throw new Error('Gate result identity mismatch. Entry remains closed.'); }
       this.#saveGate({ ...context, status: 'closed', txId });
-      this.#set({ admission: { admit: result.admit === true, requestId: result.requestId, code: result.code }, message: result.admit === true ? 'Admitted once by the durable gate after independent attributed finalization and pinned state verification.' : 'Entry remains closed. Gate rejected, already claimed, or awaiting verified finalization.' });
+      const visibleGrant = result.admit === true && admissionEpoch === this.#admissionEpoch;
+      this.#set({ admission: { admit: visibleGrant, requestId: result.requestId, code: result.admit === true && !visibleGrant ? 'claim-completed-away' : result.code }, message: visibleGrant ? 'Admitted once by the durable gate after independent attributed finalization and pinned state verification.' : 'Entry remains closed. This request was already claimed, dismissed during verification, or did not receive a new visible grant.' });
 
     });
   }

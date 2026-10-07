@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-07T14:30:50.403Z",
+  "readOnly": true,
+  "nodeEndpoint": "https://rpc.preview.midnight.network",
+  "indexerEndpoint": "https://indexer.preview.midnight.network/api/v4/graphql",
+  "execution": "Production ReadOnlyNode, ReadOnlyAsOfIndexer, localPinnedStateVerifier and readPublicState; no authority or wallet",
+  "head": {
+    "hash": "9e0c2916e07f56a16b3befb26dd01b1397ad31f9d34d75d3aa5e8b3ffd7e8c2d",
+    "height": 1194018
+  },
+  "contractAddress": "856fb78cc68d912c92e1c1bf33afaced96cb35baa5d0973daaab93eaadca0c65",
+  "keys": "Exact issue, redeem and revoke operation set; all three pinned verifier keys passed",
+  "publicState": {
+    "eventId": "d033b2269fb0a7716928e3fa6fe2c6ca30daed553147c3cabd49998d875632d9",
+    "issuerCommitment": "d8f045c7bdae2e34113d6abba5f27d6d3a9a0bfefd6c8aed5f72e55230a68b06",
+    "issuedCount": "0",
+    "redeemedCount": "0",
+    "revokedCount": "0"
+  },
+  "scope": "Read-only as-of compatibility and canonical finalized anchor verification. Not an ACTIVE pass, accepted issue/redeem/revoke transaction, gate service launch, or admission test.",
+  "negativeControl": {
+    "checkedAt": "2026-10-07T14:20:09.717669+00:00",
+    "headHash": "14777859a6b2594861ebc54dac23767f53e01a2d56358ce83a587a719aff3408",
+    "headHeight": 1193893,
+    "exactContractActionIsNull": true,
+    "asOfStateBytes": 6928,
+    "asOfStateSha256": "2d418c7449dc57345686f5310b9ee5fd26919aa1e56512704ed9530a7de5b22a",
+    "latestEqualsAsOf": true,
+    "latestActionHeight": 1169309
+  }
+}
