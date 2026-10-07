@@ -116,3 +116,22 @@ for(const width of [320,390])for(const textScale of [100,200]){
     await contained(page);
   });
 }
+
+
+test('selected demo pass and its used state survive presentation and gate reloads',async({page})=>{
+  await freshDemo(page);
+  await page.getByRole('textbox',{name:'Guest label',exact:true}).fill('Robin Reload');
+  await page.getByRole('button',{name:'Create pass',exact:true}).click();
+  await page.getByRole('button',{name:'Present this pass',exact:true}).click();
+  await page.reload();
+  await expect(page.getByText('Robin Reload',{exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'Try check-in',exact:true}).click();
+  await page.reload();
+  await expect(page.locator('.gate-pass-summary')).toContainText('Robin Reload');
+  await page.getByRole('button',{name:'Check in',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Admitted',exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'Present pass',exact:true}).click();
+  await page.reload();
+  await expect(page.getByText('Robin Reload',{exact:true})).toBeVisible();
+  await expect(page.getByText('Already used',{exact:true})).toBeVisible();
+});
