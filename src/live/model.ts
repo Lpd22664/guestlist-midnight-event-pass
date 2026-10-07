@@ -36,6 +36,9 @@ export interface LiveView {
   joined: boolean;
   role?: Role;
   custodyReady: boolean;
+  gateReady?: boolean;
+  publicVerified?: boolean;
+  publicCheckedAt?: string;
   event?: TrustedEvent;
   state?: PublicStateSnapshot;
   chain?: { nodeVersion: string; finalizedBlockHash: string; finalizedBlockHeight: number; checkedAt: string };

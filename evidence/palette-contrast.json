@@ -1,6 +1,6 @@
 {
   "scope": "Static designated palette pairs, not a rendered whole-page audit",
-  "checkedAt": "2026-10-05T22:14:50.671Z",
+  "checkedAt": "2026-10-07T11:25:56.659Z",
   "results": [
     {
       "label": "body",
@@ -224,6 +224,62 @@
       "fg": "#665b44",
       "bg": "#f4f0e7",
       "ratio": 5.871,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "journey ordinary copy",
+      "fg": "#606674",
+      "bg": "#ffffff",
+      "ratio": 5.753,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "journey progress",
+      "fg": "#606674",
+      "bg": "#f5f5f7",
+      "ratio": 5.284,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "journey current step",
+      "fg": "#ffffff",
+      "bg": "#395d83",
+      "ratio": 6.846,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "role hint",
+      "fg": "#395d83",
+      "bg": "#ffffff",
+      "ratio": 6.846,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "public QR note",
+      "fg": "#5c6777",
+      "bg": "#ffffff",
+      "ratio": 5.735,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "request evidence",
+      "fg": "#55665e",
+      "bg": "#f3f7f4",
+      "ratio": 5.632,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "setup requirement",
+      "fg": "#495e77",
+      "bg": "#f3f6fa",
+      "ratio": 6.149,
+      "passesNormalTextAA": true
+    },
+    {
+      "label": "pending request",
+      "fg": "#665632",
+      "bg": "#fcf9ef",
+      "ratio": 6.776,
       "passesNormalTextAA": true
     }
   ]

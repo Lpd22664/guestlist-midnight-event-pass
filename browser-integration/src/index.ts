@@ -10,5 +10,6 @@ export * from './zk-assets.js';
 export * from './owner-storage.js';
 export * from './session.js';
 export * from './credentials.js';
+export * from './public-event.js';
 
 export * from './owner-key.js';

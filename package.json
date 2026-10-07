@@ -33,6 +33,7 @@
     "precheck": "npm --prefix browser-integration run build"
   },
   "dependencies": {
+    "jsqr": "1.4.0",
     "lucide-react": "0.468.0",
     "qrcode": "1.5.4",
     "react": "19.3.0",
@@ -44,7 +45,6 @@
     "@types/qrcode": "1.5.5",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
-    "jsqr": "1.4.0",
     "pngjs": "7.0.0",
     "tsx": "4.20.6",
     "typescript": "5.9.3",

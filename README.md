@@ -14,6 +14,12 @@ At the 6 October 2026 checkpoint, [CI passed on source commit `3a18aa7`](https:/
 
 Public screenshots appear below. The owner's private hosted preview is not a reviewer demo; the public source, captures and local setup are the review path.
 
+## Guided journey update
+
+The current source separates **Organise an event**, **My pass** and **Run the door**. It carries public event identity through strict invitation links and public QR handoffs. Guests can prepare a request and read compatible public state without connecting a wallet; real redemption still requires the supported Lace/local-prover path and explicit approvals. Password-protected device access can unlock the same authority on return visits, with optional encrypted recovery backups.
+
+[Implementation, security boundaries and exact validation status](docs/journey-simplification.md). The recorded deployment and original Compact contract are unchanged. These UI and offline checks do not establish a completed live network lifecycle or physical gate acceptance.
+
 ## What actually works
 
 - Organiser: issue a synthetic bearer pass, browse/filter guests, revoke an unused pass and inspect its history
@@ -35,9 +41,9 @@ Public screenshots appear below. The owner's private hosted preview is not a rev
 - Independent official node/indexer read, 5 October 2026: [minimal public receipt and state evidence](evidence/testnet/deployment-independent-read.json)
 - No owner private recovery file, wallet seed or signing key is included
 
-### Interface preview
+### Interface preview · earlier checkpoint
 
-These native browser captures show the functional **synthetic local demo**, not network admission:
+These native browser captures show the earlier **synthetic local demo** checkpoint, not network admission. Fresh guided-journey browser captures are pending; see the dated verification limits above:
 
 ![Issue a synthetic pass](evidence/current-browser/issue.png)
 

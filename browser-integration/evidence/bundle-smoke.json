@@ -1,6 +1,6 @@
 {
   "schema": "midnight-browser-built-artifact-node-smoke-v3",
-  "checkedAt": "2026-10-06T10:13:13.715Z",
+  "checkedAt": "2026-10-07T11:25:48.791Z",
   "checks": [
     "bounded offline WASM fetch host fixture and rejected non-artifact URLs",
     "actual browser-conditioned WASM/ESM imports",
